@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class MainLayoutComponent {
 
+  activeComponent : string = "";
+
+  title = "Dashboard"
+  
+  setActiveComponent(componentName: string) {
+    this.activeComponent = componentName;
+  }
+
 }

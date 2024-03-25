@@ -4,12 +4,16 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { EventComponentComponent } from './components/sub-components/event-component/event-component.component';
 
 const routes: Routes = [
-  {path : "main" , component:MainLayoutComponent},
+  {path : "main" , component:MainLayoutComponent , children:[
+    {path: "event" , component:EventComponentComponent}
+  ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
-  {path: "sidebar", component:SideBarComponent}
+  {path: "sidebar", component:SideBarComponent},
+  
 ];
 
 @NgModule({
@@ -17,5 +21,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AdminRoutingModule { }
+
+
 
 

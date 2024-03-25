@@ -6,6 +6,7 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { EventComponentComponent } from './components/sub-components/event-component/event-component.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HeaderComponent } from './components/header/header.component';
     MainLayoutComponent,
     SideBarComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    EventComponentComponent
   ],
   imports: [
     CommonModule,
