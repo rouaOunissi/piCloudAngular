@@ -123,13 +123,13 @@
                                 <th>Action</th> <!-- Added a new header for actions -->
                               </thead>
                               <tbody>
-                                <tr *ngFor="let category of categories; let i = index">
-                                  <td>{{ i + 1 }}</td>
-                                  <td>{{ category }}</td>
-                                  <td><!-- Placeholder for number of projects --></td>
+                                <tr *ngFor="let category of categories; ">
+                                  <td>{{ category.id }}</td>
+                                  <td>{{ category.name }}</td>
+                                  <td>{{category.nbr_projects}}</td>
                                   <td>
                                     <!-- Replace with an actual delete method if needed -->
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="onDeleteCategory(category.id)">Delete</button>
                                   </td>
                                 </tr>
                             </table>
@@ -150,14 +150,15 @@
                         <div class="row">
                           <div class="col-md-8">
                             <div class="form-group">
-                              <input type="text" class="form-control" id="new-category-name" placeholder="Category Name" required>
+                              <input type="text" class="form-control" [(ngModel)]="categoryName" placeholder="Category Name" required>
                             </div>
                           </div>
                           <div class="col-md-4">
-                            <button type="button" class="btn btn-danger" onclick="addCategory()">Add Category</button>
+                            <button type="button" class="btn btn-danger" (click)="addCategory()">Add Category</button>
                           </div>
                         </div>
                       </div>
+                      <p *ngIf="message" class="alert alert-info">{{ message }}</p>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -172,19 +173,20 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <h4 for="category-id">Category ID</h4>
-                              <input type="text" class="form-control" id="category-id" placeholder="Enter Category ID" required>
+                              <input type="text" class="form-control" [(ngModel)]="categoryId" placeholder="Enter Category ID" name="categoryId" required>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <h4 for="new-category-name-modify">New Category Name</h4>
-                              <input type="text" class="form-control" id="new-category-name-modify" placeholder="New Category Name" required>
+                              <input type="text" class="form-control" [(ngModel)]="newCategoryName" placeholder="New Category Name" name="newCategoryName" required>
                             </div>
                           </div>
                           <div class="col-md-4">
-                            <button type="button" class="btn btn-success mt-3" onclick="updateCategory()">Update Category</button>
+                            <button type="button" class="btn btn-success mt-3" (click)="updateCategory()">Update Category</button>
                           </div>
                         </div>
+                        <div *ngIf="messageApCat" class="alert alert-info">{{ messageApCat }}</div>
                       </div>
                     </div>
                   </div>

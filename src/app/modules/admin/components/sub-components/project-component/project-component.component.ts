@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectServiceService } from '../../../service-projet/project-service.service';
 import { ResponseProjet } from '../../../service-projet/response-projet.model';
+import { ResponseCategory } from '../../../service-projet/response-category.model';
+
 
 @Component({
   selector: 'app-project-component',
@@ -11,7 +13,17 @@ export class ProjectComponentComponent implements OnInit {
   Acceptedprojects: ResponseProjet[] = [];
   Pendingprojects: ResponseProjet[] = [];
   Declinedprojects: ResponseProjet[] = [];
-  categories: string[] = [];
+  categories: ResponseCategory[] = [];
+  categoryName: string = '';
+  message: string = '';
+  messageDelCat: string = '';
+
+  
+
+
+  categoryId: number=0 ;
+  newCategoryName: string ='';
+  messageApCat: string = '';
 
 
 
@@ -25,6 +37,8 @@ export class ProjectComponentComponent implements OnInit {
     this.fetchCategories();
 
 }
+
+
 
 
 loadAcceptedProjects() {
@@ -61,8 +75,7 @@ loadPendingProjects() {
 acceptProject(id: number) {
   this.projectService.adminAcceptProject(id).subscribe({
     next: (response) => {
-      // Handle the successful response here, maybe update your UI or give a success message
-      console.log('Project accepted', response);
+
       this.loadAcceptedProjects();
       this.loadPendingProjects();
     },
@@ -78,7 +91,7 @@ onDeleteProject(id: number) {
   this.projectService.deleteProject(id).subscribe({
     next: (response) => {
       // Handle the successful response here
-      console.log('Project deleted', response);
+      
       this.loadAcceptedProjects();
       this.loadDeclinedProjects();
       this.loadPendingProjects();
@@ -97,7 +110,6 @@ declineProject(id: number) {
   this.projectService.adminDeclineProject(id).subscribe({
     next: (response) => {
       // Handle the successful response here, maybe update your UI or give a success message
-      console.log('Project declined', response);
       this.loadDeclinedProjects();
       this.loadPendingProjects();
       
@@ -110,7 +122,7 @@ declineProject(id: number) {
 }
 fetchCategories() {
   this.projectService.getAllCategories().subscribe(
-    (data: string[]) => {
+    (data: ResponseCategory[]) => {
       this.categories = data;
     },
     (error) => {
@@ -118,5 +130,62 @@ fetchCategories() {
     }
   );
 }
+
+onDeleteCategory(id: number): void {
+  
+    this.projectService.deleteCategory(id).subscribe({
+      next: () => {
+        console.log('Category deleted successfully.');
+        // Refresh the category list or remove the category from the local state
+        this.fetchCategories();
+      },
+      error: (error) => {
+        console.error('Error deleting category', error);
+      }
+    });
+  
+}
+
+addCategory() {
+  if (!this.categoryName) {
+    this.message = 'Please enter a category name.';
+    return;
+  }
+
+  this.projectService.createCategory(this.categoryName).subscribe({
+    next: (response) => {
+      // Handle the successful response here
+      this.message = 'Category added Successfully';
+      this.fetchCategories();
+      // ... refresh category list if needed
+    },
+    error: (error) => {
+      // Handle the error response here
+      this.message = 'Category already exists !';
+      console.error(error);
+    }
+  });
+}
+
+updateCategory() {
+  if (!this.categoryId || !this.newCategoryName) {
+    this.messageApCat = 'Please enter both Category ID and New Category Name';
+    return;
+  }
+  this.projectService.updateCategory(this.categoryId, this.newCategoryName)
+    .subscribe({
+      next: (response) => {
+        this.messageApCat = 'Category updated successfully';
+        this.fetchCategories();
+        // Additional logic if needed
+      },
+      error: (error) => {
+        this.messageApCat = 'Verify your category id';
+      }
+    });
+}
+
+
+
 
 }

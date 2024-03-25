@@ -11,6 +11,7 @@ import { UserComponentComponent } from './components/sub-components/user-compone
 import { IssueComponentComponent } from './components/sub-components/issue-component/issue-component.component';
 import { RessourceComponentComponent } from './components/sub-components/ressource-component/ressource-component.component';
 import { FinanceComponentComponent } from './components/sub-components/finance-component/finance-component.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),FormsModule],
   exports: [RouterModule]
 })
 export class AdminRoutingModule { }

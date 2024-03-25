@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseProjet } from './response-projet.model';
+import { ResponseCategory } from './response-category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,21 @@ export class ProjectServiceService {
     return this.http.delete(this.baseUrl +`${id}`); // Replace `/your-endpoint/` with your actual endpoint path
   }
 
-  getAllCategories(): Observable<string[]> {
-    return this.http.get<string[]>(this.catBaseUrl);
+  getAllCategories(): Observable<ResponseCategory[]> {
+    return this.http.get<ResponseCategory[]>(this.catBaseUrl+`/admin-cat`);
   }
+
+  deleteCategory(id: number): Observable<any> {
+    return this.http.delete(`${this.catBaseUrl}/${id}`);
+  }
+
+  createCategory(categoryName: string): Observable<any> {
+    const params = new HttpParams().set('categoryName', categoryName);
+    return this.http.post(this.catBaseUrl, null, { params });
+  }
+  updateCategory(id: number, categoryName: string): Observable<any> {
+    const params = new HttpParams().set('categoryName', categoryName);
+    return this.http.put(`${this.catBaseUrl}/${id}`, {}, { params });
+  }
+  
 }
