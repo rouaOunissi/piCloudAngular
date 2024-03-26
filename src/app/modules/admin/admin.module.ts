@@ -13,6 +13,7 @@ import { ProjectComponentComponent } from './components/sub-components/project-c
 import { RessourceComponentComponent } from './components/sub-components/ressource-component/ressource-component.component';
 import { UserComponentComponent } from './components/sub-components/user-component/user-component.component';
 import { FinanceComponentComponent } from './components/sub-components/finance-component/finance-component.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,11 +28,12 @@ import { FinanceComponentComponent } from './components/sub-components/finance-c
     ProjectComponentComponent,
     RessourceComponentComponent,
     UserComponentComponent,
-    FinanceComponentComponent
+    FinanceComponentComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
