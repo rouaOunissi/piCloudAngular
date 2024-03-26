@@ -11,10 +11,13 @@ import { UserComponentComponent } from './components/sub-components/user-compone
 import { IssueComponentComponent } from './components/sub-components/issue-component/issue-component.component';
 import { RessourceComponentComponent } from './components/sub-components/ressource-component/ressource-component.component';
 import { FinanceComponentComponent } from './components/sub-components/finance-component/finance-component.component';
+import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
-    {path: "event" , component:EventComponentComponent},
+    {path: "event" , component:EventComponentComponent , children: [
+      {path: "update/:id" , component: UpdateEventComponent}
+    ]},
     {path: "cours" , component:CoursComponentComponent},
     {path: "project" , component:ProjectComponentComponent},
     {path: "user" , component:UserComponentComponent},
@@ -25,7 +28,7 @@ const routes: Routes = [
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path: "sidebar", component:SideBarComponent},
-  
+
 ];
 
 @NgModule({

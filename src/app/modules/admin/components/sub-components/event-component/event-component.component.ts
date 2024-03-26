@@ -17,7 +17,9 @@ export class EventComponentComponent implements OnInit {
   constructor(private eventService: EventService) {}
 
 
-
+  ngOnInit(): void {
+    this.getAllEvents();
+  }
 
   event = {
     eventName: '',
@@ -28,16 +30,12 @@ export class EventComponentComponent implements OnInit {
     eventNbplace: 0,
   };
 
-  ngOnInit(): void {
-    this.getAllEvents();
 
-  }
 
   getAllEvents() {
     this.eventService.getAllEvents().subscribe(
       (res) => {
         console.log(res);
-
         this.events = res;
         this.filteredCars = res ;
         ;

@@ -14,6 +14,7 @@ import { RessourceComponentComponent } from './components/sub-components/ressour
 import { UserComponentComponent } from './components/sub-components/user-component/user-component.component';
 import { FinanceComponentComponent } from './components/sub-components/finance-component/finance-component.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     RessourceComponentComponent,
     UserComponentComponent,
     FinanceComponentComponent,
+    UpdateEventComponent,
   ],
   imports: [
     CommonModule,

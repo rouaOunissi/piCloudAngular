@@ -27,5 +27,13 @@ export class EventService {
   }
 
 
+  getEventById(id : number): Observable<any>{
+    return this.http.get("http://localhost:8030/api/events/"+id );
+  }
+
+
+  updateEvennt(event : any , id : number) {
+    return this.http.put("http://localhost:8030/api/events/update/"+id , event);
+  }
 
 }
