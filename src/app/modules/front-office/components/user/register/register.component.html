@@ -1,0 +1,74 @@
+<app-header></app-header>
+<section class="contact-us" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 align-self-center">
+          <div class="row">
+            <div class="col-lg-12">
+              <form  (ngSubmit)="onSubmit()" id="contact">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2>SIGN UP </h2>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input [(ngModel)]="user.firstName" name="firstName" type="text" id="name" placeholder="YOUR FIRST NAME*" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input [(ngModel)]="user.lastName" name="lastName" type="text" id="name" placeholder="YOUR LAST NAME*" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                    <input [(ngModel)]="user.email" name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
+                  </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input [(ngModel)]="user.password" name="password" type="password" id="name" placeholder="YOUR PASSWORD*" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input [(ngModel)]="user.level" name="level" type="number" id="name" placeholder="YOUR LEVEL*" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input [(ngModel)]="user.numTel" name="level" type="tel" id="name" placeholder="YOUR PHONE NUMBER*" required="">
+                    </fieldset>
+                  </div>
+                  
+                  
+
+                  <div class="dropdown">
+                    <select class="form-select" id="speciality" [(ngModel)]="user.speciality" name="speciality" aria-label="Speciality dropdown" required>
+                      <option value="" disabled selected>Select your speciality</option>
+                      <option value="ARCTIC">ARCTIC</option>
+                      <option value="BI">BI</option>
+                      <option value="GAMING">GAMING</option>
+                      <option value="DS">DS</option>
+                      <option value="TWIN">TWIN</option>
+                    </select>
+                  </div>
+                  <br>
+                  <br>
+                  
+                  
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button  type="submit" id="form-submit" class="button" >SIGN UP</button>
+                    </fieldset>
+                    
+                  </div>
+                  <div *ngIf="successMessage" class="alert alert-success">
+                    {{ successMessage }}
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+       
