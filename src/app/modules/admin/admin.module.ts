@@ -37,7 +37,8 @@ import { UpdateEventComponent } from './components/sub-components/update-event/u
     FinanceComponentComponent,
     ValidationFormsComponent,
     ListCourseComponent,
-    EditComponentComponent
+    EditComponentComponent,
+    UpdateEventComponent
   ],
   imports: [
     CommonModule,

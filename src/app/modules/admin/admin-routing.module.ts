@@ -42,7 +42,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes),FormsModule],
-  exports: [RouterModule]
+  exports: [RouterModule,
+  FormsModule]
 })
 export class AdminRoutingModule { }
 
