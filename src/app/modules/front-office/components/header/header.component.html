@@ -1,0 +1,76 @@
+
+    <!-- user connected  -->
+    <header *ngIf="isUserLoggedIn" class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <br>
+                      <a routerLink="/front/main" class="logo">
+                          Esprit ConnecTED
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a routerLink="/front/main" class="active">Home</a></li>
+
+                          <li ><a routerLink="/front/main/issue"  href="#">Issues</a></li>
+                          <li><a routerLink="/front/main/ressource" href="#">ressources</a></li>
+                          <li class="scroll-to-section"><a routerLink="/front/main/project" href="#">projects</a></li>
+                          <li  class="has-sub">
+                              <a routerLink="/front/main/event" href="javascript:void(0)">Events</a>
+                              <ul  class="sub-menu">
+                                  <li><a  href="assets/frontOffice/pages/meetings.html">Upcoming events</a></li>
+                                  <li><a  href="assets/frontOffice/pages/meeting-details.html">Events Details</a></li>
+                              </ul>
+                          </li>
+                          <li  class="scroll-to-section"><a routerLink="/front/main/cours" >Courses</a></li>  
+                          <li (click)="logout()" class="scroll-to-section"><a>LOG OUT</a></li> 
+                          
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+      
+  </header>
+  <!-- user not connected  -->
+
+
+  <!-- user not connected  -->
+    <header *ngIf="usetNotConnected" class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <br>
+                        <a routerLink="/front/main" class="logo">
+                            Esprit ConnecTED
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a routerLink="/front/main" class="active">Home</a></li>
+  
+                            <li class="scroll-to-section"><a routerLink="/front/login" >LOG IN</a></li> 
+                            
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+  
+  
