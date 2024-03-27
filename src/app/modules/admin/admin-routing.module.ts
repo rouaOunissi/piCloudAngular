@@ -20,7 +20,9 @@ import {
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
-    {path: "event" , component:EventComponentComponent},
+    {path: "event" , component:EventComponentComponent , children: [
+      {path: "update/:id" , component: UpdateEventComponent}
+    ]},
     {path: "cours" , component:CoursComponentComponent},
     {path: "project" , component:ProjectComponentComponent},
     {path: "user" , component:UserComponentComponent},
@@ -33,7 +35,6 @@ const routes: Routes = [
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path: "sidebar", component:SideBarComponent},
-
 
 ];
 

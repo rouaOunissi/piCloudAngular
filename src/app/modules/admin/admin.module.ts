@@ -18,6 +18,7 @@ import { ListCourseComponent } from './components/sub-components/cours-component
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { EditComponentComponent } from './components/sub-components/cours-component/rihem/component/edit-component/edit-component.component';
+import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 
 
 @NgModule({
