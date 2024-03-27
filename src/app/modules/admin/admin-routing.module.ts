@@ -11,6 +11,12 @@ import { UserComponentComponent } from './components/sub-components/user-compone
 import { IssueComponentComponent } from './components/sub-components/issue-component/issue-component.component';
 import { RessourceComponentComponent } from './components/sub-components/ressource-component/ressource-component.component';
 import { FinanceComponentComponent } from './components/sub-components/finance-component/finance-component.component';
+import {
+  ListCourseComponent
+} from "./components/sub-components/cours-component/rihem/component/list-course/list-course.component";
+import {
+  EditComponentComponent
+} from "./components/sub-components/cours-component/rihem/component/edit-component/edit-component.component";
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -20,12 +26,15 @@ const routes: Routes = [
     {path: "user" , component:UserComponentComponent},
     {path: "issue" , component:IssueComponentComponent},
     {path: "ressource" , component:RessourceComponentComponent},
-    {path: "finance" , component:FinanceComponentComponent}
+    {path: "finance" , component:FinanceComponentComponent},
+      { path: "ListCours" , component:ListCourseComponent},
+      {path: "edit/:id" , component:EditComponentComponent}
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path: "sidebar", component:SideBarComponent},
-  
+
+
 ];
 
 @NgModule({
