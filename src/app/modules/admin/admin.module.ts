@@ -21,6 +21,7 @@ import { EditComponentComponent } from './components/sub-components/cours-compon
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 
 
+
 @NgModule({
   declarations: [
     MainLayoutComponent,

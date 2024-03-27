@@ -17,6 +17,8 @@ import {
 import {
   EditComponentComponent
 } from "./components/sub-components/cours-component/rihem/component/edit-component/edit-component.component";
+import { FormsModule } from '@angular/forms';
+import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -39,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),FormsModule],
   exports: [RouterModule]
 })
 export class AdminRoutingModule { }
