@@ -26,8 +26,8 @@ export class LocalStorageService {
     window.localStorage.setItem(USER_ROLE, role);
   }
 
-  static getToken(){
-    return window.localStorage.getItem(TOKEN)
+  static getToken(): string | null {
+    return window.localStorage.getItem('authToken');
   }
 
   static get UserId(){

@@ -19,6 +19,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { EditComponentComponent } from './components/sub-components/cours-component/rihem/component/edit-component/edit-component.component';
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
+import { EditUserComponent } from './components/sub-components/user-component/edit-user/edit-user/edit-user.component';
 
 
 
@@ -38,7 +39,8 @@ import { UpdateEventComponent } from './components/sub-components/update-event/u
     ValidationFormsComponent,
     ListCourseComponent,
     EditComponentComponent,
-    UpdateEventComponent
+    UpdateEventComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
