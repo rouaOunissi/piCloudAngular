@@ -30,7 +30,7 @@ export class LocalStorageService {
     return window.localStorage.getItem('authToken');
   }
 
-  static get UserId(){
+  static getUserId(): string | null {
       return window.localStorage.getItem(USER_ID) ;
   }
 

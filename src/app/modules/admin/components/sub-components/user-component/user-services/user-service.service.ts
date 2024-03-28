@@ -26,6 +26,10 @@ export class UserServiceService {
   findAll(): Observable<any> {
     console.log("TOKEN")
     console.log(LocalStorageService.getToken());
+    console.log("USER ID")
+    console.log(LocalStorageService.getUserId());
+
+    
     
     const headers = this.createAuthorization(); 
     return this.http.get(this.getAllUrl, { headers: headers });
