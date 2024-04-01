@@ -41,6 +41,7 @@ const routes: Routes = [
     PaimentComponent,
     ProfilComponent,
     EditProfilComponent,
+    
    
     
   ],
@@ -50,6 +51,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    
   ],
   exports: [RouterModule]
 })
