@@ -16,7 +16,7 @@ import { FinanceComponentComponent } from './components/sub-components/finance-c
 import { ValidationFormsComponent } from './components/sub-components/cours-component/rihem/component/validation-forms/validation-forms.component';
 import { ListCourseComponent } from './components/sub-components/cours-component/rihem/component/list-course/list-course.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditComponentComponent } from './components/sub-components/cours-component/rihem/component/edit-component/edit-component.component';
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 import { EditUserComponent } from './components/sub-components/user-component/edit-user/edit-user/edit-user.component';
@@ -46,7 +46,8 @@ import { EditUserComponent } from './components/sub-components/user-component/ed
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

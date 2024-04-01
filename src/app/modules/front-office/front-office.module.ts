@@ -15,6 +15,8 @@ import { CoursComponent } from './components/sub-components/cours/cours.componen
 import { ProblemComponent } from './components/sub-components/problem/problem.component';
 import { RessourceComponent } from './components/sub-components/ressource/ressource.component';
 import { PaimentComponent } from './components/sub-components/paiment/paiment.component';
+import { ProfilComponent } from './components/user/profil/profil.component';
+import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
     ProblemComponent,
     RessourceComponent,
     PaimentComponent,
+    ProfilComponent,
+    EditProfilComponent,
    
     
   ],

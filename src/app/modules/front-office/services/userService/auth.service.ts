@@ -16,8 +16,8 @@ httpOptions: {headers: HttpHeaders}={
 
   constructor(private http: HttpClient) { }
 
-  signUp(user: User): Observable<any> {
-    return this.http.post(this.url, user, this.httpOptions);
+  signUp(formData: FormData): Observable<any> {
+    return this.http.post(this.url, formData);
   }
 
   

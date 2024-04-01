@@ -1,4 +1,5 @@
 export class User {
+      [key: string]: any; 
       idUser: number;
       firstName: string ;
       lastName: string; 
@@ -7,6 +8,7 @@ export class User {
       level : number ;
       numTel: number ;
       speciality: string;
+      image:string;
 
       constructor() {
             this.idUser = 0;
@@ -17,5 +19,6 @@ export class User {
             this.level=0;
             this.numTel=0;
             this.speciality='';
+            this.image='';
           }
 }

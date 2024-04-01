@@ -26,7 +26,14 @@
                               </ul>
                           </li>
                           <li  class="scroll-to-section"><a routerLink="/front/main/cours" >Courses</a></li>  
-                          <li (click)="logout()" class="scroll-to-section"><a>LOG OUT</a></li> 
+                         
+                          <li  class="has-sub">
+                            <a routerLink="/front/main/event" href="javascript:void(0)">My Profil</a>
+                            <ul  class="sub-menu">
+                                <li><a  routerLink="/front/main/profil">view Profil</a></li>
+                                <li><a  (click)="logout()">LOG OUT</a></li>
+                            </ul>
+                        </li>
                           
                       </ul>        
                       <a class='menu-trigger'>

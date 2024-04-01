@@ -11,6 +11,8 @@ import { PaimentComponent } from './components/sub-components/paiment/paiment.co
 import { HomaPageComponent } from './components/homa-page/homa-page.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { ProfilComponent } from './components/user/profil/profil.component';
+import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
@@ -20,10 +22,16 @@ const routes: Routes = [
     {path: "issue" , component:ProblemComponent},
     {path: "ressource" , component:RessourceComponent},
     {path: "finance" , component:PaimentComponent},
+    {path:"profil",component:ProfilComponent,children:[
+      {path:"editProfil/:id",component:EditProfilComponent}
+    ]},
    
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
+  {path:"login" , component:LoginComponent},
+  {path:"register" , component:RegisterComponent},
+  
   
   
   

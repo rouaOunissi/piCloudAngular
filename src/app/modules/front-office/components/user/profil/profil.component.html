@@ -1,0 +1,33 @@
+<body class="theme-red">
+<div class="vg-page page-about" id="about">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 py-3">
+          <div class="img-place wow fadeInUp">
+            <img  alt="User Profile Image">
+          </div>
+        </div>
+        <div *ngIf="user" class="col-lg-6 offset-lg-1 wow fadeInRight">
+            <h1 class="fw-light">{{ user.firstName }}  {{ user.lastName }}</h1>
+            <h5 class="fg-theme mb-3">{{ user.level }} année {{ user.speciality }}</h5>
+            
+            <ul class="theme-list">
+              <li><b>email:</b> {{ user.email }}</li>
+              <li><b>phone number:</b> {{ user.numTel }}</li>
+              
+            </ul>
+            <button  [routerLink]="['/front/main/profil/editProfil', userId]" class="btn btn-theme-outline">Modify profile</button>
+            <br>
+            <br>
+            <h5 class="fg-theme mb-3"> My projects</h5>
+            <h5 class="fg-theme mb-3"> My courses</h5> 
+            <h5 class="fg-theme mb-3"> My issues</h5>
+          </div>
+          
+      </div>
+    </div>
+
+
+    
+
+   <router-outlet></router-outlet>
