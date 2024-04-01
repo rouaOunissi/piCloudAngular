@@ -37,6 +37,7 @@ const routes: Routes = [
     ProblemComponent,
     RessourceComponent,
     PaimentComponent,
+    
    
     
   ],
@@ -46,6 +47,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    
   ],
   exports: [RouterModule]
 })

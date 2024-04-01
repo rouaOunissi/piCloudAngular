@@ -1,1 +1,352 @@
-<h1> Hamma </h1>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Education - List of Meetings</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/src/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/src/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/src/assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="/src/assets/css/owl.css">
+    <link rel="stylesheet" href="/src/assets/css/lightbox.css">
+<!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+<style>
+
+ul.nav li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+    .project-item {
+        position: relative;
+  /* Your styles for the project item */
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.delete-btn {
+  padding: 8px 16px;
+  background: #e74c3c; /* Red color for delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px; /* Adjust as needed */
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background: #c0392b; /* Darken color on hover */
+}
+
+.request-info-btn {
+  /* Styles for the request info button */
+  padding: 8px 16px;
+  background: #387256; /* Example red color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  /* Absolute positioning to place it at the bottom right corner */
+  position: absolute;
+  bottom: 10px; /* Adjust as necessary for spacing from the bottom */
+  right: 10px;
+}
+
+.request-info-btn:hover {
+  background: #c0392b; /* Darken color on hover */
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.new-project-section {
+  margin-bottom: 30px;
+  /* other styles to match the design of your app */
+}
+
+.new-project-section input,
+.new-project-section textarea,
+.new-project-section select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  /* additional styles */
+}
+
+.new-project-section button {
+  padding: 8px 16px;
+  background: #387256; /* Adjust the color to match your theme */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* additional styles */
+}
+.new-project-section {
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Adjust the space between inputs */
+  align-items: center;
+}
+
+.new-project-section .input-group {
+  flex-grow: 1; /* Inputs will grow to fill available space */
+}
+
+.new-project-section .form-control {
+  /* Your existing input styles */
+}
+
+.new-project-section .btn {
+  white-space: nowrap; /* Prevents the button text from wrapping */
+}
+
+.message-cell {
+    flex: 1; /* The cell can grow and shrink but is initially based on its content size */
+  min-width: 0; /* Allows the cell to shrink below its content size if necessary */
+  word-wrap: break-word; /* Allows long words to be broken and wrapped onto the next line */
+  overflow-wrap: break-word; /* Similar to word-wrap */
+  overflow: hidden; /
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line */
+}
+
+.project-description {
+  /* Ensures that text is wrapped properly within the container */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  /* Sets the element to block so it takes the full width and respects padding/margins */
+  display: block;
+  margin: 0; /* Adjust margin as needed */
+  padding: 0 15px; /* Adjust padding as needed */
+
+  /* Optional: if you want to limit the number of lines shown and add an ellipsis for overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines you want to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+</head>
+
+<body>
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="filters">
+                <ul>
+                    <li data-filter="*" (click)="loadAllProjects()">All Projects</li>
+                    <li data-filter=".my-projects" (click)="loadMyProjects()">My projects</li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"  id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                      <a class="dropdown-item" *ngFor="let category of categories"  (click)="loadProjectsByCategory(category.id)">
+                        {{ category.name }}
+                      </a>
+                    </div>
+                  </li>
+                  <li data-filter="*"(click)="loadMyRequests()" >Requests</li>
+                </ul>
+              </div>    
+            </div>
+            <div  *ngIf="boolreqprojet == false" class="scrollable-container" style="height: 500px; overflow-y: scroll;">
+                <div class="col-lg-12">
+                  <div class="row grid">
+                    <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let request of requests">
+                      <div class="project-item">
+                        <div class="project-info">
+                          <div class="project-details">
+                            <div class="project-date">
+                              <h6>{{ request.projetTitle }}</h6>
+                            </div>
+                            <p class="project-description">{{ request.message }}</p>
+                            <p>Status: {{ request.status }}</p>
+                            <div class="button-group">
+                              <button class="btn"  style="background-color: #27ae60; color: white;">Accept</button>
+                              <button class="btn"  style="background-color: #c0392b; color: white;">Decline</button>
+                              <button  class="delete-btn" (click)="deleteRequest(request.id)">Delete</button>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+         <div *ngIf="boolreqprojet == true" class="scrollable-container" style="height: 500px; overflow-y: scroll;">
+            <div class="col-lg-12">
+                <div class="row grid">
+                    <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let project of projects">
+                      <div class="project-item">
+                        <div class="project-info">
+                          <div class="project-details">
+                            <div class="project-date">
+                              <h6>{{ project.creationDate | date }}</h6>
+                            </div>
+                            <h4>{{ project.title }}</h4>
+                            <p>{{ project.description }}</p>
+                            <p>status : {{project.status}}</p>
+                            <!-- Include other project details you want to display -->
+                            <button *ngIf="shouldShowApplyButton" class="request-info-btn" (click)="showApplySection(project.id)">Apply</button>
+                            <button *ngIf="shouldShowDeleteButton" class="delete-btn" (click)="deleteProject(project.id)">Delete</button>
+                            <button *ngIf="shouldShowUpdateButton" class="btn btn-primary" (click)="showUpdateSection(project)">Update</button>
+
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div *ngIf="isApplySectionVisible" style="margin-top: 2cm" class="new-project-section">
+        <h1 style="color: #fff;">Add your Message Here</h1>
+        <div class="input-group mb-3">
+          <input [(ngModel)]="message" type="text" class="form-control" placeholder="Your message" required />
+        </div>
+        <button class="btn btn-success ml-3" (click)="applyToProject()">Apply</button>
+        <button class="btn btn-secondary ml-3" (click)="hideApplySection()">Cancel</button>
+      </div>
+      <div *ngIf="isUpdateSectionVisible" style="margin-top: 2cm" class="new-project-section d-flex flex-wrap align-items-center justify-content-start">
+        <h1 style="color: #fff;">Update Your Project</h1>
+        <div class="input-group mb-3">
+          <input [(ngModel)]="currentlyEditingProject.title" type="text" class="form-control" placeholder="Project Title" required/>
+        </div>
+        <div class="input-group mb-3">
+          <textarea [(ngModel)]="currentlyEditingProject.description" class="form-control" placeholder="Project Description" required></textarea>
+        </div>
+        <button class="btn btn-success ml-3" (click)="updateProject()">Update</button>
+        <button class="btn btn-secondary ml-3" (click)="hideUpdateSection()">Cancel</button>
+        <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+          {{ successMessage }}
+        </div>
+      
+    </div>
+      <div style="margin-top: 2cm" class="new-project-section d-flex flex-wrap align-items-center justify-content-start ">
+        <h1 style="color: #fff;">Add Your Own Project</h1>
+        <div class="input-group mb-3">
+          <input [(ngModel)]="newProject.title" type="text" class="form-control" placeholder="Project Title" required/>
+        </div>
+        <div class="input-group mb-3">
+          <input [(ngModel)]="newProject.description" type="text" class="form-control" placeholder="Project Description" required/>
+        </div>
+        <div class="input-group mb-3">
+          <select [(ngModel)]="newProject.categoryId" class="form-control custom-select">
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+          </select>
+        </div>
+        <button class="btn btn-success ml-3" (click)="createProject()">Create</button>
+        <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+            {{ successMessage }}
+          </div>
+        </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
+          <br>Design: <a href="https://templatemo.com/page/1" target="_parent" title="website templates">TemplateMo</a></p>
+    </div>
+  </section>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+</body>
+
+
+ 
+
+</html>
