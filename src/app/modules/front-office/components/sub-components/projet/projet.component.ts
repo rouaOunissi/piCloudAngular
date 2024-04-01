@@ -77,7 +77,7 @@ export class ProjetComponent implements OnInit{
   applyToProject(): void {
     // Assuming you have a method in your service to create a request
     // and 'encadreurId' is obtained from somewhere in your component
-    const encadreurId = Number(LocalStorageService.UserId); // Replace with actual logic to retrieve the encadreur ID
+    const encadreurId = Number(localStorage.getItem("userId")); // Replace with actual logic to retrieve the encadreur ID
     
 
     const requestRequest = {
@@ -209,7 +209,7 @@ export class ProjetComponent implements OnInit{
       return;
     }
    
-    this.newProject.creatorId = Number(LocalStorageService.UserId); // Convert to number if necessary
+    this.newProject.creatorId = Number(localStorage.getItem("userId")); // Convert to number if necessary
   
     this.ProjectServiceService.createProject(this.newProject).subscribe(
       (response) => {
@@ -233,7 +233,7 @@ export class ProjetComponent implements OnInit{
   }
 
   loadMyProjects(): void {
-    const userId = LocalStorageService.UserId ? Number(LocalStorageService.UserId) : null;
+    const userId = localStorage.getItem("userId") ? Number(localStorage.getItem("userId")) : null;
     if (!userId) {
       console.error('User ID is required to load projects');
       return;
@@ -263,7 +263,7 @@ export class ProjetComponent implements OnInit{
 
 
   loadMyRequests(): void {
-    const userId = LocalStorageService.UserId ? Number(LocalStorageService.UserId) : null;
+    const userId = localStorage.getItem("userId") ? Number(localStorage.getItem("userId")) : null;
     if (userId) {
       this.ProjectServiceService.getRequestsByEncadreurId(Number(userId)).subscribe(
         (response) => {
