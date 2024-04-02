@@ -40,9 +40,9 @@ export class UserServiceService {
     return this.http.get<User>("http://localhost:8010/api/v1/users/user/user/"+id , { headers });
   }
 
-  editUser(user : any , id : number) {
+  editUser( userId: number , formData: FormData): Observable<any> {
     const headers = this.createAuthorization();
-    return this.http.put("http://localhost:8010/api/v1/users/user/"+id , user , { headers });
+    return this.http.put("http://localhost:8010/api/v1/users/user/update/"+userId , formData , { headers });
 
     
   }

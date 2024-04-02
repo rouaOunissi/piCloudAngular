@@ -23,11 +23,13 @@ export class ProjetComponent implements OnInit{
   shouldShowDeleteButton: boolean = false;
   shouldShowUpdateButton: boolean = false;
   currentlySelectedProjectId: number = 0 ;
+  shouldShowOrojechtRequestButton=false;
 
 
   message: string ='';
 
   isUpdateSectionVisible: boolean = false; // To control the visibility of the update form
+  isShowUpdateSectionSectionVisible=false ;
   currentlyEditingProject: ResponseProjet = new ResponseProjet();
 
   
@@ -39,7 +41,7 @@ export class ProjetComponent implements OnInit{
   boolreqprojet : boolean = true ;
 
 
-  constructor(private ProjectServiceService: ProjectServiceService,private  LocalStorageService: LocalStorageService ) { }
+  constructor(private ProjectServiceService: ProjectServiceService, private  LocalStorageService: LocalStorageService  ) { }
 
   ngOnInit(): void {
     this.ProjectServiceService.getAllAdminAcceptedProjects().subscribe(
@@ -124,6 +126,60 @@ export class ProjetComponent implements OnInit{
     this.currentlyEditingProject = { ...project }; // Clone the project to edit
     this.isUpdateSectionVisible = true;
   }
+
+
+
+
+  projectRequests: Requestt[] = [];
+  projectTitle:string='';
+  showProjectRequestSection(project: ResponseProjet): void {
+    
+    this.isShowUpdateSectionSectionVisible = true;
+    this.projectTitle=project.title;
+    this.fetchProjectRequests(project.id);
+
+
+  }
+  fetchProjectRequests(projectId: number): void {
+    // Assuming you have a service that fetches requests based on the project ID
+    this.ProjectServiceService.getRequestByProjectId(projectId).subscribe({
+      next: (requests) => {
+        this.projectRequests = requests;
+      },
+      error: (err) => {
+        console.error('Failed to fetch project requests', err);
+      }
+    });
+  }
+
+  acceptRequest(reqId: number): void {
+    this.ProjectServiceService.acceptRequest(reqId).subscribe({
+      next: (response) => {
+        console.log('Request accepted successfully', response);
+        // Handle the response, e.g., refresh the list of requests or show a success message
+      },
+      error: (error) => {
+        console.error('Error accepting request:', error);
+      }
+    });
+  }
+  
+  declineRequest(reqId: number): void {
+    this.ProjectServiceService.declineRequest(reqId).subscribe({
+      next: (response) => {
+        console.log('Request declined successfully', response);
+        // Handle the response, e.g., refresh the list of requests or show a success message
+      },
+      error: (error) => {
+        console.error('Error declining request:', error);
+      }
+    });
+
+  
+
+
+  }
+  
 
   hideUpdateSection(): void {
     this.isUpdateSectionVisible = false;

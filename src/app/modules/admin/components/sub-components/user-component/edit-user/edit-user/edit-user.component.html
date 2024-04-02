@@ -35,6 +35,12 @@
         <label >speciality</label>
         <input formControlName ="speciality" type="text" class="form-control"  placeholder="speciality">
       </div>
+
+      <div class="col-lg-12">
+        <fieldset>
+          <input type="file" (change)="onFileSelected($event)" id="image" accept="image/*">
+        </fieldset>
+      </div>
      
         
       

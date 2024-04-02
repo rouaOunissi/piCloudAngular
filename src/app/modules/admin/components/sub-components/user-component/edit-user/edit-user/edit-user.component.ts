@@ -64,27 +64,45 @@ ngOnInit() {
 }
 
 onSubmit(): void {
-  console.log('Form submitted', this.editForm.valid);
-  if (this.editForm.valid && this.idUser) {
-    const updatedUser = this.editForm.value;
-   
-    this.userService.editUser(updatedUser, +this.idUser).subscribe(
-      (response) => {
+  if (this.editForm.valid) {
+    const formData = new FormData();
+    formData.append('email', this.editForm.get('email')?.value);
+    formData.append('firstName', this.editForm.get('firstName')?.value);
+    formData.append('lastName', this.editForm.get('lastName')?.value);
+    formData.append('password', this.editForm.get('password')?.value);
+    formData.append('level', this.editForm.get('level')?.value);
+    formData.append('numTel', this.editForm.get('numTel')?.value);
+    formData.append('speciality', this.editForm.get('speciality')?.value);
 
-        this.router.navigate(['/admin/main/user/']);
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
 
-        
-      },
-      (error) => {
-        console.error('Update failed:', error);
-        // Handle the error here
-      }
-
-      
-    );
-   
+    if (this.idUser) {
+      const userIdNumber = +this.idUser; 
+      this.userService.editUser( userIdNumber, formData ).subscribe({
+        next: (response) => {
+          this.router.navigate(['/admin/main/user/']);
+          
+        },
+        error: (error) => {
+          console.error('Error during the update', error);
+        }
+      });
+    } else {
+      console.error('No user ID found');
+    }
   }
 }
+selectedFile: File | null = null;
+onFileSelected(event: Event): void {
+  const element = event.currentTarget as HTMLInputElement;
+  let fileList: FileList | null = element.files;
+  if (fileList) {
+    this.selectedFile = fileList[0];
+  }
+}
+
 
 
 

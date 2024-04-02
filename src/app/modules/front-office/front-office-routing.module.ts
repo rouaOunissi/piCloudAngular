@@ -13,12 +13,15 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
+import { ShowRequestComponent } from './components/sub-components/projet/showRequest/show-request/show-request.component';
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
     {path: "event" , component:EventComponent},
     {path: "cours" , component:CoursComponent},
-    {path: "project" , component:ProjetComponent},
+    {path: "project" , component:ProjetComponent ,children:[
+      {path:"showRequest" , component:ShowRequestComponent}
+    ]},
     {path: "issue" , component:ProblemComponent},
     {path: "ressource" , component:RessourceComponent},
     {path: "finance" , component:PaimentComponent},

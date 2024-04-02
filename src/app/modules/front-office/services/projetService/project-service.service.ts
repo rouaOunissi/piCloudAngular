@@ -73,6 +73,20 @@ export class ProjectServiceService {
   }
 
 
+  private baseUrl = 'http://localhost:8050/api/v1/projets/requests';
+  getRequestByProjectId(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/projet/${id}`);
+  }
+
+  // In your service file
+
+acceptRequest(reqId: number): Observable<any> {
+  return this.http.put(`http://localhost:8050/api/v1/projets/requests/accept/${reqId}`, {});
+}
+
+declineRequest(reqId: number): Observable<any> {
+  return this.http.put(`http://localhost:8050/api/v1/projets/requests/decline/${reqId}`, {});
+}
 
 
 

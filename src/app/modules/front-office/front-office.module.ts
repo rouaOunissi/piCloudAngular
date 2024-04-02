@@ -17,6 +17,7 @@ import { RessourceComponent } from './components/sub-components/ressource/ressou
 import { PaimentComponent } from './components/sub-components/paiment/paiment.component';
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
+import { ShowRequestComponent } from './components/sub-components/projet/showRequest/show-request/show-request.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     PaimentComponent,
     ProfilComponent,
     EditProfilComponent,
+    ShowRequestComponent,
     
    
     

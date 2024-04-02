@@ -33,6 +33,11 @@
                 <input class="form-control" type="text" formControlName ="speciality" placeholder="speciality">
               </div>
               
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="file" (change)="onFileSelected($event)" id="image" accept="image/*">
+                </fieldset>
+              </div>
               
               <button type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Modify</button>
             </div>
