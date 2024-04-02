@@ -11,6 +11,8 @@ import { PaimentComponent } from './components/sub-components/paiment/paiment.co
 import { HomaPageComponent } from './components/homa-page/homa-page.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
+
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
@@ -20,14 +22,16 @@ const routes: Routes = [
     {path: "issue" , component:ProblemComponent},
     {path: "ressource" , component:RessourceComponent},
     {path: "finance" , component:PaimentComponent},
-   
+      {path: "display-video" , component:DisplayVideoComponent}
+
+
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
-  
-  
-  
-  
+
+
+
+
 ];
 
 @NgModule({

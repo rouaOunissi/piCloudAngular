@@ -15,6 +15,7 @@ import { CoursComponent } from './components/sub-components/cours/cours.componen
 import { ProblemComponent } from './components/sub-components/problem/problem.component';
 import { RessourceComponent } from './components/sub-components/ressource/ressource.component';
 import { PaimentComponent } from './components/sub-components/paiment/paiment.component';
+import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     ProblemComponent,
     RessourceComponent,
     PaimentComponent,
+    DisplayVideoComponent,
    
     
   ],
