@@ -19,6 +19,8 @@ import {
 } from "./components/sub-components/cours-component/rihem/component/edit-component/edit-component.component";
 import { FormsModule } from '@angular/forms';
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
+import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
+import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -29,7 +31,9 @@ const routes: Routes = [
     {path: "project" , component:ProjectComponentComponent},
     {path: "user" , component:UserComponentComponent},
     {path: "issue" , component:IssueComponentComponent},
-    {path: "ressource" , component:RessourceComponentComponent},
+    { path: "ressource", component: RessourceComponentComponent },
+    { path: "addRess", component: RessourceAddComponent },
+    { path: "updateRess/:id", component: RessourceUpdateComponent },
     {path: "finance" , component:FinanceComponentComponent},
       { path: "ListCours" , component:ListCourseComponent},
       {path: "edit/:id" , component:EditComponentComponent}

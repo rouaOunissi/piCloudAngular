@@ -11,6 +11,9 @@ import { PaimentComponent } from './components/sub-components/paiment/paiment.co
 import { HomaPageComponent } from './components/homa-page/homa-page.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
+import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
+import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
@@ -19,6 +22,9 @@ const routes: Routes = [
     {path: "project" , component:ProjetComponent},
     {path: "issue" , component:ProblemComponent},
     {path: "ressource" , component:RessourceComponent},
+    {path: "ressourceDetails/:id" , component:RessourceDetailsComponent},
+    {path: "ressourceAdd" , component:RessourceAddComponent},
+    {path: "ressourceUpdate/:id" , component:RessourceUpdateComponent},
     {path: "finance" , component:PaimentComponent},
    
   ]},

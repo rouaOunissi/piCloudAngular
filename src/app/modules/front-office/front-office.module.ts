@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FrontOfficeRoutingModule } from './front-office-routing.module';
@@ -15,8 +15,12 @@ import { CoursComponent } from './components/sub-components/cours/cours.componen
 import { ProblemComponent } from './components/sub-components/problem/problem.component';
 import { RessourceComponent } from './components/sub-components/ressource/ressource.component';
 import { PaimentComponent } from './components/sub-components/paiment/paiment.component';
+import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
+import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
+import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
-
+RessourceDetailsComponent
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent}, 
@@ -37,6 +41,9 @@ const routes: Routes = [
     ProblemComponent,
     RessourceComponent,
     PaimentComponent,
+    RessourceAddComponent,
+    RessourceDetailsComponent,
+    RessourceUpdateComponent,
    
     
   ],
@@ -46,7 +53,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    NgxDocViewerModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]
 })
 export class FrontOfficeModule { }
