@@ -18,6 +18,7 @@ import { RessourceDetailsComponent } from './components/sub-components/ressource
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
+import { VideoDisplayerComponent } from 'src/app/video-displayer/video-displayer.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,8 @@ const routes: Routes = [
   {path:"login" , component:LoginComponent},
   {path:"register" , component:RegisterComponent},
   {path: "display-video" , component:DisplayVideoComponent},
+  {path: "display-videoo" , component:VideoDisplayerComponent},
+
 
 
   
