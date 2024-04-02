@@ -37,14 +37,15 @@ const routes: Routes = [
     {path:"profil",component:ProfilComponent,children:[
       {path:"editProfil/:id",component:EditProfilComponent}
     ]},
+    {path: "display-video" , component:DisplayVideoComponent},
+    {path: "display-videoo" , component:VideoDisplayerComponent},
    
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path:"login" , component:LoginComponent},
   {path:"register" , component:RegisterComponent},
-  {path: "display-video" , component:DisplayVideoComponent},
-  {path: "display-videoo" , component:VideoDisplayerComponent},
+ 
 
 
 
