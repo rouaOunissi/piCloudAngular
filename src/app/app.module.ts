@@ -4,11 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VideoDisplayerComponent } from './video-displayer/video-displayer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    VideoDisplayerComponent,
 
 
   ],
@@ -17,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

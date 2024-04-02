@@ -21,6 +21,7 @@ import { ShowRequestComponent } from './components/sub-components/projet/showReq
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
+import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
 
 
 RessourceDetailsComponent
@@ -51,6 +52,7 @@ const routes: Routes = [
     RessourceAddComponent,
     RessourceDetailsComponent,
     RessourceUpdateComponent,
+    DisplayVideoComponent,
    
     
   ],

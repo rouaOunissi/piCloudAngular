@@ -3,42 +3,37 @@
     <div class="form-items">
       <h3>Add Course</h3>
       <p>Fill in the data below.</p>
-      <form class="requires-validation" novalidate (ngSubmit)="addCourse()">
+      <form class="requires-validation" novalidate (ngSubmit)="save()">
         <div class="row">
           <div class="col-md-6">
             <label for="name" class="form-label">Course Name:</label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="formData.title" placeholder="Course Name" required>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="title" placeholder="Course Name" required>
             <div class="invalid-feedback">Please enter a Course Name!</div>
           </div>
           <div class="col-md-6">
             <label for="description" class="form-label">Description:</label>
-            <input type="text" class="form-control" id="description" name="description" [(ngModel)]="formData.description" placeholder="Description" required>
+            <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description" placeholder="Description" required>
             <div class="invalid-feedback">Please enter a Description!</div>
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-md-6">
-            <label for="fileType" class="form-label">File Type:</label>
-            <select class="form-select" id="fileType" name="fileType" [(ngModel)]="formData.fileType" required>
-              <option selected disabled value="">Choose file type</option>
-              <option value="pdf">PDF</option>
-              <option value="png">PNG</option>
-              <option value="file">File</option>
-              <option value="video">Video</option>
+            <label for="price" class="form-label">File Type:</label>
+            <select class="form-select" id="price" name="price" [(ngModel)]="price" required>
+              <option selected disabled value="">Choose Price</option>
+              <option value="1">1</option>
+              <option value="55">55</option>
+              <option value="13">13</option>
+              <option value="15">15</option>
             </select>
             <div class="invalid-feedback">Please select a file type!</div>
           </div>
-          <div class="col-md-6">
-            <label for="fileContent" class="form-label">File Content:</label>
-            <input type="text" class="form-control" id="fileContent" name="fileContent" [(ngModel)]="formData.fileContent" placeholder="File Content" required>
-            <div class="invalid-feedback">Please enter a File Content!</div>
-          </div>
-        </div>
+
         <div class="row mt-3">
           <div class="col-md-6">
-            <label for="fileUpload" class="form-label">Upload File:</label>
-            <input type="file" class="form-control" id="fileUpload" name="fileUpload" required>
-            <div class="invalid-feedback">Please select a file to upload!</div>
+            <label for="video" class="form-label">Upload File:</label>
+            <input type="file" (change)="selectedfile($event)" [(ngModel)]="uriFile" class="form-control" id="video" name="video" required>
+            <div class="invalid-feedback">Please select a video to upload!</div>
           </div>
         </div>
         <div class="row mt-3">
@@ -55,7 +50,11 @@
             <button type="submit" id="submit" class="btn btn-primary">Add Course</button>
           </div>
         </div>
+        </div>
       </form>
+
     </div>
   </div>
 </div>
+<br><br>
+

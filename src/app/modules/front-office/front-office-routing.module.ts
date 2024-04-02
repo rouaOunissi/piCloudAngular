@@ -17,6 +17,8 @@ import { ShowRequestComponent } from './components/sub-components/projet/showReq
 import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
+import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
+
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
@@ -40,11 +42,14 @@ const routes: Routes = [
   {path: "header" , component:HeaderComponent},
   {path:"login" , component:LoginComponent},
   {path:"register" , component:RegisterComponent},
+  {path: "display-video" , component:DisplayVideoComponent},
+
+
   
   
-  
-  
-  
+
+
+
 ];
 
 @NgModule({
