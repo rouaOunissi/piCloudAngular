@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FrontOfficeRoutingModule } from './front-office-routing.module';
@@ -18,8 +18,12 @@ import { PaimentComponent } from './components/sub-components/paiment/paiment.co
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
 import { ShowRequestComponent } from './components/sub-components/projet/showRequest/show-request/show-request.component';
+import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
+import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
+import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 
 
+RessourceDetailsComponent
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent}, 
@@ -44,6 +48,9 @@ const routes: Routes = [
     EditProfilComponent,
     ShowRequestComponent,
     
+    RessourceAddComponent,
+    RessourceDetailsComponent,
+    RessourceUpdateComponent,
    
     
   ],
@@ -55,6 +62,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]
 })
 export class FrontOfficeModule { }

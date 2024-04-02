@@ -14,6 +14,9 @@ import { RegisterComponent } from './components/user/register/register.component
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditProfilComponent } from './components/user/edit-profil/edit-profil/edit-profil.component';
 import { ShowRequestComponent } from './components/sub-components/projet/showRequest/show-request/show-request.component';
+import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
+import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
+import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent , children:[
@@ -24,6 +27,9 @@ const routes: Routes = [
     ]},
     {path: "issue" , component:ProblemComponent},
     {path: "ressource" , component:RessourceComponent},
+    {path: "ressourceDetails/:id" , component:RessourceDetailsComponent},
+    {path: "ressourceAdd" , component:RessourceAddComponent},
+    {path: "ressourceUpdate/:id" , component:RessourceUpdateComponent},
     {path: "finance" , component:PaimentComponent},
     {path:"profil",component:ProfilComponent,children:[
       {path:"editProfil/:id",component:EditProfilComponent}
