@@ -56,12 +56,15 @@ export class RegisterComponent {
     
     this.authService.signUp(formData).subscribe({
       next: (response) => {
-        this.successMessage = 'Inscription réussie. Bienvenue!';
+        this.successMessage = 'Veuillez vérifier votre e-mail pour activer votre compte.';
         this.selectedFile = null; 
+        alert(this.successMessage);
         this.router.navigate(['/front/login']);
       },
       error: (error) => {
         console.error('Erreur lors de l\'inscription', error);
+        this.successMessage = 'erreur lors de l\'inscription';
+        alert(this.successMessage);
       }
     });
   }

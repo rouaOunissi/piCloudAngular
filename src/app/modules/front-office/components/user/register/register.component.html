@@ -1,3 +1,19 @@
+<head>
+  <style>
+      
+ .warning-message {  
+background-color: #f83d3d; /* Bootstrap's warning color */
+border-color: #f83d3d;
+color: #212529; /* Bootstrap's warning text color */
+padding: 0.75rem 1.25rem;
+margin-bottom: 1rem;
+border: 1px solid transparent;
+border-radius: 0.20rem;
+}
+      
+    </style></head>
+
+
 <app-header></app-header>
 <section class="contact-us" id="contact">
     <div class="container">
@@ -9,6 +25,9 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>SIGN UP </h2>
+                    <div *ngIf="successMessage" class="warning-message" role="alert">
+                      {{ successMessage }}
+                    </div>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
@@ -70,10 +89,10 @@
                     </fieldset>
                     
                   </div>
-                  <div *ngIf="successMessage" class="alert alert-success">
-                    {{ successMessage }}
-                  </div>
+                 
+                 
                 </div>
+                
               </form>
             </div>
           </div>
