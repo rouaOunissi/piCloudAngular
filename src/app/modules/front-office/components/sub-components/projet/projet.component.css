@@ -1,0 +1,48 @@
+.red-text {
+    color: red;
+  }
+
+  .aliceblue-text {
+    color: aliceblue;
+  }
+
+  .red-button{
+    color: #aa4143;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .card-body {
+    padding: 20px; /* Adjust as needed */
+  }
+  
+  .card-title {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Adjust as needed */
+  }
+  
+  .btn-primary {
+    background-color: #009688; /* Use the color you want for the button */
+    border: none;
+  }
+
+  .web-design-text {
+    color: #ffffff; /* White text color */
+    text-shadow: 2px 2px #ff4500; /* Shadow effect with an orange/red color */
+    font-family: 'Arial', sans-serif; /* Sans-serif font type */
+    font-size: 24px; /* Example font size, adjust as needed */
+    font-weight: bold; /* Bold text */
+  }
+  
+  
+ 
+  

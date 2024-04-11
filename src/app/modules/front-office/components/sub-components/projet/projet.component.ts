@@ -41,7 +41,31 @@ export class ProjetComponent implements OnInit{
   boolreqprojet : boolean = true ;
 
 
-  constructor(private ProjectServiceService: ProjectServiceService, private  LocalStorageService: LocalStorageService  ) { }
+  
+  constructor(private ProjectServiceService: ProjectServiceService, private  LocalStorageService: LocalStorageService  ) { 
+    
+  }
+
+  imagePaths = [
+    'assets/profil/assets/img/work/work-1.jpg',
+    'assets/profil/assets/img/work/work-2.jpg',
+    'assets/profil/assets/img/work/work-3.jpg',
+    'assets/profil/assets/img/work/work-4.jpg',
+    'assets/profil/assets/img/work/work-5.jpg',
+    'assets/profil/assets/img/work/work-6.jpg'
+    // Add more paths as needed
+  ];
+
+  assignRandomImages() {
+    this.projects.forEach(project => {
+      project.image = this.getRandomImage();
+    });
+  }
+
+  getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * this.imagePaths.length);
+    return this.imagePaths[randomIndex];
+  }
 
   ngOnInit(): void {
     this.ProjectServiceService.getAllAdminAcceptedProjects().subscribe(
@@ -57,6 +81,7 @@ export class ProjetComponent implements OnInit{
     this.ProjectServiceService.getAllCategories().subscribe(
       (data: ResponseCategory[]) => {
         this.categories = data;
+        this.assignRandomImages();
         console.log(this.categories[1].name)
       },
       error => {
@@ -79,7 +104,7 @@ export class ProjetComponent implements OnInit{
   applyToProject(): void {
     // Assuming you have a method in your service to create a request
     // and 'encadreurId' is obtained from somewhere in your component
-    const encadreurId = Number(localStorage.getItem("userId")); // Replace with actual logic to retrieve the encadreur ID
+    const encadreurId = Number(localStorage.getItem("userId")); 
     
 
     const requestRequest = {

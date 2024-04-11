@@ -3,7 +3,8 @@ export class ResponseProjet {
     title: string;
     description: string;
     creationDate: Date;
-    status: string; // Assuming status is a string; adjust as needed
+    status: string;
+    image?: string; // Assuming status is a string; adjust as needed
 
     constructor(
       id: number = 0,

@@ -199,34 +199,42 @@ ul.nav li.dropdown:hover > .dropdown-menu {
               </div>
             
               
-         <div *ngIf="boolreqprojet == true" class="scrollable-container" style="height: 500px; overflow-y: scroll;">
-            <div class="col-lg-12">
-                <div class="row grid">
-                    <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let project of projects">
-                      <div class="project-item">
-                        <div class="project-info">
-                          <div class="project-details">
-                            <div class="project-date">
-                              <h6>{{ project.creationDate | date }}</h6>
-                            </div>
-                            <h4>{{ project.title }}</h4>
-                            <p>{{ project.description }}</p>
-                            <p>status : {{project.status}}</p>
-                            <!-- Include other project details you want to display -->
-                            <button *ngIf="shouldShowApplyButton" class="request-info-btn" (click)="showApplySection(project.id)">Apply</button>
-                            <button *ngIf="shouldShowDeleteButton" class="delete-btn" (click)="deleteProject(project.id)">Delete</button>
-                            <button *ngIf="shouldShowUpdateButton" class="btn btn-primary" (click)="showUpdateSection(project)">Update</button>
-                            <button *ngIf="shouldShowUpdateButton" class="btn btn-primary" (click)="showProjectRequestSection(project)">show project request</button>
+        
 
 
+          
+          <div *ngIf="boolreqprojet == true" class="gridder my-3">
+            <div *ngFor="let project of projects"  class="grid-item apps wow zoomIn">
+              
+              <div class="img-place" data-src="assets/profil/assets/img/work/work-1.jpg"> <p>Travel, Discovery</p>">
+                <img src="assets/profil/assets/img/work/work-2.jpg" alt="">
+                
+                <div class="img-caption">
+                  <h5 class="fg-theme"> {{project.title}}</h5>
+                  <p><strong class="red-text">{{ project.description }}</strong></p>
+                  <p class="aliceblue-text">status : {{project.status}}</p>
+                  
+                  
+                  <button *ngIf="shouldShowApplyButton" class="btn btn-theme-outline selected"  (click)="showApplySection(project.id)">Apply</button>
+                            <button *ngIf="shouldShowDeleteButton" class="btn btn-theme-outline selected"  (click)="deleteProject(project.id)">Delete</button>
 
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                            <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected"  (click)="showUpdateSection(project)">Update</button>
+                            
+                            <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected"  (click)="showProjectRequestSection(project)">Project request</button>
+                            
+
+                </div>
+              </div>
             </div>
           </div>
+
+          
+          
+
+
+
+
+
         </div>
         </div>
       </div>
@@ -242,33 +250,36 @@ ul.nav li.dropdown:hover > .dropdown-menu {
 
 
 
-      <div *ngIf="isShowUpdateSectionSectionVisible" style="margin-top: 2cm" class="new-project-section d-flex flex-wrap align-items-center justify-content-start">
-        <h1 style="color: #fff;">Project Requests</h1>
-    
-        <div class="col-lg-12">
-          <div class="row grid">
-            <!-- Iterate over projectRequests array -->
-            <div *ngFor="let request of projectRequests" class="col-lg-4 templatemo-item-col all soon">
-              <div class="project-item">
-                <div class="project-info">
-                  <div class="project-details">
-                    <div class="project-date">
-                        <h1>{{ request.projetTitle }}</h1> 
-                    </div>
-                    <h5> project title {{projectTitle}}</h5>
-                    
-                    <p class="project-description"> message : {{ request.message }}</p> <!-- Dynamically display the request message -->
-                    <p> status: {{ request.status }}</p>
-                    
-                    <button class="btn"  style="background-color: #c0392b; color: white;" (click)="declineRequest(request.id)">Decline</button>
-                    <button class="btn btn-primary" (click)="acceptRequest(request.id)"> Accept</button>
-                  </div>
-                </div>
+      
+
+    <div *ngIf="isShowUpdateSectionSectionVisible" class="vg-page page-service">
+      <div  class="container">
+        <div class="text-center wow fadeInUp">
+          <span class="web-design-text">Requests</span>
+        </div>
+        <h1 class="fw-normal text-center wow fadeInUp">Project "{{projectTitle}}" requests</h1>
+        <div class="row mt-5">
+        
+          <div *ngFor="let request of projectRequests" class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card card-service wow fadeInUp">
+              <div class="icon">
+                <span class="ti-desktop"></span>
               </div>
+              <div class="caption">
+                
+                <p> <strong>     project title : {{projectTitle}}</strong> </p>
+                <p> <strong>     message : {{ request.message }}</strong> </p> <!-- Dynamically display the request message -->
+                <p>              status: {{ request.status }}</p>
+                <button class="btn btn-success ml-3"  style="background-color: #c0392b; color: white;" (click)="declineRequest(request.id)">Decline</button>
+                <button class="btn btn-success ml-3"  style="background-color: #c0392b; color: white;" (click)="acceptRequest(request.id)"> Accept</button>
+                 
+              </div>
+               
             </div>
           </div>
         </div>
-    </div>
+      </div>
+    </div>  
     
 
 
@@ -276,15 +287,15 @@ ul.nav li.dropdown:hover > .dropdown-menu {
 
 
       <div *ngIf="isUpdateSectionVisible" style="margin-top: 2cm" class="new-project-section d-flex flex-wrap align-items-center justify-content-start">
-        <h1 style="color: #fff;">Update Your Project</h1>
+        <h1 class="red-button">Update Your Project</h1>
         <div class="input-group mb-3">
           <input [(ngModel)]="currentlyEditingProject.title" type="text" class="form-control" placeholder="Project Title" required/>
         </div>
         <div class="input-group mb-3">
           <textarea [(ngModel)]="currentlyEditingProject.description" class="form-control" placeholder="Project Description" required></textarea>
         </div>
-        <button class="btn btn-success ml-3" (click)="updateProject()">Update</button>
-        <button class="btn btn-secondary ml-3" (click)="hideUpdateSection()">Cancel</button>
+        <button class="btn btn-success ml-3"  style="background-color: #c0392b; color: white;" (click)="updateProject()">Update</button>
+        <button class="btn btn-secondary ml-3"  style="background-color: #c0392b; color: white;" (click)="hideUpdateSection()">Cancel</button>
         <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
           {{ successMessage }}
         </div>
@@ -292,24 +303,37 @@ ul.nav li.dropdown:hover > .dropdown-menu {
     </div>
 
 
-      <div style="margin-top: 2cm" class="new-project-section d-flex flex-wrap align-items-center justify-content-start ">
-        <h1 style="color: #fff;">Add Your Own Project</h1>
-        <div class="input-group mb-3">
-          <input [(ngModel)]="newProject.title" type="text" class="form-control" placeholder="Project Title" required/>
-        </div>
-        <div class="input-group mb-3">
-          <input [(ngModel)]="newProject.description" type="text" class="form-control" placeholder="Project Description" required/>
-        </div>
-        <div class="input-group mb-3">
-          <select [(ngModel)]="newProject.categoryId" class="form-control custom-select">
-            <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
-          </select>
-        </div>
-        <button class="btn btn-success ml-3" (click)="createProject()">Create</button>
-        <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
-            {{ successMessage }}
+    <section class="contact-us" id="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 align-self-center">
+            <div class="card">
+              <div class="card-body">
+                <h2  class="card-title"> <strong class="red-text">Create your own Project</strong></h2>
+                <br>
+                <br>
+                <div class="form-group">
+                  <input [(ngModel)]="newProject.title" type="text" class="form-control" placeholder="Project Title" required/>
+                </div>
+                <div class="form-group">
+                  <input [(ngModel)]="newProject.description" type="text" class="form-control" placeholder="Project Description" required/>
+                </div>
+                <div class="form-group">
+                  <select [(ngModel)]="newProject.categoryId" class="form-control custom-select">
+                    <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+                  </select>
+                </div>
+                <button class="btn btn-secondary ml-3"  style="background-color: #c0392b; color: white;"  type="submit" id="form-submit" (click)="createProject()">Create</button>
+                <div *ngIf="successMessage" class="alert alert-success mt-3">
+                  {{ successMessage }}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
+    
     </div>
     <div class="footer">
       

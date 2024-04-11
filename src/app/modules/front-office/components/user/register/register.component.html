@@ -21,7 +21,7 @@ border-radius: 0.20rem;
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
-              <form  (ngSubmit)="onSubmit()" id="contact">
+              <form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm" id="contact">
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>SIGN UP </h2>
@@ -41,8 +41,12 @@ border-radius: 0.20rem;
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                    <input [(ngModel)]="user.email" name="email" type="text" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
-                  </fieldset>
+                      <input [(ngModel)]="user.email" name="email" type="email" placeholder="YOUR EMAIL..." 
+                             required email #email="ngModel">
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="warning-message">
+                        Invalid email.
+                      </div>
+                    </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
@@ -51,12 +55,20 @@ border-radius: 0.20rem;
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <input [(ngModel)]="user.level" name="level" type="number"  placeholder="YOUR LEVEL*" required="">
+                      <input [(ngModel)]="user.level" name="level" type="number" placeholder="YOUR LEVEL*" 
+                             required min="1" max="4" #level="ngModel">
+                      <div *ngIf="level.invalid && (level.dirty || level.touched)" class="warning-message">
+                        Level must be between 1 and 4.
+                      </div>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <input [(ngModel)]="user.numTel" name="numTel" type="tel"  placeholder="YOUR PHONE NUMBER*" required="">
+                      <input [(ngModel)]="user.numTel" name="numTel" type="tel" placeholder="YOUR PHONE NUMBER*" 
+                        required pattern="\d{8}" #numTel="ngModel">
+                      <div *ngIf="numTel.invalid && (numTel.dirty || numTel.touched)" class="warning-message">
+                        Invalid Phone number.
+                      </div>
                     </fieldset>
                   </div>
                   
@@ -85,7 +97,7 @@ border-radius: 0.20rem;
                   
                   <div class="col-lg-12">
                     <fieldset>
-                      <button  type="submit" id="form-submit" class="button" >SIGN UP</button>
+                      <button type="submit" id="form-submit" class="button">SIGN UP</button>
                     </fieldset>
                     
                   </div>
