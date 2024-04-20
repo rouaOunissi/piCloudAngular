@@ -67,6 +67,13 @@ export class UserServiceService {
     const baseUrl = 'http://localhost:8010/api/v1/users/auth/images';
     return `${baseUrl}/${filename}`;
   }
+
+  private apiBaseUrl = 'http://localhost:8010/api/v1/users/auth';
+  public setPassword(email: string, newPassword: string): Observable<any> {
+    const body = { newPassword: newPassword };
+    return this.http.put(`${this.apiBaseUrl}/set-password?email=${encodeURIComponent(email)}`, body);
+  }
+  
   
   
 

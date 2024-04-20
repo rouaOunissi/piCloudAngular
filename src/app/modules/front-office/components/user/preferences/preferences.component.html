@@ -1,0 +1,18 @@
+
+
+     
+  <div  class="vg-page page-service">
+    <div  class="container">
+      <div class="text-center wow fadeInUp">
+        
+      </div>
+      <h1 class="fw-normal text-center wow fadeInUp">Prefernces</h1>
+      <div class="row mt-5">
+      
+        <div *ngFor="let interest of interests">
+            <label>
+              <input type="checkbox" [value]="interest.id"> {{ interest.name }}
+            </label>
+          </div>
+    </div>
+  </div>  

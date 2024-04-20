@@ -43,7 +43,7 @@ import { RessourceUpdateComponent } from './components/sub-components/ressource-
     UpdateEventComponent,
     EditUserComponent,
     RessourceAddComponent,
-    RessourceUpdateComponent
+    RessourceUpdateComponent,
   ],
   imports: [
     CommonModule,

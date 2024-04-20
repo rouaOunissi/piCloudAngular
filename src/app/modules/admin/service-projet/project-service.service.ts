@@ -8,10 +8,10 @@ import { ResponseCategory } from './response-category.model';
   providedIn: 'root'
 })
 export class ProjectServiceService {
-  private baseUrl: string = 'http://localhost:8050/api/v1/projets/'
-  private apiUrl1: string = 'http://localhost:8050/api/v1/projets/admin-accepted';
-  private apiUrl2: string = 'http://localhost:8050/api/v1/projets/admin-pending';
-  private catBaseUrl: string ='http://localhost:8050/api/v1/projets/category'
+  private baseUrl: string = 'http://localhost:8222/api/v1/projets/'
+  private apiUrl1: string = 'http://localhost:8222/api/v1/projets/admin-accepted';
+  private apiUrl2: string = 'http://localhost:8222/api/v1/projets/admin-pending';
+  private catBaseUrl: string ='http://localhost:8222/api/v1/projets/category'
 
 
   constructor(private http: HttpClient) {}

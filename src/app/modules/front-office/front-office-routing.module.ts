@@ -19,6 +19,9 @@ import { RessourceAddComponent } from './components/sub-components/ressource-add
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
 import { VideoDisplayerComponent } from 'src/app/video-displayer/video-displayer.component';
+import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { PreferencesComponent } from './components/user/preferences/preferences.component';
 
 
 const routes: Routes = [
@@ -39,12 +42,17 @@ const routes: Routes = [
     ]},
     {path: "display-video" , component:DisplayVideoComponent},
     {path: "display-videoo" , component:VideoDisplayerComponent},
+    {path:"preferences",component:PreferencesComponent}
    
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path:"login" , component:LoginComponent},
   {path:"register" , component:RegisterComponent},
+  {path:"set-password" , component:ChangePasswordComponent},
+  {path:"forgetPassword",component:ForgetPasswordComponent},
+  
+  
  
 
 

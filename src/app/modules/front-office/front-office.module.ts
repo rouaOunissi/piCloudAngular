@@ -22,6 +22,9 @@ import { RessourceAddComponent } from './components/sub-components/ressource-add
 import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
+import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { PreferencesComponent } from './components/user/preferences/preferences.component';
 
 
 RessourceDetailsComponent
@@ -53,6 +56,9 @@ const routes: Routes = [
     RessourceDetailsComponent,
     RessourceUpdateComponent,
     DisplayVideoComponent,
+    ChangePasswordComponent,
+    ForgetPasswordComponent,
+    PreferencesComponent,
    
     
   ],
