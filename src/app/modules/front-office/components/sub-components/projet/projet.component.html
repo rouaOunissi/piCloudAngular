@@ -251,34 +251,55 @@ ul.nav li.dropdown:hover > .dropdown-menu {
       
 
     <div *ngIf="isShowUpdateSectionSectionVisible" class="vg-page page-service">
+      
       <div  class="container">
-        <div class="text-center wow fadeInUp">
-          <span class="web-design-text">Requests</span>
-        </div>
-        <h1 class="fw-normal text-center wow fadeInUp">Project "{{projectTitle}}" requests</h1>
+       
+        <h1 class="fw-normal text-center wow fadeInUp">Projects requests</h1>
         <div class="row mt-5">
         
-          <div *ngFor="let request of projectRequests" class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card card-service wow fadeInUp">
-              <div class="icon">
-                <span class="ti-desktop"></span>
-              </div>
-              <div class="caption">
-                
-                <p> <strong>     project title : {{projectTitle}}</strong> </p>
-                <p> <strong>     message : {{ request.message }}</strong> </p> <!-- Dynamically display the request message -->
-                <p>              status: {{ request.status }}</p>
-                <button class="btn btn-success ml-3"  style="background-color: #c0392b; color: white;" (click)="declineRequest(request.id)">Decline</button>
-                <button class="btn btn-success ml-3"  style="background-color: #c0392b; color: white;" (click)="acceptRequest(request.id)"> Accept</button>
-                 
-              </div>
-               
+        
+    <div *ngIf="isShowUpdateSectionSectionVisible" class="ag-format-container">
+      <div *ngFor="let request of projectRequests" class="ag-courses_box">
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+    
+            <div class="ag-courses-item_title">
+              {{projectTitle}}
             </div>
-          </div>
+    
+            <div class="ag-courses-item_date-box">
+              Message:
+              <span class="ag-courses-item_date">
+                {{ request.message }}
+              </span>
+            </div>
+            <div class="ag-courses-item_date-box">
+              Status:
+              <span class="ag-courses-item_date">
+                {{ request.status }}
+              </span>
+            </div>
+             
+
+          </a>
+          <br>
+          <button class="btn btn-success ml-3"  style="background-color: #e44002; color: white;" (click)="declineRequest(request.id)">Decline</button>
+          <button class="btn btn-success ml-3"  style="background-color: #e44002; color: white;" (click)="acceptRequest(request.id)"> Accept</button>
+           
+        </div>
+              
+      </div>
+
+    </div>
+    
+
+
         </div>
       </div>
     </div>  
-    
+
+
 
 
 

@@ -49,6 +49,7 @@
                     <h4 class="card-title">Accepted Projects</h4>
                     <br>
                     <p class="card-category">Here are all accepted projects</p>
+                    <button routerLink="/admin/main/projectStat" type="button" class="btn btn-primary">View statistics</button>
                   </div>
                   <div class="projects-scrollable">
                     <div class="card_inside" *ngFor="let project of Acceptedprojects" [attr.id]="'project-card-' + project.id">

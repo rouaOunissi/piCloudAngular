@@ -21,7 +21,7 @@ import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/dis
 import { VideoDisplayerComponent } from 'src/app/video-displayer/video-displayer.component';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
-import { PreferencesComponent } from './components/user/preferences/preferences.component';
+
 
 
 const routes: Routes = [
@@ -42,7 +42,6 @@ const routes: Routes = [
     ]},
     {path: "display-video" , component:DisplayVideoComponent},
     {path: "display-videoo" , component:VideoDisplayerComponent},
-    {path:"preferences",component:PreferencesComponent}
    
   ]},
   {path : "footer" , component:FooterComponent},
