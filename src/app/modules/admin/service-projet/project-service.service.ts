@@ -56,5 +56,11 @@ export class ProjectServiceService {
     const params = new HttpParams().set('categoryName', categoryName);
     return this.http.put(`${this.catBaseUrl}/${id}`, {}, { params });
   }
+
+  private statsUrl = 'http://localhost:8222/api/v1/projets/category/stats'; 
+  getCategoryStats(): Observable<any> {
+    return this.http.get<any>(this.statsUrl);
+  }
+
   
 }

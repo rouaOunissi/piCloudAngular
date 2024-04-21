@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-private url="http://localhost:8010/api/v1/users/auth/register" ;
+private url="http://localhost:8222/api/v1/users/auth/register" ;
 
 httpOptions: {headers: HttpHeaders}={
   headers: new HttpHeaders({"content-Type":"application/json"})

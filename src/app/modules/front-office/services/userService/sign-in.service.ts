@@ -19,7 +19,7 @@ interface AuthentificationResponse {
 })
 export class SignInService {
 
-  private authUrl = 'http://localhost:8010/api/v1/users/auth'; 
+  private authUrl = 'http://localhost:8222/api/v1/users/auth'; 
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,7 +31,7 @@ export class SignInService {
     return this.http.post<AuthentificationResponse>(`${this.authUrl}/authentificate`, request, this.httpOptions);
   }
 
-  private checkEnabeledUrl='http://localhost:8010/api/v1/users/auth';
+  private checkEnabeledUrl='http://localhost:8222/api/v1/users/auth';
   checkUserEnabled(email: string): Observable<boolean> {
     const url = `${this.checkEnabeledUrl}/check-enabled?email=${encodeURIComponent(email)}`;
     return this.http.get<boolean>(url);

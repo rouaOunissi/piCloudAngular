@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ResponseCategory } from 'src/app/modules/admin/service-projet/response-category.model';
 import { ResponseProjet } from 'src/app/modules/admin/service-projet/response-projet.model';
 import {ProjectServiceService} from 'src/app/modules/front-office/services/projetService/project-service.service'
@@ -39,10 +39,12 @@ export class ProjetComponent implements OnInit{
   userId: string | null = null;
 
   boolreqprojet : boolean = true ;
+  filteredProjects: any[] = [];
+  searchTerm: string = '';
 
 
   
-  constructor(private ProjectServiceService: ProjectServiceService, private  LocalStorageService: LocalStorageService  ) { 
+  constructor(private ProjectServiceService: ProjectServiceService, private  LocalStorageService: LocalStorageService , private cdRef: ChangeDetectorRef  ) { 
     
   }
 
@@ -67,7 +69,42 @@ export class ProjetComponent implements OnInit{
     return this.imagePaths[randomIndex];
   }
 
+
+
+  searchProjects(): void {
+    if (this.searchTerm.trim() !== '') {
+      const searchTermLowerCase = this.searchTerm.toLowerCase();
+      this.filteredProjects = this.projects.filter(project => {
+        const title = project.title || '';
+        const description = project.description || '';
+        return title.toLowerCase().includes(searchTermLowerCase) ||
+          description.toLowerCase().includes(searchTermLowerCase);
+      });
+    } else {
+      // If the search term is empty, reset the filtered projects list
+      this.filteredProjects = this.projects;
+    }
+  }
+
+  filterByCategory(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const categoryId = Number(selectElement.value);
+  
+    if (categoryId === 0) {
+      this.filteredProjects = this.projects;
+    } else {
+      this.ProjectServiceService.getProjectsByCategory(categoryId).subscribe(
+        filteredData => {
+          this.filteredProjects = filteredData;
+        },
+        error => console.error('Error fetching projects by category', error)
+      );
+    }
+  }
+  
+
   ngOnInit(): void {
+    
     this.ProjectServiceService.getAllAdminAcceptedProjects().subscribe(
       (data: ResponseProjet[]) => {
         this.projects = data;
@@ -241,16 +278,19 @@ export class ProjetComponent implements OnInit{
     
     this.ProjectServiceService.getProjectsByCategory(categoryId).subscribe(
       (data: ResponseProjet[]) => {
+        console.log(data); // Check the structure of the data
+        this.projects = data;
+        this.cdRef.detectChanges(); // Trigger change detection manually
         this.shouldShowApplyButton = true;
         this.projects = data; // This will update the list of projects displayed
         console.log(`Loading projects for category ${categoryId}`);
-        this.boolreqprojet = true ;
-        this.shouldShowApplyButton = true;
-        this.boolreqprojet = true ;
-        this.shouldShowDeleteButton = false;
-        this.shouldShowUpdateButton = false;
-        this.hideUpdateSection();
-        this.hideApplySection();
+        //this.boolreqprojet = true ;
+        //this.shouldShowApplyButton = true;
+        //this.boolreqprojet = true ;
+        //this.shouldShowDeleteButton = false;
+        //this.shouldShowUpdateButton = false;
+        //this.hideUpdateSection();
+        //this.hideApplySection();
 
 
 

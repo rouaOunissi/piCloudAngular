@@ -42,6 +42,41 @@
     font-size: 24px; /* Example font size, adjust as needed */
     font-weight: bold; /* Bold text */
   }
+
+.simple-display {
+  width: 250px;
+  height: auto;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;  /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.img-caption {
+  padding: 5px;  /* Reduced padding inside the caption */
+  background:#bbc3c8
+}
+
+.gridder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+  gap: 20px; /* Space between the cards */
+  margin-bottom: 20px; /* Optional: Adds space below the grid */
+}
+
+/* Add this style to the container of your input to center it horizontally */
+.search-container {
+  display: flex;
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically, if you need it */
+}
+
+/* Apply a class to your input if needed, for additional styling */
+.search-input {
+  margin: 20px 0; /* Example: Adds some space above and below the input */
+}
+
+
+  
   
   
  

@@ -200,33 +200,31 @@ ul.nav li.dropdown:hover > .dropdown-menu {
             
               
         
+              <div class="search-container">
+                <input type="text" [(ngModel)]="searchTerm" (input)="searchProjects()" placeholder="Rechercher un projet..." class="form-control search-input">
+              </div>
 
-
-          
-          <div *ngIf="boolreqprojet == true" class="gridder my-3">
-            <div *ngFor="let project of projects"  class="grid-item apps wow zoomIn">
               
-              <div class="img-place" data-src="assets/profil/assets/img/work/work-1.jpg"> <p>Travel, Discovery</p>">
-                <img src="assets/profil/assets/img/work/work-2.jpg" alt="">
-                
-                <div class="img-caption">
-                  <h5 class="fg-theme"> {{project.title}}</h5>
-                  <p><strong class="red-text">{{ project.description }}</strong></p>
-                  <p class="aliceblue-text">status : {{project.status}}</p>
-                  
-                  
-                  <button *ngIf="shouldShowApplyButton" class="btn btn-theme-outline selected"  (click)="showApplySection(project.id)">Apply</button>
-                            <button *ngIf="shouldShowDeleteButton" class="btn btn-theme-outline selected"  (click)="deleteProject(project.id)">Delete</button>
-
-                            <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected"  (click)="showUpdateSection(project)">Update</button>
-                            
-                            <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected"  (click)="showProjectRequestSection(project)">Project request</button>
-                            
-
+              <div *ngIf="boolreqprojet == true" class="gridder my-3">
+               
+                <div *ngFor="let project of filteredProjects" class="simple-display">
+                  <div class="img-place" data-src="assets/profil/assets/img/work/work-1.jpg">
+                    <img src="assets/profil/assets/img/work/work-2.jpg" alt="">
+                    <div class="img-caption">
+                      <h5 class="fg-theme">{{ project.title }}</h5>
+                      <p><strong class="red-text">{{ project.description }}</strong></p>
+                      <p class="aliceblue-text">status: {{ project.status }}</p>
+                      <button *ngIf="shouldShowApplyButton" class="btn btn-theme-outline selected" (click)="showApplySection(project.id)">Apply</button>
+                      <button *ngIf="shouldShowDeleteButton" class="btn btn-theme-outline selected" (click)="deleteProject(project.id)">Delete</button>
+                      <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected" (click)="showUpdateSection(project)">Update</button>
+                      <button *ngIf="shouldShowUpdateButton" class="btn btn-theme-outline selected" (click)="showProjectRequestSection(project)">Project request</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+              
+              
+              
 
           
           

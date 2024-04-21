@@ -44,3 +44,29 @@
 .btn-danger {
     background-color: #f44336; /* Adjust danger button color if needed */
 }
+
+.simple-bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    background-color: var(--clr);
+    width: var(--val);
+    transition: width 0.5s ease;
+  }
+  
+  .label {
+    padding: 5px;
+    color: white;
+  }
+  
+  .value {
+    margin-left: auto;
+    padding: 5px;
+    color: white;
+  }
+  
