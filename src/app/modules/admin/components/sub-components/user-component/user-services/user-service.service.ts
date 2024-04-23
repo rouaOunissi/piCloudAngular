@@ -10,7 +10,7 @@ import { LocalStorageService } from 'src/app/modules/front-office/services/userS
 export class UserServiceService {
 
 
-  private getAllUrl = 'http://localhost:8222/api/v1/users/user';
+  private getAllUrl = 'http://localhost:8010/api/v1/users/user';
 
   constructor(private http: HttpClient , private localStorageService: LocalStorageService) { }
   
@@ -37,24 +37,24 @@ export class UserServiceService {
   
   getUserById(id: number): Observable<User> {
     const headers = this.createAuthorization();
-    return this.http.get<User>("http://localhost:8222/api/v1/users/user/user/"+id , { headers });
+    return this.http.get<User>("http://localhost:8010/api/v1/users/user/user/"+id , { headers });
   }
 
   editUser( userId: number , formData: FormData): Observable<any> {
     const headers = this.createAuthorization();
-    return this.http.put("http://localhost:8222/api/v1/users/user/update/"+userId , formData , { headers });
+    return this.http.put("http://localhost:8010/api/v1/users/user/update/"+userId , formData , { headers });
 
     
   }
 
   deleteUser(id: number): Observable<any> {
     const headers = this.createAuthorization();
-    return this.http.delete("http://localhost:8222/api/v1/users/user/"+id , { headers });
+    return this.http.delete("http://localhost:8010/api/v1/users/user/"+id , { headers });
 
 
   }
 
-  private searchUrl = 'http://localhost:8222/api/v1/users/user';
+  private searchUrl = 'http://localhost:8010/api/v1/users/user';
   searchUsers(firstName: string): Observable<any> {
     const headers = this.createAuthorization();
     return this.http.get(`${this.searchUrl}/search`, {
@@ -64,14 +64,20 @@ export class UserServiceService {
   }
 
   getImageUrl(filename: string): string {
-    const baseUrl = 'http://localhost:8222/api/v1/users/auth/images';
+    const baseUrl = 'http://localhost:8010/api/v1/users/auth/images';
     return `${baseUrl}/${filename}`;
   }
 
-  private apiBaseUrl = 'http://localhost:8222/api/v1/users/auth';
+  private apiBaseUrl = 'http://localhost:8010/api/v1/users/auth';
   public setPassword(email: string, newPassword: string): Observable<any> {
     const body = { newPassword: newPassword };
     return this.http.put(`${this.apiBaseUrl}/set-password?email=${encodeURIComponent(email)}`, body);
+  }
+
+  private statUrl = 'http://localhost:8010/api/v1/users/user';
+  getUserRegistrationStats(): Observable<any> {
+    const headers = this.createAuthorization();
+    return this.http.get<any>(`${this.statUrl}/user-registration-stats` , {headers});
   }
   
   

@@ -45,6 +45,9 @@ export class ChangePasswordComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error occurred while changing password:', error);
+          console.error('Error Status:', error.status);
+          console.error('Error Status Text:', error.statusText);
+          console.error('Error occurred:', error.error);
         }
       });
     } else {

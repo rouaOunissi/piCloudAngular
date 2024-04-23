@@ -23,6 +23,7 @@ import { EditUserComponent } from './components/sub-components/user-component/ed
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import { StatProjectComponent } from './components/sub-components/project-component/stat-project/stat-project.component';
+import { UserStatComponent } from './components/sub-components/user-component/user-stat/user-stat.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -32,7 +33,7 @@ const routes: Routes = [
     {path: "cours" , component:CoursComponentComponent},
     {path: "project" , component:ProjectComponentComponent},
     {path: "user" , component:UserComponentComponent , children:[
-      {path:"editUser/:idUser", component:EditUserComponent}
+      {path:"editUser/:idUser", component:EditUserComponent} , {path:"userStat",component:UserStatComponent}
     ]},
     {path: "issue" , component:IssueComponentComponent},
     { path: "ressource", component: RessourceComponentComponent },

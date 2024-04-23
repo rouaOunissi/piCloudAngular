@@ -23,6 +23,7 @@ import { EditUserComponent } from './components/sub-components/user-component/ed
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import { StatProjectComponent } from './components/sub-components/project-component/stat-project/stat-project.component';
+import { UserStatComponent } from './components/sub-components/user-component/user-stat/user-stat.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { StatProjectComponent } from './components/sub-components/project-compon
     RessourceAddComponent,
     RessourceUpdateComponent,
     StatProjectComponent,
+    UserStatComponent,
   ],
   imports: [
     CommonModule,
