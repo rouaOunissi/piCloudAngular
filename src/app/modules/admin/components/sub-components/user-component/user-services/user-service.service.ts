@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { User } from 'src/app/modules/front-office/components/user/model/User';
 import { LocalStorageService } from 'src/app/modules/front-office/services/userService/localStorage/local-storage.service';
 
@@ -79,6 +79,36 @@ export class UserServiceService {
     const headers = this.createAuthorization();
     return this.http.get<any>(`${this.statUrl}/user-registration-stats` , {headers});
   }
+
+  private apiUrl = ' http://localhost:8010/api/v1/users/user';
+  updateUserImage(userId: number, imageFile: File): Observable<any> {
+    const headers = this.createAuthorization();
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    return this.http.put(`${this.apiUrl}/${userId}/image`, formData, {headers});
+  }
+
+  private baseUrl='http://localhost:8010/api/v1/users' ;
+
+  getUsersBySpeciality(speciality: string): Observable<User[]> {
+    const headers = this.createAuthorization();
+    return this.http.get<User[]>(`${this.baseUrl}/user/users/by-speciality?speciality=${speciality}`, {headers}); 
+  }
+
+
+  private specialityUrl = 'http://localhost:8010/api/v1/users/specialities';
+  getAllSpecialities(): Observable<string[]> {
+    const headers = this.createAuthorization();
+    return this.http.get<string[]>(`${this.specialityUrl}/all`,  {headers})
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error fetching specialities:', error);
+          throw error;
+        })
+      );
+  }
+
   
   
   

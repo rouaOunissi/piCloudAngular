@@ -24,6 +24,8 @@ import { RessourceUpdateComponent } from './components/sub-components/ressource-
 import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { NotificationsComponent } from './components/sub-components/projet/notifications/notifications.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 RessourceDetailsComponent
@@ -57,7 +59,8 @@ const routes: Routes = [
     DisplayVideoComponent,
     ChangePasswordComponent,
     ForgetPasswordComponent,
-    
+    NotificationsComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

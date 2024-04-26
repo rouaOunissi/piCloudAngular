@@ -275,32 +275,22 @@ export class ProjetComponent implements OnInit{
   }
 
   loadProjectsByCategory(categoryId: number): void {
-    
     this.ProjectServiceService.getProjectsByCategory(categoryId).subscribe(
       (data: ResponseProjet[]) => {
         console.log(data); // Check the structure of the data
         this.projects = data;
-        this.cdRef.detectChanges(); // Trigger change detection manually
-        this.shouldShowApplyButton = true;
-        this.projects = data; // This will update the list of projects displayed
+        this.filteredProjects = data; // Assuming you want to use this in your template
+        this.boolreqprojet = true; // Make sure this is set to true
+        // No need to call detectChanges if you're using proper data binding
+        this.shouldShowApplyButton = true; // If needed, set other flags as appropriate
         console.log(`Loading projects for category ${categoryId}`);
-        //this.boolreqprojet = true ;
-        //this.shouldShowApplyButton = true;
-        //this.boolreqprojet = true ;
-        //this.shouldShowDeleteButton = false;
-        //this.shouldShowUpdateButton = false;
-        //this.hideUpdateSection();
-        //this.hideApplySection();
-
-
-
-
       },
       error => {
         console.error('There was an error retrieving projects by category!', error);
       }
     );
   }
+  
 
   loadAllProjects(): void {
     this.ProjectServiceService.getAllAdminAcceptedProjects().subscribe(

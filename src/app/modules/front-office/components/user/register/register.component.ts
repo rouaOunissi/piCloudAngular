@@ -3,6 +3,7 @@ import{User} from '../model/User' ;
 import { AuthService } from '../../../services/userService/auth.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserServiceService } from 'src/app/modules/admin/components/sub-components/user-component/user-services/user-service.service';
 
 @Component({
   selector: 'app-register',
@@ -24,10 +25,15 @@ export class RegisterComponent {
     speciality: '',
   };
   selectedFile: File | null = null;
+  
 
-  constructor(private authService: AuthService , private router : Router) {
+  constructor(private authService: AuthService , private router : Router , private userService: UserServiceService) {
    
   }
+
+
+  
+
 
   onFileSelected(event: Event): void {
     const element = event.currentTarget as HTMLInputElement;

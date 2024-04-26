@@ -21,11 +21,15 @@ import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/dis
 import { VideoDisplayerComponent } from 'src/app/video-displayer/video-displayer.component';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { NotificationsComponent } from './components/sub-components/projet/notifications/notifications.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 
 const routes: Routes = [
-  {path : "main" , component:HomaPageComponent , children:[
+  {path : "main" , component:HomaPageComponent,canActivate: [AuthGuardService]
+   , children:[
     {path: "event" , component:EventComponent},
     {path: "cours" , component:CoursComponent},
     {path: "project" , component:ProjetComponent ,children:[
@@ -38,7 +42,7 @@ const routes: Routes = [
     {path: "ressourceUpdate/:id" , component:RessourceUpdateComponent},
     {path: "finance" , component:PaimentComponent},
     {path:"profil",component:ProfilComponent,children:[
-      {path:"editProfil/:id",component:EditProfilComponent}
+      {path:"editProfil/:id",component:EditProfilComponent},{path:"notification",component:NotificationsComponent}
     ]},
     {path: "display-video" , component:DisplayVideoComponent},
     {path: "display-videoo" , component:VideoDisplayerComponent},
@@ -50,14 +54,7 @@ const routes: Routes = [
   {path:"register" , component:RegisterComponent},
   {path:"set-password" , component:ChangePasswordComponent},
   {path:"forgetPassword",component:ForgetPasswordComponent},
-  
-  
- 
-
-
-
-  
-  
+  {path:"NotFound",component:NotFoundComponent}
 
 
 

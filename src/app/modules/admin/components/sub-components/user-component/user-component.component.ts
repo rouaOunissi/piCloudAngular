@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserServiceService } from './user-services/user-service.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/modules/front-office/components/user/model/User';
 
 @Component({
   selector: 'app-user-component',
@@ -11,7 +12,8 @@ export class UserComponentComponent {
 
   users: any = [];
   texteDeRecherche: string = '';
-
+  specialities: string[] = [];
+  selectedSpeciality: string = '';
 
   constructor(private userService: UserServiceService ,  private router: Router) { }
 
@@ -19,6 +21,20 @@ export class UserComponentComponent {
     this.userService.findAll().subscribe(data => {
       this.users = data;
     });
+
+    
+    this.userService.getAllSpecialities()
+      .subscribe(
+        (data: string[]) => {
+          this.specialities = data;
+        },
+        (error) => {
+          console.error('Error fetching specialities:', error);
+        }
+      );
+  
+
+
   }
 
   modifyUser(userId: number): void {
@@ -29,6 +45,7 @@ export class UserComponentComponent {
       // Handle the case where userId is undefined
       console.error('UserID is undefined');
     }
+
   }
 
   
@@ -73,6 +90,37 @@ export class UserComponentComponent {
       );
     }
   }
+
+
+
+  filterBySpeciality(speciality: string): void {
+    if (!speciality) {
+      // If no speciality is selected, fetch all users
+      this.userService.findAll().subscribe(
+        data => {
+          this.users = data;
+        },
+        error => {
+          console.error('Error fetching all users:', error);
+        }
+      );
+    } else {
+      // If a speciality is selected, filter users by that speciality
+      this.userService.getUsersBySpeciality(speciality).subscribe(
+        data => {
+          this.users = data;
+        },
+        error => {
+          console.error('Error fetching users by speciality:', error);
+        }
+      );
+    }
+  }
+  
+  
+
+ 
+ 
   
   
 

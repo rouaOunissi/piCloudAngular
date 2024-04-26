@@ -4,6 +4,7 @@ import { User } from '../model/User';
 import { UserServiceService } from 'src/app/modules/admin/components/sub-components/user-component/user-services/user-service.service';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -18,7 +19,12 @@ export class ProfilComponent implements OnInit {
 
   user?: User;
 
-  constructor(private userService: UserServiceService , private httpClient: HttpClient, private sanitizer: DomSanitizer) {}
+  constructor(private userService: UserServiceService ,
+     private httpClient: HttpClient, 
+     private sanitizer: DomSanitizer,
+     private router : Router) {
+    
+  }
   
 
   
@@ -70,24 +76,40 @@ export class ProfilComponent implements OnInit {
 
 
   selectedFile: File | null = null;
-  onFileSelected(event: any): void {
-    if (event.target.files && event.target.files[0]) {
-      this.selectedFile = event.target.files[0];
-    }
-  }
-  addPic() : void{
+  
+ 
+ 
 
-    if (this.userId && this.selectedFile) {
-      const formData = new FormData();
-      formData.append('image', this.selectedFile, this.selectedFile.name);
-      
-      
-      this.userService.editUser(+this.userId, formData).subscribe({
-        next: (response) => console.log('Image uploaded successfully'),
-        error: (error) => console.error('Error uploading image:', error)
-      });
+  onFileSelected(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let file: File | null = null;
+
+    if (element.files != null) {
+      file = element.files[0];
+    }
+
+    if (file) {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        this.userService.updateUserImage(+userId, file).subscribe({
+          next: (response) => {
+            console.log('Image updated successfully:', response);
+            window.location.reload();
+            
+          },
+          error: (error) => {
+            console.error('Error updating image:', error);
+            
+          }
+        });
+      } else {
+        console.error('User ID is not found in local storage.');
+        
+      }
     }
   }
+
+ 
   
 
   

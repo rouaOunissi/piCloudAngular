@@ -12,9 +12,9 @@ import { RequestRequest } from './RequestRequest.model';
 })
 export class ProjectServiceService {
 
-  private apiUrl = 'http://localhost:8222/api/v1/projets/admin-accepted';
-  private categoriesUrl = 'http://localhost:8222/api/v1/projets/category'; // Adjust the URL as needed
-  private apiUrlcatId = 'http://localhost:8222/api/v1/projets/cat';
+  private apiUrl = 'http://localhost:8050/api/v1/projets/admin-accepted';
+  private categoriesUrl = 'http://localhost:8050/api/v1/projets/category'; // Adjust the URL as needed
+  private apiUrlcatId = 'http://localhost:8050/api/v1/projets/cat';
 
   // Replace with your actual API endpoint
 
@@ -36,44 +36,44 @@ export class ProjectServiceService {
   }
 
   createProject(project: NewProject): Observable<ResponseProjet> {
-    const createProjectUrl = 'http://localhost:8222/api/v1/projets'; // URL for the POST endpoint
+    const createProjectUrl = 'http://localhost:8050/api/v1/projets'; // URL for the POST endpoint
     return this.http.post<ResponseProjet>(createProjectUrl, project);
   }
 
   getUserProjects(userId: number): Observable<ResponseProjet[]> {
-    const userProjectsUrl = `http://localhost:8222/api/v1/projets/userprojets/${userId}`;
+    const userProjectsUrl = `http://localhost:8050/api/v1/projets/userprojets/${userId}`;
     return this.http.get<ResponseProjet[]>(userProjectsUrl);
   }
 
   getRequestsByEncadreurId(encadreurId: number): Observable<Requestt[]> {
-    const requestsUrl = `http://localhost:8222/api/v1/projets/requests/myrequests/${encadreurId}`;
+    const requestsUrl = `http://localhost:8050/api/v1/projets/requests/myrequests/${encadreurId}`;
     return this.http.get<Requestt[]>(requestsUrl);
   }
 
   
   deleteProject(id: number): Observable<any> {
-    const url = `http://localhost:8222/api/v1/projets/${id}`;
+    const url = `http://localhost:8050/api/v1/projets/${id}`;
 
     return this.http.delete(url); 
   }
 
   updateProject(id: number, project: any): Observable<any> {
-    const url = `http://localhost:8222/api/v1/projets/update/${id}`;
+    const url = `http://localhost:8050/api/v1/projets/update/${id}`;
     return this.http.put(url, project);
   }
   createRequest(request: RequestRequest): Observable<any> {
-    const url = `http://localhost:8222/api/v1/projets/requests`;
+    const url = `http://localhost:8050/api/v1/projets/requests`;
     return this.http.post(url, request);
     
   }
 
   deleteRequest(id: number): Observable<any> {
 
-    return this.http.delete(`http://localhost:8222/api/v1/projets/requests/delete/${id}`);
+    return this.http.delete(`http://localhost:8050/api/v1/projets/requests/delete/${id}`);
   }
 
 
-  private baseUrl = 'http://localhost:8222/api/v1/projets/requests';
+  private baseUrl = 'http://localhost:8050/api/v1/projets/requests';
   getRequestByProjectId(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/projet/${id}`);
   }
@@ -81,11 +81,11 @@ export class ProjectServiceService {
   // In your service file
 
 acceptRequest(reqId: number): Observable<any> {
-  return this.http.put(`http://localhost:8222/api/v1/projets/requests/accept/${reqId}`, {});
+  return this.http.put(`http://localhost:8050/api/v1/projets/requests/accept/${reqId}`, {});
 }
 
 declineRequest(reqId: number): Observable<any> {
-  return this.http.put(`http://localhost:8222/api/v1/projets/requests/decline/${reqId}`, {});
+  return this.http.put(`http://localhost:8050/api/v1/projets/requests/decline/${reqId}`, {});
 }
 
 

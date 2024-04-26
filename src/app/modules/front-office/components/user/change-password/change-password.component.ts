@@ -35,11 +35,9 @@ export class ChangePasswordComponent implements OnInit {
     // Check if newPassword and confirmPassword are the same
     if (this.newPassword === this.confirmPassword) {
 
-      console.log(this.email ,  " : ", this.newPassword);
-      
+    
       this.authService.setPassword(this.email, this.newPassword).subscribe({
         next: (response) => {
-          console.log('Ready to navigate to /front/login');
           this.router.navigateByUrl("/front/login");
 
         },
