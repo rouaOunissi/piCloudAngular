@@ -17,7 +17,7 @@ export class EventComponent implements OnInit {
       nbPlace: 0,
     },
     idEvent: 0,
-    // add the id of the user that you get it from the local storage
+    idUser:0
   };
 
   constructor(private eventService: EventServiceService) {}
@@ -69,6 +69,8 @@ export class EventComponent implements OnInit {
 
   reserve(idEvent: number) {
     this.reservationDto.idEvent = idEvent;
+    this.reservationDto.idUser=Number(localStorage.getItem("userId"));
+    console.log(this.reservationDto.idUser);
     console.log(this.reservationDto);
 
     this.eventService.postReservation(this.reservationDto).subscribe(
