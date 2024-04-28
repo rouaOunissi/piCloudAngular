@@ -14,20 +14,36 @@ export class RessourceAddComponent implements OnInit {
   selectedFile: File | null = null;
   fileName: string = 'Choose file'; 
 
+ 
+ 
+
   constructor(
     private router: Router,
     private http: HttpClient,
     private ressourceService: RessourceService
-) {}
+) {
+  
+}
+
+
 
 ngOnInit(): void {this.getRessourceTypes();}
+
+
 
 addRessource(): void {
   const formData = new FormData();
   if (this.selectedFile) {
-    formData.append('file', this.selectedFile);
-  }
+    formData.append('file', this.selectedFile);  }
   formData.append('ressource', JSON.stringify(this.ress));
+    
+  const userId = localStorage.getItem('userId');
+  if (!userId) {
+    console.error('User ID not found in localStorage');
+    return;
+  }
+  
+  formData.append('idUser', userId); 
 
   this.http.post('http://localhost:8060/api/v1/ressource/uploadRessData', formData)
     .subscribe(
