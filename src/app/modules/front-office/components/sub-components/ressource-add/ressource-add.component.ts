@@ -16,11 +16,20 @@ export class RessourceAddComponent implements OnInit {
   userId: number | null = null;
 
 
+ 
+ 
+
   constructor(
     private router: Router,
     private http: HttpClient,
     private ressourceService: RessourceService
-) {}
+) {
+  
+}
+
+
+
+
 
 ngOnInit(): void {
   this.getRessourceTypes();
@@ -60,13 +69,14 @@ addRessource(): void {
         this.ress = {};
         this.fileName = ''; 
          // Rediriger vers la table des ressources
-        this.router.navigate(['/admin/main/ressource']);
+        this.router.navigate(['/front/main/ressource']);
       },
       (error: any) => { 
         console.error('Error adding ressource:', error);
       }
     );
 }
+
 
 
 
