@@ -22,7 +22,11 @@ import { UpdateEventComponent } from './components/sub-components/update-event/u
 import { EditUserComponent } from './components/sub-components/user-component/edit-user/edit-user/edit-user.component';
 import { RessourceAddComponent } from './components/sub-components/ressource-add/ressource-add.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { DownloadComponentComponent } from './components/sub-components/download-component/download-component.component';
+import { CalendarLineComponentComponent } from './components/sub-components/calendar-line-component/calendar-line-component.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +47,18 @@ import { RessourceUpdateComponent } from './components/sub-components/ressource-
     UpdateEventComponent,
     EditUserComponent,
     RessourceAddComponent,
-    RessourceUpdateComponent
+    RessourceUpdateComponent,
+    DownloadComponentComponent,
+    CalendarLineComponentComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxExtendedPdfViewerModule,
+    NgbModalModule
   ]
 })
 export class AdminModule { }

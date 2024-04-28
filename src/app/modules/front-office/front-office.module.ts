@@ -22,6 +22,11 @@ import { RessourceAddComponent } from './components/sub-components/ressource-add
 import { RessourceDetailsComponent } from './components/sub-components/ressource-details/ressource-details.component';
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import('ngx-extended-pdf-viewer').then(module => {
+  console.log(module); 
+});
 
 
 RessourceDetailsComponent
@@ -62,7 +67,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    
+    NgxPaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]

@@ -1,0 +1,174 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Downloads</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Downloads</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h3 class="card-title">List of all downloads</h3>
+                        
+                    </div>
+                    
+                    <div class="card-body">
+                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6"></div>
+                                <div class="col-sm-12 col-md-6"></div>
+                            </div>
+                         
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID Download</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">idUser</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">dateDownload</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Id Ressource</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let download of downloads">
+                                                <td>{{ download.idDownload }}</td>
+                                                <td>{{ download.idUser }}</td>
+                                                <td>{{ download.dateDownload }}</td>
+                                                <td>{{ download.ressource.idRessource }}</td>
+                                                
+                                            
+                                                <td> 
+                                                    <button class="btn btn-danger btn-sm" (click)="deleteDownload(download.idDownload)">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+           <!-- Statistics Of Downloads -->
+
+           <div class="content">
+            <h2>Statistics Of Downloads</h2>
+            <a class="btn btn-tool btn-sm" (click)="generatePDF()">
+                <i class="fas fa-download fa-2x"></i>
+            </a>
+            <br>
+            <br>
+            <div class="btn-group" role="group" aria-label="Download Filters" class="col-sm-12">
+                <button type="button" class="btn btn-primary" (click)="showAll()">All</button>
+                <button type="button" class="btn btn-primary" (click)="showTotalDownload()">Total Downloads</button>
+                <button type="button" class="btn btn-primary" (click)="showDownloadByDay()">Per Day</button>
+                <button type="button" class="btn btn-primary" (click)="showTopsDownload()">Top 1</button>
+              </div>
+              <br>
+              <br>
+              <div *ngIf="showTotalDownloads || showDownloadsByDay || showTopDownload" class="col-sm-12">
+                <div *ngIf="showTotalDownloads" class="info-box mb-3 bg-success">
+                  <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Total Downloads</span>
+                    <span class="info-box-number">{{ totalDownloads }}</span>
+                  </div>
+                </div>
+              
+                <div *ngIf="showDownloadsByDay" class="info-box mb-3 bg-info">
+                  <span class="info-box-icon"><i class="fas fa-calendar-day"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Downloads Per Day</span>
+                    <span class="info-box-number">{{ dailyDownloads }}</span>
+                  </div>
+                </div>
+              
+                <div *ngIf="showTopDownload && mostDownloadedResource" class="info-box mb-3 bg-warning">
+                  <span class="info-box-icon">
+                    <i class="fas fa-trophy"></i>
+                  </span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">TOP 1</span>
+                    <span class="info-box-number">
+                      <p>ID: {{ mostDownloadedResource.idRessource }}</p>
+                      <p>Name: {{ mostDownloadedResource.titre }}</p>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                              
+                                <canvas id="downloads-chart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Other content on the left side -->
+                    </div>
+                  
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Downloads By Type Of Resource</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <canvas id="pieChart"></canvas>
+                                    </div>
+                                
+                                </div>
+                            </div>        
+                        </div>
+                 
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Downloads per month</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                  <canvas id="barChart"></canvas>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+       
+    </div>
+</section>

@@ -1,0 +1,34 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+  .qr-code-container {
+    width: 200px; /* Définissez la largeur souhaitée */
+    height: 200px; /* Définissez la hauteur souhaitée */
+  }
+  
+  .qr-code-image {
+    width: 100%; /* Pour que l'image remplisse complètement le conteneur */
+    height: 100%; /* Pour que l'image remplisse complètement le conteneur */
+    object-fit: contain; /* Pour conserver les proportions de l'image */
+  }
+
+ 
+/* Styles pour le bouton */
+.like-button {
+  font-size: 36px;
+  color: red; /* Couleur du contour du cœur par défaut */
+  cursor: pointer;
+}
+
+/* Styles pour le cœur vide */
+.like-button::before {
+  content: "\f08a";
+  font-family: "Font Awesome 5 Free";
+  color: transparent !important;
+  -webkit-text-stroke: 2px red !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Styles pour le cœur rempli */
+.like-button.active::before {
+  color: red; /* Couleur du cœur lorsque sélectionné */
+  -webkit-text-fill-color: red !important; /* Rend l'intérieur du cœur rouge */
+}

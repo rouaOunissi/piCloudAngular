@@ -10,9 +10,9 @@ const BASIC_URL = ['http://localhost:8060'];
 export class RessourceService {
 
   constructor(private http: HttpClient ) {}
-
+  private baseUrl = 'http://localhost:8060/api/v1';
   getAllRessources(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8060/api/v1/ressource/getRessource');
+    return this.http.get<any[]>('http://localhost:8060/api/v1/ressource/getRessourcesOrderedByNbrReact');
   }
 
   deleteRessource(id: number): Observable<any> {
@@ -47,7 +47,41 @@ export class RessourceService {
     return this.http.get(`http://localhost:8060/api/v1/ressource/generateInvoicePDF/` + id);
   }
   
+  searchRessourcesByTitre(titre: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/ressource/search?titre=${titre}`);
+  }
 
+  searchRessourcesByKeyword(keyword: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/searchContent?keyword=${keyword}`);
+  }
+
+  getRessourcesByType(type: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/ressourceByType?typeRessource=${type}`);
+  }
+  
+  reactToRessource(idRessource: number): Observable<any> { 
+    return this.http.put(`http://localhost:8060/api/v1/ressource/reactToRessource/` + idRessource, {});
+  }
+
+    
+  findReactionByIdReactionAndIdUser(idRessource: number, userId: number): Observable<any> { 
+    return this.http.get(`http://localhost:8060/api/v1/ressource/findReactionByIdReactionAndIdUser/`, { params: { idRessource: idRessource.toString(), userId: userId.toString() } });
+  }
+  
+
+  getSynonyms(word: string): Observable<string[]> {
+    return this.http.get<string[]>(`/api/synonyms/${word}`);
+  }
+
+  searchRessourcesBySynonyms(word: string): Observable<any[]> {
+    return this.http.get<any[]>(`/api/ressources/synonyms?word=${word}`);
+  }
+
+
+
+  checkUserReaction(idRessource: number, userId: number): Observable<boolean> {
+    return this.http.get<boolean>(`http://localhost:8080/api/v1/ressource/hasUserReactedToResource/${idRessource}/${userId}`);
+  }
 
 
 }
