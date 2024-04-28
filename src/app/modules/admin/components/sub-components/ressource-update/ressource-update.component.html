@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Update Resource</h3>
                 </div>
-                <form (ngSubmit)="updateRessource()">
+                <form (ngSubmit)="updateRess2()">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Titre</label>
@@ -16,7 +16,7 @@
                             <textarea id="exampleInputDescription" class="form-control" rows="4" placeholder="Description" name="description" [(ngModel)]="ressource.description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputTypeRess">Ressource Type</label>
+                            <label for="exampleInputTypeRess">Ressource Type</label>s
                             <select class="form-control" id="exampleInputTypeRess" name="typeRessource" [(ngModel)]="ressource.TypeR">
                                 <option *ngFor="let type of ressourceTypes" [value]="type">{{ type }}</option>
                             </select>
@@ -38,8 +38,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Update</button>
-
-                    </div>
+                      </div>
                  
                 </form>
             </div>

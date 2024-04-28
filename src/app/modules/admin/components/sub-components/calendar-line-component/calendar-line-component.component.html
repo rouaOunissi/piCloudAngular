@@ -1,0 +1,208 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Ressources</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Ressources</li>
+                </ol>
+                
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">List of all ressources</h3>
+                        <a class="btn btn-info btn-sm float-sm-right" routerLink="/admin/main/addRess/">
+                            <i class="fas fa-plus"></i> New Ressource
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6"></div>
+                                <div class="col-sm-12 col-md-6"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID CalendarLine</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Specialite</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Année Université</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"> ID User</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">URL File</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Date de création</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">File Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">File Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let calendarLine of calendarLines">
+                                                <td>{{ calendarLine.idCalendarLine }}</td>
+                                                <td>{{ calendarLine.specialite }}</td>
+                                                <td>{{ calendarLine.anneeUniv }}</td>
+                                                <td>{{ calendarLine.idUser }}</td>
+                                                <td>{{ calendarLine.urlFile }}</td>
+                                                <td>{{ calendarLine.dateCreation }}</td>
+                                                <td>{{ calendarLine.fileName }}</td>
+                                                <td>{{ calendarLine.fileType }}</td>
+                                                
+                                           
+
+                                            
+                                                  <td> <a class="btn btn-info btn-sm" (click)="editCalendar(calendarLine)" routerLink="/admin/main/calendarLine/{{calendarLine.idCalendarLine}}">
+                                                    <i class="fas fa-pencil-alt"></i> Edit
+                                                  </a>
+                                                </td>
+
+                                                <td> 
+                                                    <button class="btn btn-danger btn-sm" (click)="deleteCalendar(calendarLine.idCalendarLine)">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    
+                                    </table>
+                                </div>
+                            </div>
+                 
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Timeline</h3>
+                </div>
+                <form>
+                    <div class="card-body">
+
+                        <!-- Dans votre template Angular -->
+
+                        <ul>
+                            <li *ngFor="let event of events">
+                              <strong>{{ event.date }}</strong>: {{ event.date }}
+                            </li>
+                          </ul>
+
+        
+                    </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Add Calendar</h3>
+                </div>
+                <form (ngSubmit)="addCalendar()">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Année universitaire</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title"  name="titre" [(ngModel)]="ress.anneeUniv">
+                        </div>
+                   
+                        <div class="form-group">
+                            <label for="exampleInputTypeRess">Specialite</label>
+                            <select class="form-control" id="exampleInputTypeRess" name="spec" [(ngModel)]="ress.specialite">
+                                <option *ngFor="let type of specialites" [value]="type">{{ type }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="file" (change)="onFileSelected($event)">
+                                    <label class="custom-file-label" for="exampleInputFile">{{ addFileName  }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="!selectedFileAdd">Add</button>
+
+                    </div>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Update Calendar</h3>
+                </div>
+                <form (ngSubmit)="updatedCal()">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Année universitaire</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title"  name="titre" [(ngModel)]="calendarLine.anneeUniv">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputSpec">Specialite</label>
+                            <select class="form-control" id="exampleInputSpec" name="specialite" [(ngModel)]="calendarLine.specialite">
+                                <option *ngFor="let type of specialites" [value]="type">{{ type }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleFileUp">File input</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleFileUp" name="fileUp" (change)="onFileSelectedUp($event)">
+                                    <label class="custom-file-label" for="exampleFileUp">{{ updateFileName  }}</label>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="!selectedFileUp">Update</button>
+
+                    </div>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  

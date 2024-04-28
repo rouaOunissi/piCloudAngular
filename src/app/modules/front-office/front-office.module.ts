@@ -26,6 +26,11 @@ import { ChangePasswordComponent } from './components/user/change-password/chang
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 import { NotificationsComponent } from './components/sub-components/projet/notifications/notifications.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import('ngx-extended-pdf-viewer').then(module => {
+  console.log(module); 
+});
 
 
 RessourceDetailsComponent
@@ -68,7 +73,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    
+    NgxPaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]

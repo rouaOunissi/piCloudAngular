@@ -30,7 +30,7 @@ export class RessourceAddComponent implements OnInit {
       }
       formData.append('ressource', JSON.stringify(this.ress));
   
-      this.http.post('http://localhost:8060/uploadRessData', formData)
+      this.http.post('http://localhost:8060/api/v1/ressource/uploadRessData', formData)
         .subscribe(
           (response: any) => { 
             console.log('Ressource added successfully:', response);

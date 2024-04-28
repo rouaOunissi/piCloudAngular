@@ -9,12 +9,33 @@
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Ressources</li>
                 </ol>
+                
             </div>
+            <br>
+            <br>
+            <div class="row  mb-4">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="searchTerm" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search..." />
+                        </div>
+                    </form>
+                </div>
+             </div>
+             <div class="form-group">
+                <label>Order By:</label>
+                <div class="btn-group" style="width: 100%;">
+                    <button type="button" class="btn btn-info" (click)="filterByType('all')">All items</button>
+                    <button *ngFor="let type of ressourceTypes" (click)="filterByType(type)" type="button" class="btn btn-info" (click)="filterByType(type)">{{ type }}</button>
+                </div>
+            </div>
+            
         </div>
     </div>
 </section>
 <section class="content">
     <div class="container-fluid">
+        
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -48,7 +69,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let ressource of ressources">
+                                            <tr *ngFor="let ressource of filteredRessources">
                                                 <td>{{ ressource.idRessource }}</td>
                                                 <td>{{ ressource.typeR }}</td>
                                                 <td>{{ ressource.description }}</td>
@@ -59,18 +80,24 @@
                                                 <td>{{ ressource.dateCreation }}</td>
                                                 <td>{{ ressource.fileName }}</td>
                                                 <td>{{ ressource.fileType }}</td>
-
-                                        
-
-                                                <td> <a class="btn btn-info btn-sm" (click)="deletRessource(ressource.idRessource)">
-                                                    <i class="fas fa-pencil-alt"></i> Delete
-                                                  </a>
-                                                </td>
+                                                
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" (click)="showPdf(ressource.urlFile)">
+                                                        <i class="fas fa-file-pdf"></i> Print
+                                                      </button>
+                                                  </td>
 
                                                 <td> <a class="btn btn-info btn-sm" routerLink="/admin/main/updateRess/{{ressource.idRessource}}">
                                                     <i class="fas fa-pencil-alt"></i> Edit
                                                   </a>
                                                 </td>
+
+                                                <td> 
+                                                    <button class="btn btn-danger btn-sm" (click)="deletRessource(ressource.idRessource)">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </td>
+
                                             </tr>
                                         </tbody>
                                     
@@ -78,16 +105,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                                </div>
                                 <div class="col-sm-12 col-md-7">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                                        <ul class="pagination">
-                                            <!-- Pagination controls -->
-                                        </ul>
+                                    <div class="floating-pdf-window" *ngIf="isPdfModalOpen">
+                                        
+                                            <h4 class="modal-title" id="modal-basic-title">File Content : <b></b></h4>
+                                            <button type="button" class="close-btn" aria-label="Close" (click)="closePdfModal()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        
+                                        
+                                           
+                                            <iframe *ngIf="selectedRessourceUrl" [src]="getPdfUrl(selectedRessourceUrl)"></iframe>
+                                        
                                     </div>
                                 </div>
+                           
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,109 @@
+::ng-deep .ngx-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::ng-deep .ngx-pagination li {
+    width: 35px;
+    height: 35px;
+    border-radius: 100% !important;
+    background: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.small-screen {
+        display: none !important;
+    }
+}
+.image-container {
+    width: 384px; 
+    height: 190px; 
+    object-fit: cover;
+  }
+  
+  .sw-container {
+    background-image: linear-gradient(to right, #a12c2f, #a12c2f);
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 3px 6px rgba(129, 129, 129, 0.16), 0 3px 6px rgba(105, 105, 105, 0.23);
+  }
+  
+  .stopwatch {
+    font-size: 35px;
+    margin-bottom: 15px;
+  }
+  
+  .button-container {
+    margin-top: 15px;
+  }
+  
+  .stopwatch-button  {
+    background: #fff;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  
+  .ripple:hover {
+    background: #f1f2f5 radial-gradient(circle, transparent 1%, #f1f2f5 1%) center/15000%;
+  }
+  
+  .ripple:active {
+    background-color: #b3b5b9;
+    background-size: 100%;
+    transition: background 0.8s;
+  }
+  
+/* Styles pour les boutons de la ressource */
+.resource-button {
+    background: #fff;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  
+  /* Styles pour l'effet de ripple au survol */
+  .resource-button.ripple:hover {
+    background: #f1f2f5 radial-gradient(circle, transparent 1%, #f1f2f5 1%) center/15000%;
+  }
+  
+  /* Styles pour l'effet de ripple au clic */
+  .resource-button.ripple:active {
+    background-color: #b3b5b9;
+    background-size: 100%;
+    transition: background 0.8s;
+  }
+
+  .tomato-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  
+  .image-container {
+    width: 100%; 
+    height: auto;
+    
+}
+.meeting-item {
+  width: 300px; /* Adjust the width as per your design */
+  height: 400px; /* Adjust the height as per your design */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.down-content {
+  padding: 30px;
+}

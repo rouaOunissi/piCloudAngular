@@ -3,38 +3,53 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="filters" >
-                            <ul >
-                                <li (click)="filterByType('all')" [class.active]="selectedFilter === 'all'">All types</li>
-                                <li *ngFor="let type of ressourceTypes" (click)="filterByType(type)" [class.active]="selectedFilter === type">{{ type }}</li>
+                  <div class="filters ">
+                    <ul>
+                        <li (mouseenter)="showResourceTypesList = true" (mouseleave)="showResourceTypesList = false" class="active">
+                            All types
+                            <ul *ngIf="showResourceTypesList" (mouseenter)="showResourceTypesList = true" (mouseleave)="showResourceTypesList = false">
+                                <li (click)="filterByType('all')">All</li>
+                                <li *ngFor="let type of ressourceTypes" (click)="filterByType(type)">{{ type }}</li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="action-buttons justify-content-end">
-                        <button class="btn btn-danger btn-add" [routerLink]="['/front/main/ressourceAdd']"><i class="fas fa-plus"></i> Add Ressource</button>
-                    </div><br>
-                    <br>
+                        </li>
+                    </ul>
+                </div>
+       
+                    
+
+             <div class="col-lg-2 d-flex align-items-center justify-content-end">
+                  <button class="btn btn-danger" [routerLink]="['/front/main/ressourceAdd']"><i class="fas fa-plus"></i> Add ressource </button>
+              </div>
                     
                 </div>
-                
-                
+                <div class="container p-5">
+                  <div class="row  mb-4">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="searchTerm" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search..." />
+                            </div>
+                        </form>
+                    </div>
+                 </div>
+          
                 <div class="row grid">
-                    <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let ressource of ressources; let i=index">
+                  <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let ressource of filteredRessources | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+
+
+
                       <div class="meeting-item">
                         <div class="thumb">
                           <div class="price">
                             <span>{{ ressource.typeR }}</span>
                           </div>
-                          <a routerLink="/front/main/ressourceDetails/{{ressource.idRessource}}"><img src="assets/frontOffice/images/meeting-01.jpg" alt=""></a>
+                          <a routerLink="/front/main/ressourceDetails/{{ressource.idRessource}}">
+                            <img *ngIf="typeImages[ressource.typeR]" [src]="typeImages[ressource.typeR]" alt="" class="image-container">
+                          </a>
                         </div>
                         <div class="down-content">
-                            <div class="action-buttons justify-content-end">
-                                <button class="btn btn-primary btn-update" routerLink="/front/main/ressourceUpdate/{{ressource.idRessource}}"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-danger btn-delete" (click)="deleteRessource(ressource.idRessource)"><i class="fas fa-trash"></i></button>
-                              
-                            </div>
-                          <a href="meeting-details.html"><h4>{{ ressource.titre }}</h4></a>
+                         
+                          <a><h4>{{ ressource.titre }}</h4></a>
                           <p>{{ ressource.description }}</p>
                           <div class="date">
                             <h6>{{ formatDate(ressource.dateCreation) }}</h6>
@@ -44,19 +59,116 @@
                       </div>
                     </div>
                   </div>
-                  
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="pagination">
-                            <ul>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                      <div class="pagination">
+                        <ul class="pagination">
+                            <li><a (click)="previousPage()"><i class="fa fa-angle-left"></i></a></li>
+                            <li><a (click)="goToPage(1)">1</a></li>
+                            <li><a (click)="goToPage(2)">2</a></li>
+                            <li><a (click)="goToPage(3)">3</a></li>
+                            <li><a (click)="nextPage()"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                  </div>
+              </div>
+            
+              <section class="contact-us" id="contact">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12 align-self-center">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <form id="contact" action="" method="post">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <h2>
+                                    <i class="fas fa-book-open"></i> Study Lounge
+                                </h2>
+                            </div>
+                       
+      
+                
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h4>
+                        <img src="assets/frontOffice/images/pomodoro.png" alt="Tomato Icon" class="tomato-icon"> Pomodoro Timer
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="sw-container">
+                        <div class="stopwatch">
+                          <span>{{ hr }}:</span>
+                          <span>{{ min }}:</span>
+                          <span>{{ sec }}</span>
+                        </div>
+                        <div class="button-container">
+                          <button class="resource-button stopwatch-button ripple" (click)="start()">
+                            <i *ngIf="!running" class="fas fa-play"></i>
+                            <i *ngIf="running" class="fas fa-pause"></i>
+                          </button>
+                          <button class="resource-button stopwatch-button ripple" (click)="reset()">
+                            <i class="fas fa-redo-alt"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div style="margin-top: 20px;"></div>
+                <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>
+                      <i class="fas fa-pencil-alt"></i> Bloc-Notes
+                    </h4>
+                  </div>
+                </div>
+
+                <div>
+                  <textarea [(ngModel)]="userNotes" rows="10" cols="50" (input)="onUserNotesChange($event)" placeholder="Enter the document title in the first line"></textarea>
+                  <button (click)="updateAndDownloadNotes()">
+                    <i class="fas fa-cloud-download-alt"></i>
+                    Download notes in PDF format 
+                  </button>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;"></div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h4>
+                        <i class="fas fa-music"></i> Study and Chill
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <audio controls loop>
+                        <source src="http://localhost/Files/LoFi 3 Min Countdown - Chill Sunset.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+                  </div>
+                </div>
+
+                </div>   
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             
+              </section>
             </div>
         </div>
     </div>

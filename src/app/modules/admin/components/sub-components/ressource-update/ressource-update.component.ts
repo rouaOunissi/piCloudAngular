@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { RessourceService } from '../ressource-service/ressource.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-ressource-update',
   templateUrl: './ressource-update.component.html',
@@ -28,6 +28,7 @@ export class RessourceUpdateComponent implements OnInit{
 
 
   constructor(
+    private http: HttpClient,
     private router: Router,
     private activated : ActivatedRoute,
     private ressourceService: RessourceService
@@ -50,27 +51,57 @@ getRessourceById(): void {
  })
 }
 
-   updateRessource(): void {
-   this.ressourceService.updateRessource(this.ressource, this.idRessource).subscribe((res)=>{
-    console.log(res);
-    alert("ressource updated Succesfully!");
-   },(error)=>
-  {
-    console.log(error);
-    alert("Try again!")
-   })
-  }
 
-  onFileSelected(event: any): void {
-   
-    this.selectedFile = event.target.files[0];
+updateRess2(): void {
+  if (this.selectedFile) {
+
+    this.ressource.urlFile = this.selectedFile.name;
+ 
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    formData.append('ressource', JSON.stringify(this.ressource));
+    // Envoyer la mise à jour avec le fichier
+    this.http.put('http://localhost:8060/api/v1/ressource/updateRess/' + this.idRessource, formData)
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          alert("resource updated successfully!");
+          this.router.navigate(['/admin/main/ressource']);
+        },
+        (error: any) => {
+          console.log(error);
+          alert("An error occurred while updating the resource!");
+        }
+      );
+  } else {
     
-    const fileName = this.selectedFile ? this.selectedFile.name : 'Choose file';
-    const inputElement = document.getElementById('exampleInputFile');
-    if (inputElement && inputElement.nextElementSibling) {
-        inputElement.nextElementSibling.innerHTML = fileName;
-    }
+    this.http.put('http://localhost:8060/api/v1/ressource/updateRess/' + this.idRessource, this.ressource)
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          alert("resource updated successfully!");
+          this.router.navigate(['/admin/main/ressource']);
+        },
+        (error: any) => {
+          console.log(error);
+          alert("An error occurred while updating the resource!");
+        }
+      );
+  }
 }
+
+
+onFileSelected(event: any): void {
+  this.selectedFile = event.target.files[0];
+  this.fileName = this.selectedFile ? this.selectedFile.name : 'Choose file';
+  const inputElement = document.getElementById('exampleInputFile');
+  if (inputElement && inputElement.nextElementSibling) {
+      inputElement.nextElementSibling.innerHTML = this.fileName;
+  }
+}
+
+
+
 
 getRessourceTypes(): void {
   this.ressourceService.getRessourceTypes().subscribe(

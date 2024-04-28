@@ -24,6 +24,8 @@ import { RessourceAddComponent } from './components/sub-components/ressource-add
 import { RessourceUpdateComponent } from './components/sub-components/ressource-update/ressource-update.component';
 import { StatProjectComponent } from './components/sub-components/project-component/stat-project/stat-project.component';
 import { UserStatComponent } from './components/sub-components/user-component/user-stat/user-stat.component';
+import { DownloadComponentComponent } from './components/sub-components/download-component/download-component.component';
+import { CalendarLineComponentComponent } from './components/sub-components/calendar-line-component/calendar-line-component.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -39,6 +41,9 @@ const routes: Routes = [
     { path: "ressource", component: RessourceComponentComponent },
     { path: "addRess", component: RessourceAddComponent },
     { path: "updateRess/:id", component: RessourceUpdateComponent },
+    { path: 'calendarLine/:id', component: CalendarLineComponentComponent },
+    { path: "download", component: DownloadComponentComponent },
+    { path: "calendarLine", component: CalendarLineComponentComponent },
     {path: "finance" , component:FinanceComponentComponent},
       { path: "ListCours" , component:ListCourseComponent},
       {path: "edit/:id" , component:EditComponentComponent},
