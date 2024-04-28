@@ -1,1 +1,208 @@
-<h1>Sabtout</h1>>
+<section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Here are our upcoming Events</h6>
+          <h2>Upcoming Events</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!--**** Sec 1 ****-->
+  
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="filters">
+                <ul>
+                  <li data-filter="*" class="active">All Events</li>
+                  <li data-filter=".soon">Soon</li>
+                  <li data-filter=".imp">Important</li>
+                  <li data-filter=".att">Attractive</li>
+                </ul>
+              </div>
+            </div>
+  
+  <!--list des evenements sous forme de carde*********
+  
+  
+            <div class="col-lg-12">
+              <div class="row grid">
+                  <div class="col-lg-4 templatemo-item-col all soon" *ngFor="let event of events">
+                      <div class="meeting-item">
+                          <div class="thumb">
+                              <div class="price">
+                                  <span>{{ event.eventPrice }}$</span>
+                              </div>
+                              <a href="/src/assets/frontOffice/pages/meeting-details.html">
+                                  <img src="../../../../../../assets/frontOffice/images/meeting-01.jpg" alt="" />
+                              </a>
+                          </div>
+                          <div class="down-content">
+                              <div class="date">
+                                  <h6>{{ event.planifiedDate }}</h6>
+                              </div>
+                              <a href="../../frontOffice/pages/meeting-details.html">
+                                  <h4>{{ event.eventName }}</h4>
+                              </a>
+  
+                              <p>{{ event.eventDescription }}</p>
+  
+  
+                              <form (submit)="reserve(event.idEvent)" >
+                                  <div class="form-group">
+                                      <label for="places">Number of Places:</label>
+                                      <input type="number" class="form-control" id="places" [(ngModel)]="reservationDto.reservation.nbPlace" name="numberOfPlaces" required>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Reserve</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+  
+              </div>
+          </div>
+  
+        -->
+  
+  <!--**********************************
+  **********************-->
+  
+  
+  <ul class="timeline">
+    <li *ngFor="let event of events; let i = index">
+      <div class="direction-{{ i % 2 === 0 ? 'r' : 'l' }}">
+        <div class="flag-wrapper">
+          <span class="hexa"></span>
+          <span class="flag">{{ event.eventName }}</span>
+          <span class="time-wrapper"><span class="time">{{ event.planifiedDate }}</span></span>
+        </div>
+        <div class="desc">
+          <p>{{ event.eventDescription }}</p>
+          <p>Price: {{ event.eventPrice }}$</p>
+          <form (submit)="reserve(event.idEvent)" >
+            <div class="form-group">
+                <label for="places">Number of Places:</label>
+                <input type="number" class="form-control" id="places" [(ngModel)]="reservationDto.reservation.nbPlace" name="numberOfPlaces" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Reserve</button>
+        </form>
+        </div>
+      </div>
+  
+    </li>
+  </ul>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--********************************************************-->
+  
+  
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+  
+  <!-- THE CHALLENGE: -->
+  <!-- 1. recreate version 3 (https://codepen.io/cjl750/pen/mXbMyo) with no javascript whatsoever
+       2. make code as abstract as possible (e.g., trying to calc positions that would work with any number of dots instead of hard-coding the container width as we do in our media queries)
+       3. highest browser support possible -->
+  <!-- Bonus points: turn v3's pseudo content into actual element content, so it's accessible to screen readers, search engines, etc. -->
+  
+  <h1>année universitaire, <span>2024–2025</span></h1>
+  <div class="flex-parent">
+      <div class="input-flex-container">
+          <input type="radio" name="timeline-dot" data-description="1910">
+          <div class="dot-info" data-description="1910">
+              <span class="year">1910</span>
+              <span class="label">September</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1920">
+          <div class="dot-info" data-description="1920">
+              <span class="year">1920</span>
+              <span class="label">November</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1930" checked>
+          <div class="dot-info" data-description="1930">
+              <span class="year">1930</span>
+              <span class="label">October</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1940">
+          <div class="dot-info" data-description="1940">
+              <span class="year">1940</span>
+              <span class="label">Jeep</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1950">
+          <div class="dot-info" data-description="1950">
+              <span class="year">1950</span>
+              <span class="label">leaf blower</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1960">
+          <div class="dot-info" data-description="1960">
+              <span class="year">1960</span>
+              <span class="label">magnetic stripe card</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1970">
+          <div class="dot-info" data-description="1970">
+              <span class="year">1970</span>
+              <span class="label">wireless LAN</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1980">
+          <div class="dot-info" data-description="1980">
+              <span class="year">1980</span>
+              <span class="label">flash memory</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="1990">
+          <div class="dot-info" data-description="1990">
+              <span class="year">1990</span>
+              <span class="label">World Wide Web</span>
+          </div>
+          <input type="radio" name="timeline-dot" data-description="2000">
+          <div class="dot-info" data-description="2000">
+              <span class="year">2000</span>
+              <span class="label">Google AdWords</span>
+          </div>
+      <div class="dot-info" data-description="2000">
+              <span class="year">2000</span>
+              <span class="label">Google AdWords</span>
+          </div>
+      <div class="dot-info" data-description="2000">
+              <span class="year">2000</span>
+              <span class="label">Google AdWords</span>
+          </div>
+          <div id="timeline-descriptions-wrapper">
+              <p data-description="1910">Start Sem 1</p>
+              <p data-description="1920">Because every kid should get to be Tarzan for a day.</p>
+              <p data-description="1930">And the world rejoiced.</p>
+              <p data-description="1940">Because building roads is inconvenient.</p>
+              <p data-description="1950">Ain’t nobody got time to rake.</p>
+              <p data-description="1960">Because paper currency is for noobs.</p>
+              <p data-description="1970">Nobody likes cords. Nobody.</p>
+              <p data-description="1980">Brighter than glow memory.</p>
+              <p data-description="1990">To capitalize on an as-yet nascent market for cat photos.</p>
+              <p data-description="2000">Because organic search rankings take work.</p>
+        <p data-description="2000">Because organic search rankings take work.</p>
+          </div>
+      </div>
+  </div>
+  
+  
+  <div style="position: absolute; bottom: 15px; right: 10px; font-size: 12px">
+      <a href="https://codepen.io/cjl750/pen/mXbMyo" target="_blank">based off of version 3</a></div>

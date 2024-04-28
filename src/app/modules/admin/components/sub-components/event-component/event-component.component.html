@@ -1,69 +1,75 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Events</h3>
-    <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search events..." (input)="filterCars()" />
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      class="form-control"
+      placeholder="Search events..."
+      (input)="filterCars()"
+    />
 
-
-      <div class="card-tools">
-        <button
-          type="button"
-          class="btn btn-tool"
-          data-card-widget="collapse"
-          title="Collapse"
-        >
-          <i class="fas fa-minus"></i>
-        </button>
-        <button
-          type="button"
-          class="btn btn-tool"
-          data-card-widget="remove"
-          title="Remove"
-        >
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-    </div>
-    <div class="card-body p-0">
-      <table class="table table-striped projects">
-        <thead>
-          <tr>
-            <th style="width: 5%">Id</th>
-            <th style="width: 20%">Event Name</th>
-            <th style="width: 25%">Description</th>
-            <th style="width: 15%">Planified Date</th>
-            <th style="width: 15%" class="text-center">Nombre Place</th>
-            <th style="width: 20%">Price</th>
-            <th style="width: 5%">Actions</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="filteredCars.length > 0">
-          <tr *ngFor="let event of filteredCars">
-            <td>{{ event.idEvent }}</td>
-            <td>
-              <a>{{ event.eventName }}</a>
-            </td>
-            <td>{{ event.eventDescription }}</td>
-            <td>{{ event.creationDate }}</td>
-            <td class="text-center">{{ event.eventNbplace }}</td>
-            <td>{{ event.eventPrice }}</td>
-            <td class="project-actions">
-              <a
-                class="btn btn-danger btn-sm"
-                (click)="deleteEvent(event.idEvent)"
-              >
-                <i class="fas fa-trash"></i> Delete
-              </a>
-              <a class="btn btn-info btn-sm" routerLink="/admin/main/event/update/{{event.idEvent}}">
-                <i class="fas fa-pencil-alt"></i> Edit
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card-tools">
+      <button
+        type="button"
+        class="btn btn-tool"
+        data-card-widget="collapse"
+        title="Collapse"
+      >
+        <i class="fas fa-minus"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-tool"
+        data-card-widget="remove"
+        title="Remove"
+      >
+        <i class="fas fa-times"></i>
+      </button>
     </div>
   </div>
-
+  <div class="card-body p-0">
+    <table class="table table-striped projects">
+      <thead>
+        <tr>
+          <th style="width: 5%">Id</th>
+          <th style="width: 20%">Event Name</th>
+          <th style="width: 25%">Description</th>
+          <th style="width: 15%">Planified Date</th>
+          <th style="width: 15%" class="text-center">Nombre Place</th>
+          <th style="width: 20%">Price</th>
+          <th style="width: 5%">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredCars.length > 0">
+        <tr *ngFor="let event of filteredCars">
+          <td>{{ event.idEvent }}</td>
+          <td>
+            <a>{{ event.eventName }}</a>
+          </td>
+          <td>{{ event.eventDescription }}</td>
+          <td>{{ event.creationDate }}</td>
+          <td class="text-center">{{ event.eventNbplace }}</td>
+          <td>{{ event.eventPrice }}</td>
+          <td class="project-actions">
+            <a
+              class="btn btn-danger btn-sm"
+              (click)="deleteEvent(event.idEvent)"
+            >
+              <i class="fas fa-trash"></i> Delete
+            </a>
+            <a
+              class="btn btn-info btn-sm"
+              routerLink="/admin/main/event/update/{{ event.idEvent }}"
+            >
+              <i class="fas fa-pencil-alt"></i> Edit
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -194,5 +200,80 @@
       </div>
     </div>
   </section>
+  <router-outlet></router-outlet>
+
 </div>
-<router-outlet></router-outlet>
+
+
+
+
+
+
+
+<!--
+  Reservation Section **
+-->
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">List of Reservations</h3>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      class="form-control"
+      placeholder="Search events..."
+      (input)="filterCars()"
+    />
+
+    <div class="card-tools">
+      <button
+        type="button"
+        class="btn btn-tool"
+        data-card-widget="collapse"
+        title="Collapse"
+      >
+        <i class="fas fa-minus"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-tool"
+        data-card-widget="remove"
+        title="Remove"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-striped projects">
+      <thead>
+        <tr>
+          <th style="width: 20%">Id</th>
+          <th style="width: 20%">Id User</th>
+          <th style="width: 25%">Description</th>
+          <th style="width: 15%">Nombre Place</th>
+          <th style="width: 15%">id Event</th>
+          <th style="width: 5%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of reservations">
+          <td>{{ res.idReservation }}</td>
+          <td>{{ res.idUser }}</td>
+          <td>{{ res.description }}</td>
+          <td class="text-center">{{ res.nbPlace }}</td>
+          <td>10</td>
+          <td class="project-actions">
+            <a class="btn btn-danger btn-sm"
+              (click)="deleteReservation(res.idReservation)">
+              <i class="fas fa-trash"></i> Delete
+            </a>
+            <a class="btn btn-info btn-sm" routerLink="">
+              <i class="fas fa-pencil-alt"></i> Edit
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

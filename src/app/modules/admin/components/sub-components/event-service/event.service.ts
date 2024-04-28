@@ -15,9 +15,20 @@ export class EventService {
     return this.http.get('http://localhost:8030/api/events/all');
   }
 
+  getAllReservations(): Observable<any> {
+    return this.http.get('http://localhost:8030/api/reservations/all');
+  }
+
+
+
 
   deleteEvent(id: number): Observable<any> {
     return this.http.delete('http://localhost:8030/api/events/delete/' + id );
+  }
+
+
+  deleteReservation(id: number) : Observable<any> {
+    return this.http.delete('http://localhost:8030/api/reservations/delete/' + id );
   }
 
 

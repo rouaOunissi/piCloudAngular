@@ -13,12 +13,15 @@ export class EventComponentComponent implements OnInit {
   filteredCars: any = [] ;
   searchTerm: string = '';
 
+  reservations: any = [] ;
+
 
   constructor(private eventService: EventService) {}
 
 
   ngOnInit(): void {
     this.getAllEvents();
+    this.getAllReservations();
   }
 
   event = {
@@ -29,6 +32,25 @@ export class EventComponentComponent implements OnInit {
     planifiedDate: new Date(),
     eventNbplace: 0,
   };
+
+
+  reservation = {
+    description : '' ,
+    nbPlace : 0 ,
+    idUser: 0
+  }
+
+  getAllReservations(){
+    this.eventService.getAllReservations().subscribe(
+      (res) => {
+        console.log(res);
+        this.reservations= res;
+      },
+      (err)=> {
+        console.log(err);
+      }
+    )
+  }
 
 
 
@@ -100,5 +122,20 @@ export class EventComponentComponent implements OnInit {
 }
 
 
+
+
+deleteReservation(idReservation: number) {
+  console.log(idReservation);
+  this.eventService.deleteReservation(idReservation).subscribe(
+    (res) => {
+      console.log('Successfully deleted the reservation');
+      this.ngOnInit();
+      console.log(res);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
 
 }
