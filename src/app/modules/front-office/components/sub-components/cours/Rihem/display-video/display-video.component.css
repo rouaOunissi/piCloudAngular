@@ -1,0 +1,36 @@
+.all {
+    display: grid;
+    place-items: center center;
+    height: 100vh;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px;
+}
+
+.card {
+    /* background-color: #1c1b29; */
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+    width: 400px;
+}
+
+.container {
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+video {
+    width: 100%;
+    display: block;
+    border-radius: 20px 20px 0 0;
+}
+
+ngb-rating {
+    color: #FFC107;
+    font-size: 80px;
+}

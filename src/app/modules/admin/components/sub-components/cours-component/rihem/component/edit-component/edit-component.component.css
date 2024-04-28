@@ -1,0 +1,23 @@
+.btn {
+    margin-right: 10px; /* Adjust spacing between buttons */
+}
+
+.btn-success {
+    background-color: #28a745; /* Green color for success button */
+    border-color: #28a745;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gray color for secondary button */
+    border-color: #6c757d;
+    color: #fff; /* White text color */
+}
+
+.btn-success:hover,
+.btn-secondary:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
+}
