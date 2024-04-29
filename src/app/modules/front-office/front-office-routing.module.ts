@@ -13,6 +13,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
 import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -38,6 +39,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule, NgbRatingModule]
 })
 export class FrontOfficeRoutingModule { }

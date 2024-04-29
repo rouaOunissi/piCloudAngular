@@ -14,7 +14,7 @@ export class DisplayVideoComponent implements OnInit {
   condition = false;
 
   Courses: Course[] = []; 
-  starRating = 0; 
+  starRating = 2; 
 
   constructor(private courseService: CourseService, private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
