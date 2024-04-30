@@ -30,7 +30,9 @@
 
             ],
             "scripts": [
-              "bootstrap/dist/js/bootstrap.bundle.js"
+              "bootstrap/dist/js/bootstrap.bundle.js",
+              "node_modules/chart.js/dist/Chart.js"
+
 
             ]
           },

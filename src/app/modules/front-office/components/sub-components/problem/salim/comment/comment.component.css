@@ -1,0 +1,67 @@
+
+.test {
+    height: auto;    
+    background-color: transparent(232, 121, 25);
+    width: 100%;
+    border: 2px solid rgb(135, 131, 131); /* Modification de border: 2px; à border: 2px solid black; */
+    border-radius: 10px;
+}
+.oneComment{
+    margin-left: 40px;
+    height: auto;
+    background-color: beige;
+    width: 80%;
+    border-bottom: 2px solid black;
+    
+    margin-top: 20px; /* Déplacer margin-top après margin: 0 auto; */
+}
+.fa.fa-heart:hover {
+    color: red; /* Change color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  .comment-liked {
+    background-color: red; /* Couleur rouge pour haute priorité */
+  }
+  
+  .comment-non-reacted{
+    background-color: rgb(18, 14, 7); /* Couleur orange pour priorité moyenne */
+
+  }
+  .liked {
+    color: red; /* Change to your desired color */
+  }
+  
+.img-bordered-sm{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.username{
+  font-weight:bolder;
+  font-style: italic;
+  color: rgb(46, 133, 133);
+  margin-left: 10px;
+  font-size: 14px;
+    
+}
+.comment_date{
+  margin-top: 5px;
+  display: inline;
+  margin-left: 10px;
+  font-size: 11px;
+
+}
+.userdetails{
+    display: flex;
+    flex-direction: row;
+   
+}
+.contenuComent{
+    height: auto;
+    width: 85%;
+    border: 2px;
+    margin-left: 25px;
+
+}

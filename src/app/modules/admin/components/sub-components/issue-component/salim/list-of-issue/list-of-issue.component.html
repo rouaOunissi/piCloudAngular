@@ -1,0 +1,40 @@
+<nav class="navbar">
+<input style="margin-left: 10px;margin-right: 10px;" [(ngModel)]="searchText" type="text" class="form-control" name="textTosearch" [(ngModel)]="texttosearch" placeholder="find...."/>
+</nav>
+<div class="displayBar">
+  <button (click)="getIssueByPriority('HIGH')" class="high" >HIGH</button>
+  <button (click)="getIssueByPriority('MEDIUM')"  class="medium" >MEDIUM</button>
+  <button (click)="getIssueByPriority('LOW')"  class="low">LOW</button>
+  <button (click)="getClosedIssue('CLOSE')" class="closed">CLOSED</button>
+  <button   routerLink="goToStat" >Show State</button>
+
+</div>
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('id_issue')" > <i class="fa fa-sort"></i>ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Status</th>
+        <th scope="col" (click)="sort('id_user')" > <i class="fa fa-sort"></i>Id_User</th>
+        <th scope="col" (click)="sort('creationDate')"> <i class="fa fa-sort"></i> CreationDate</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr   [routerLink]="'show-issue/' + issue.id_issue" *ngFor="let issue of issueList | filter:searchText |orderBy:orderVariable :false"   >
+        <td>{{ issue.id_issue }}</td>
+        <td>{{ issue.issueTitle }}</td>
+        <td>{{ issue.issueDescription }}</td>
+        <td [ngStyle]="{ 'color': getPriorityColor(issue.priority) }" >{{ issue.priority }}</td>
+        <td>{{ issue.status }}</td>
+        <td>{{ issue.id_user }}</td>
+        <td>{{ issue.creationDate }}</td>
+
+      </tr>
+      
+    </tbody>
+  </table>

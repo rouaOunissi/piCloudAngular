@@ -20,6 +20,8 @@ import {
 import { FormsModule } from '@angular/forms';
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 import { EditUserComponent } from './components/sub-components/user-component/edit-user/edit-user/edit-user.component';
+import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
+import { AllStatComponent } from './components/sub-components/issue-component/salim/all-stat/all-stat.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -32,6 +34,8 @@ const routes: Routes = [
       {path:"editUser/:idUser", component:EditUserComponent}
     ]},
     {path: "issue" , component:IssueComponentComponent},
+    {path: "issue/show-issue/:id_issue" ,component:ShowIssueComponent},
+    {path: "issue/goToStat" ,component:AllStatComponent},
     {path: "ressource" , component:RessourceComponentComponent},
     {path: "finance" , component:FinanceComponentComponent},
       { path: "ListCours" , component:ListCourseComponent},

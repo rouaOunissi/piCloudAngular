@@ -1,0 +1,58 @@
+.main{
+    height: auto;
+    width: 95%;
+    background-color: transparent;
+    display: flex;
+    border: 0px;
+    flex-direction: row;
+    align-items: center;
+  
+  }
+  .material-icons:hover {
+    color: rgb(255, 255, 255); /* Change color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  .fas.fa-paper-plane:hover {
+    color: red; /* Change color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+  input{
+    background-color: beige;
+    width: 90%;
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding: 10px;
+    height :fit-content;
+    margin-left: 25px;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+  }
+  
+  .img-bordered-sm{
+    height: 35px;
+    width: 35px;
+    border-radius: 100px;
+    left: auto;
+    margin: 20px;
+  }
+  .custom-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 9999;
+}
+
+.close-btn {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}

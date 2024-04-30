@@ -1,0 +1,26 @@
+<div class="chat-container">
+    <header>
+        <h4>ESPRIT CONNECTED AI</h4>
+        <button routerLink="goToissue" >share with community</button>
+    </header>
+    <main>
+        <ng-container *ngFor="let item of chatHistory">
+            <br>
+            <div class="messages" [ngClass]="{'blue': item.from === 'user', 'green': item.from === 'bot'}">
+                <span *ngIf="item.from === 'user'" class="user-label">
+                    <i class="fas fa-user-circle" style="color: blue;" ></i> User:
+                </span>
+                <span *ngIf="item.from === 'bot'" class="assistant-label">
+                    <i class="fas fa-robot"></i> Assistant:
+                </span>
+                <span class="responses" [innerHTML]="formtText(item.message)"></span>
+            </div>
+        </ng-container>
+        
+        
+    </main>
+    <footer class="chat-input" >
+        <input type="text" id="message-input" (keyup.enter)="sendData()"  placeholder="type your question" [(ngModel)]="prompt" >
+        <button id="send-button" (click)="sendData()" >Send</button>
+    </footer>
+</div>

@@ -1,0 +1,98 @@
+/* Style the chat container */
+.chat-container {
+    width: 900px;
+    height: 100vh;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px auto; /* Center the container */
+    box-shadow: 0 0 10px rgba(202, 79, 79, 0.1); /* Add a subtle shadow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style the header */
+.chat-container header {
+    background-color: #a13d3d;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+/* Style the main content area */
+.chat-container main {
+    flex: 1; /* Take up remaining vertical space */
+    padding: 20px;
+    background: linear-gradient(90deg, #f5e3df, #ddb698); /* Gradient from #ff7e5f to #feb47b */
+    overflow-y: auto; /* Add scroll if content overflows */
+}
+
+/* Style the footer with the input field and button */
+.chat-container footer {
+    background-color: #f3f3f3;
+    padding: 10px;
+}
+
+/* Style the input field */
+.chat-container input[type="text"] {
+    width: calc(100% - 80px); /* Adjust width as needed */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Style the send button */
+.chat-container #send-button {
+    width: 60px;
+    padding: 8px;
+    border: none;
+    background-color: #691c1c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Hover effect for the send button */
+.chat-container #send-button:hover {
+    background-color: #693333;
+}
+
+.messages{
+    padding-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1098039216);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 2;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+.blue{
+    color : black;
+    background: #0000ff24;
+    font-size: 14px;
+    
+}
+
+.green{
+
+    color : green;
+    background : rgba(190, 248, 164, 0.09);
+    font-size: 16px;
+    font-style: normal;
+}
+
+.user-label {
+    font-weight: bold;
+    color: blue; /* You can adjust the color as needed */
+    margin-right: 5px; /* Adjust spacing between label and message */
+  }
+  
+  .assistant-label {
+    font-weight: bold;
+    color: green; /* You can adjust the color as needed */
+    margin-right: 5px; /* Adjust spacing between label and message */
+  }

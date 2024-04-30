@@ -1,0 +1,114 @@
+.mymain {
+    height: auto;
+    width: 95%;
+    background-color: antiquewhite;
+    display: flex;
+    border: 50px;
+    margin: 20px;
+}
+
+.sidebar {
+    background-color: rgb(164, 164, 173);
+    justify-content: center;
+    height: fit-content;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    width:40%; /* 15% of .mymain */
+}
+
+.myhome {
+    height: auto;
+    width: 100%; /* 85% of .mymain */
+    background-color: antiquewhite;
+}
+.optionBar {
+    background-color: rgb(164, 164, 173);
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin: 20px;
+    padding: 5px;
+    display: flex; /* Utilisation de Flexbox */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    
+}
+
+
+.searchIssueByPriotty {
+    background-color: transparent;
+    display: flex;
+
+}
+.searchIssueByPriotty button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+}
+
+.orange {
+    background-color: orange;
+    margin-right: 20px;
+
+    color: white;
+}
+
+.yellow {
+    background-color: yellow;
+    color: black;
+}
+
+
+/* Styles au survol */
+.searchIssueByPriotty button:hover {
+    opacity: 0.8; /* Légère réduction de l'opacité au survol */
+}
+.gotogemini {
+    width: 100%;
+    background-color: beige;
+    color: black; /* Couleur du texte */
+    padding: 10px; /* Espace intérieur */
+    margin-bottom: 10px;
+    border-radius: 5px; /* Bordure arrondie */
+    display: inline-block; /* Permet au div de s'ajuster à son contenu */
+}
+
+.gotogemini span {
+    margin-right: 10px; /* Marge à droite de l'élément span */
+}
+
+.gotogemini i {
+    color: #691c1c; /* Couleur de l'icône */
+    font-size: 20px; /* Taille de l'icône */
+    vertical-align: middle; /* Alignement vertical */
+    cursor: pointer; /* Curseur de la souris en forme de main */
+    position: relative; /* Position relative pour l'élément parent */
+}
+
+.gotogemini i::after {
+    content: "GO to AI"; /* Contenu de l'élément ::after */
+    display: none; /* Par défaut, le texte n'est pas affiché */
+    position: absolute; /* Position absolue pour le tooltip */
+    background-color: rgb(245, 240, 240); /* Couleur de fond du tooltip */
+    color: black; /* Couleur du texte du tooltip */
+    padding: 5px; /* Espacement interne du tooltip */
+    border-radius: 5px; /* Bordure arrondie du tooltip */
+    bottom: 100%; /* Position en haut de l'icône */
+    left: 50%; /* Centrage horizontal */
+    transform: translateX(-50%); /* Centrage horizontal */
+    font-size: 10px;
+    
+}
+
+.gotogemini i:hover::after {
+    display: block; /* Affiche le tooltip au survol */
+}

@@ -1,0 +1,7 @@
+.createIssue{
+    height: auto;
+    width: fit-content;
+    background-color: beige;
+    padding: 20px;
+    border-radius: 15px;
+}

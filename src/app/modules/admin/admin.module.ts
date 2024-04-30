@@ -20,9 +20,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditComponentComponent } from './components/sub-components/cours-component/rihem/component/edit-component/edit-component.component';
 import { UpdateEventComponent } from './components/sub-components/update-event/update-event.component';
 import { EditUserComponent } from './components/sub-components/user-component/edit-user/edit-user/edit-user.component';
-
-
-
+import { ListOfIssueComponent } from './components/sub-components/issue-component/salim/list-of-issue/list-of-issue.component';
+import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
+import { UserDetailsComponent } from './components/sub-components/issue-component/salim/user-details/user-details.component';
+import { DetailIssueComponent } from './components/sub-components/issue-component/salim/detail-issue/detail-issue.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ListUserComponent } from './components/sub-components/issue-component/salim/list-user/list-user.component';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderModule, OrderPipe } from 'ngx-order-pipe';
+import { AllStatComponent } from './components/sub-components/issue-component/salim/all-stat/all-stat.component';
 @NgModule({
   declarations: [
     MainLayoutComponent,
@@ -40,14 +47,28 @@ import { EditUserComponent } from './components/sub-components/user-component/ed
     ListCourseComponent,
     EditComponentComponent,
     UpdateEventComponent,
-    EditUserComponent
+    EditUserComponent,
+    ListOfIssueComponent,
+    ShowIssueComponent,
+    UserDetailsComponent,
+    DetailIssueComponent,
+    ListUserComponent,
+    AllStatComponent,
+    
+
+  
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    Ng2SearchPipeModule,
+    OrderModule
+    
   ]
 })
 export class AdminModule { }
