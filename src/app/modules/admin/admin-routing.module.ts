@@ -22,6 +22,7 @@ import { UpdateEventComponent } from './components/sub-components/update-event/u
 import { AddCourseComponent } from './components/sub-components/cours-component/rihem/component/add-course/add-course.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartComponent } from './components/sub-components/cours-component/rihem/component/chart/chart.component';
+import { CardPurchaseComponent } from './components/sub-components/purshase/card-purchase/card-purchase.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -37,7 +38,8 @@ const routes: Routes = [
     { path: "ListCours" , component:ListCourseComponent},
     {path:"addCours", component:AddCourseComponent},
     {path: "edit/:id" , component:EditComponentComponent},
-    {path: "course-chart" , component:ChartComponent}
+    {path: "course-chart" , component:ChartComponent},
+    {path:"adminPurchase",component:CardPurchaseComponent}
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
@@ -47,6 +49,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes),FormsModule],
+  
   exports: [RouterModule,
   FormsModule, NgbRatingModule ]
 })

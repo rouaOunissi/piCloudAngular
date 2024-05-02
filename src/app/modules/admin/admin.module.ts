@@ -24,6 +24,7 @@ import { AddCourseComponent } from './components/sub-components/cours-component/
 import { ChartComponent } from './components/sub-components/cours-component/rihem/component/chart/chart.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderModule } from 'ngx-order-pipe';
+import { CardPurchaseComponent } from './components/sub-components/purshase/card-purchase/card-purchase.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { OrderModule } from 'ngx-order-pipe';
     EditUserComponent,
     AddCourseComponent,
     ChartComponent,
+    CardPurchaseComponent,
 
 
   ],

@@ -14,6 +14,10 @@ import { RegisterComponent } from './components/user/register/register.component
 import {DisplayVideoComponent} from "./components/sub-components/cours/Rihem/display-video/display-video.component";
 import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentIntComponent } from './components/sub-components/pushase/payment-int/payment-int.component';
+import { SuccededComponent } from './components/sub-components/pushase/succeded/succeded.component';
+import { AccountSellerComponent } from './components/sub-components/pushase/account-seller/account-seller.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 const routes: Routes = [
@@ -25,12 +29,17 @@ const routes: Routes = [
     {path: "ressource" , component:RessourceComponent},
     {path: "finance" , component:PaimentComponent},
       {path: "display-video" , component:DisplayVideoComponent},
-    {path:"course-details/:id",component:CoursDetailsComponent}
+    {path:"course-details/:id",component:CoursDetailsComponent , children:[{path:"purchase",component:PaymentIntComponent}]},
+    
+    {path:'succeeded', component:SuccededComponent},
+    {path:'accountTotal',component:AccountSellerComponent},
+    
 
 
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
+  
 
 
 
@@ -38,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),NgxStripeModule.forRoot('pk_test_51OvQL1JeISkzjGkfSTrBn7LnfxK1m6KxfMhOGjovxnXib39jt0IsnCmat0o5O20vImghVfPiWIOgwOm0KfVrV7rZ00seX3K6Jh'),],
   exports: [RouterModule, NgbRatingModule]
 })
 export class FrontOfficeRoutingModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/modules/models/course.model';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -24,7 +24,7 @@ export class CoursDetailsComponent implements OnInit {
 
   selectedVideoId: number = 1;
 
-  constructor(private sanitizer: DomSanitizer,private courseService: CourseService, private route: ActivatedRoute) {}
+  constructor(private sanitizer: DomSanitizer,private courseService: CourseService, private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCourseData(this.route.snapshot.params["id"]);
@@ -66,6 +66,7 @@ export class CoursDetailsComponent implements OnInit {
     this.videos.forEach((video: Video) => {
       if (video.url.startsWith('D:\\ArcTic2\\piCloud\\uploads\\')) {
         video.url = baseUrl + video.url.substring('D:\\ArcTic2\\piCloud\\uploads\\'.length).replace(/\\/g, '/');
+
       }
     });
   }
@@ -82,4 +83,14 @@ export class CoursDetailsComponent implements OnInit {
   sanitizeVideoUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  buyCourse() {
+    if (this.courseId > 0) {
+      // Navigate relative to the current route
+      this.router.navigate(['purchase'], { relativeTo: this.route });
+    } else {
+      console.error('Course ID is missing or invalid');
+    }
+  }
+
 }

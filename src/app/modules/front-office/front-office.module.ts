@@ -18,6 +18,9 @@ import { PaimentComponent } from './components/sub-components/paiment/paiment.co
 import { DisplayVideoComponent } from './components/sub-components/cours/Rihem/display-video/display-video.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { PaymentIntComponent } from './components/sub-components/pushase/payment-int/payment-int.component';
+import { SuccededComponent } from './components/sub-components/pushase/succeded/succeded.component';
+import { AccountSellerComponent } from './components/sub-components/pushase/account-seller/account-seller.component';
 
 
 const routes: Routes = [
@@ -42,6 +45,9 @@ const routes: Routes = [
     PaimentComponent,
     DisplayVideoComponent,
     CoursDetailsComponent,
+    PaymentIntComponent,
+    SuccededComponent,
+    AccountSellerComponent,
    
     
   ],
