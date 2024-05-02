@@ -1,0 +1,121 @@
+
+<div class="myhomeComment">
+
+    <div class="one-issue">
+  
+      <div class="single-issue" >
+    
+           <div class="userdetails">
+                  <div class="userimage">
+                      <img class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+                    </div>
+                    <div class="userdata">
+                        <div class="user-block"   >
+    
+                        <span class="username" >
+                    <!--       {{getUserName(c.id_user)}} -->
+                        salim bouazizi </span>
+                       <span class="date_issue" >{{issue.creationDate | date: 'dd/MM/yyyy HH:mm'  }}
+                        </span>
+    
+                        </div>
+          </div>
+        <!--  <i class="fas fa-exclamation-triangle" style=" color: black; size: 32px;margin-left: 30px; margin-top: 15px;">  </i>-->
+        <i class="fas fa-exclamation-triangle"
+        [style.color]="issue.priority === 'HIGH' ? 'red' : (issue.priority === 'MEDIUM' ? 'orange' : 'yellow')"
+        style="font-size: 32px; margin-left: 65%; margin-top: 15px;">
+     </i>
+     
+    
+      </div>
+    
+          <div class="info-section" >
+                <div class="detail-row" style="font-weight: bold; margin-top: 15px; margin-left: 10px;">
+                 <span class="issue_title" >{{ issue.issueTitle }}</span> 
+                   </div>
+                   <br>
+                    <div class="detail-row" style="margin-left: 10px;">
+               <span class="issue_description" >{{ issue.issueDescription }}</span>
+                 </div>
+     
+           </div>
+       <div class="image-section">
+      <!-- Utilisez *ngIf pour tester si src est non nul -->
+      <img id="uriImage" [src]="'data:image/png;base64,' + issue.uriImage" alt="Issue Image" *ngIf="issue.uriImage; else noImage">
+    <ng-template #noImage>
+    <span>No Image Available</span>
+    </ng-template>
+    
+    <br>   
+    <br>
+    
+    
+    
+    <br>
+    
+    <br><br>
+    
+    
+    </div>
+    
+    </div>
+    </div>
+    <div class="showAllComment">
+        <div class="test" *ngIf="comments" >
+          
+              <div *ngFor="let c of comments |paginate:{itemsPerPage:3,currentPage:page}; "  > 
+    
+                <label  style="font-size: 18px; margin-right: 10px; margin-top: 25px;  color: rgb(12, 8, 2) ; float: right;"> 
+                </label>
+                     <div class="oneComment"  (change)="verifyReact(c.id_comment)" >
+                      <i class="fa fa-heart" [style.color]="getIconColor(c.id_comment)" (click)="setReaction(c.id_comment)"></i>
+                      <label style="margin-left: 10px; color: black;" [innerHTML]="getValueOfreact(c.id_comment)">  </label>
+                         <div class="userdetails">
+                              <div class="userimage">
+                               <img class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+                         </div>
+                          <div class="userdata" style="margin-top: 10px;">
+                          <div class="user-block"   >
+                            <span class="comment_username" style="margin-left: 20px;"  > salim bouazizi 
+                                 <!-- {{getUserName(c.id_user)}}-->  
+                               </span>
+                                <span class="comment_date" >{{c.creation_date | date: 'dd/MM/yyyy HH:mm'  }}
+                           </span>
+                             <i (click)="toggleOptionVisibility(c.id_comment)"   class="fas fa-angle-down" style=" color: grey; size: 20px; margin-left:100%;">  </i>
+    
+                           <div class="myoption"  *ngIf="optionVisibility[c.id_comment]" >
+                            <!-- Assuming this code is in the template of IssueListComponent -->
+                            <i (click)="updatecomment(c.id_comment)" class="fas fa-edit" [routerLink]="'update-issue/' + issue.id_issue"></i>
+                            <i (click)="deletecomment(c.id_comment)" class="fas fa-trash-alt"  style="color: red; margin-left: 10px;" >  </i>
+        
+                                          </div>
+                                      
+                          </div>
+                          
+                           </div>
+                       </div>
+            
+                    <div class="contenuComent">
+                        <p style="text-align: left;margin-left: 20px;"> {{c.comment_details}} </p>
+                      </div>
+                       <br>
+            
+                    </div>
+                   <br>
+              </div>
+            <!--  <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+          -->
+          <div class="main">
+            <img class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+            <input placeholder="Add New Solution" type="text" [(ngModel)]="comment_text"  >
+            <div style="margin-top: 10px; margin-left: 25px;">
+                <i class="fas fa-paper-plane" style="font-size:28; color: rgb(81, 81, 247);margin-bottom: 15px;" (click)="save()" ></i>
+        
+            </div>
+        </div>
+                    
+            </div>
+            <pagination-controls (pageChange)="page = $event" ></pagination-controls>
+    
+    </div>
+  </div>

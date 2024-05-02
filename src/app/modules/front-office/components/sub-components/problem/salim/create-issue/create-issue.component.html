@@ -1,0 +1,35 @@
+-<div class="myhome">
+    <h4 style="text-align: center;"> Create a new Issue </h4>
+      <div class="createIssue">
+          <div class="container">
+            <input class="form-control" placeholder="Issue Title" type="text" [(ngModel)]="title" #newtitle />
+            <br><input class="form-control" placeholder="share your issue with us ..." type="text" [(ngModel)]="issueDescription" #newdescription/><br>
+            <button (click)="toggleRecognition()">
+              {{ isRecognizing ? 'End' : 'Start' }} Recognition
+            </button> <!-- Button to toggle recognition -->
+            <div class="radio-container">
+             <br> <div class="radio-container">
+                <label class="radio-label">
+                  <input type="radio" name="priority" value="HIGH" [(ngModel)]="selectedPriority" (change)="onPriorityChange($event)" class="radio-input">
+                  HIGH
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="priority" value="MEDIUM" [(ngModel)]="selectedPriority" (change)="onPriorityChange($event)" class="radio-input">
+                  MEDIUM
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="priority" value="LOW" [(ngModel)]="selectedPriority" (change)="onPriorityChange($event)" class="radio-input">
+                  LOW
+                </label>
+              </div>
+            </div>
+      <br>
+            <input class="form-control" type="file" [(ngModel)]="uriImage" (change)="onFileSelected($event)"/>
+           <br>
+            <button (click)="save()" class="btn_save" >Save</button>
+          </div>
+      
+        </div>
+    </div>
+    
+    

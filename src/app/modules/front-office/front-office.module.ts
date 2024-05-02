@@ -27,6 +27,14 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
 import { NotificationsComponent } from './components/sub-components/projet/notifications/notifications.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AddCommentComponent } from './components/sub-components/problem/salim/add-comment/add-comment.component';
+import { ChatBotComponent } from './components/sub-components/problem/salim/chat-bot/chat-bot.component';
+import { CommentComponent } from './components/sub-components/problem/salim/comment/comment.component';
+import { CreateIssueComponent } from './components/sub-components/problem/salim/create-issue/create-issue.component';
+import { DetailsIssueComponent } from './components/sub-components/problem/salim/details-issue/details-issue.component';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
+import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 
 import('ngx-extended-pdf-viewer').then(module => {
   console.log(module); 
@@ -66,6 +74,13 @@ const routes: Routes = [
     ForgetPasswordComponent,
     NotificationsComponent,
     NotFoundComponent,
+    AddCommentComponent,
+    ChatBotComponent,
+    CommentComponent,
+    CreateIssueComponent,
+    DetailsIssueComponent,
+    DisplayAllCommentComponent,
+    UpdateIssueComponent,
   ],
   imports: [
     CommonModule,
@@ -73,7 +88,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]

@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<button style="margin-top: 50px;  " routerLink="/issue/createIssue" >Add Issue</button>
+-->
+<div class="issue-container inf-content" >
+    <div style="position: relative;">
+        <input class="search_issue" type="text" placeholder="Find Issue..."  [(ngModel)]="searchText">
+        <i class="fas fa-search" style="position: absolute; top: 35%; right: 10px; transform: translateY(-50%);"></i>
+      </div>
+      
+    <div class="one-issue">
+
+        <div class="single-issue"  *ngFor="let issue of issueList |filter:searchText |paginate:{itemsPerPage:5,currentPage:p}; "  >
+
+             <div class="userdetails">
+                    <div class="userimage">
+                        <img  class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+                      </div>
+                      <div class="userdata">
+                          <div class="user-block"   >
+
+                          <span class="username" >
+                      <!--       {{getUserName(c.id_user)}} -->
+                          salim bouazizi </span>
+                         <span class="date_issue"  >
+                            {{issue.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+                          </span>
+   
+                          </div>
+            </div>
+            <i [style.color]=" (issue.status === 'OPEN' ? 'yellow' : 'green')"
+            class="fas fa-lock" style=" size: 20px; margin-left: 25px; margin-top: 15px;" (dblclick)="setIssueStatus(issue)" >  </i>
+            
+            <i  *ngIf="issue.id_user==id_user; else notUser" (click)="toggleVisibilityOption(issue.id_issue)"   class="fas fa-angle-down" style=" color: rgb(77, 71, 71); visibility: visible; size: 20px; margin-left:55%;margin-top: 15px;">  </i>
+            <ng-template #notUser>
+              <i  (click)="toggleVisibilityOption(issue.id_issue)"   class="fas fa-angle-down" style=" color: rgb(77, 71, 71); visibility: hidden; size: 20px; margin-left:55%;margin-top: 15px;">  </i>
+              </ng-template>
+
+            <!--  <i class="fas fa-exclamation-triangle" style=" color: black; size: 32px;margin-left: 30px; margin-top: 15px;">  </i>-->
+
+          <i class="fas fa-exclamation-triangle"
+          [style.color]="issue.priority === 'HIGH' ? 'red' : (issue.priority === 'MEDIUM' ? 'orange' : 'yellow')"
+          style="font-size: 26px; margin-left: 30px; margin-top: 10px;">
+       </i>
+       
+            <div class="myoption"  *ngIf="btn_option_Visibility[issue.id_issue]" >
+                    <i class="fas fa-edit" [routerLink]="'update-issue/' + issue.id_issue"></i>
+                    <i (click)="deleteIssue(issue.id_issue)" class="fas fa-trash-alt"  style="color: red; margin-left: 10px;"  >  </i>
+
+              </div>
+          
+
+        </div>
+
+            <div class="info-section" >
+                  <div class="detail-row" >
+                   <span class="issue_title">{{ issue.issueTitle }}</span> 
+                     </div>
+                     <br>
+                      <div class="detail-row" >
+                 <span class="issue_description" (dblclick)="toggleBtn_GoTOGemini_Visibility(issue.id_issue)" >{{ issue.issueDescription }}</span>
+                <i [routerLink]="['goToChat']" [queryParams]="{ text: issue.issueDescription }" *ngIf="btn_GoTOGemini_Visibility[issue.id_issue]" class="fas fa-atom"  (click)="sendIssueToGemeini(issue.issue_description)" style="color: red; margin-left: 10px;" >  </i>
+                </div>
+       
+             </div>
+         <div class="image-section">
+        <!-- Utilisez *ngIf pour tester si src est non nul -->
+        <img id="uriImage" [src]="'data:image/png;base64,' + issue.uriImage" alt="Issue Image" *ngIf="issue.uriImage; else noImage">
+    <ng-template #noImage>
+    <span>No Image Available</span>
+    </ng-template>
+
+    <br>   
+    <br>
+    <app-comment [issueID]="issue.id_issue"></app-comment>
+    
+
+
+    <br>
+
+    <br><br><hr>
+   
+
+    </div>
+    
+</div>
+<pagination-controls (pageChange)="p = $event" ></pagination-controls>
+</div>
+</div>
+
+
+

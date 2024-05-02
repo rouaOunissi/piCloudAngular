@@ -1,0 +1,130 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.inf-content{
+    margin-top: 20PX;
+    border: 2px solid black; 
+   -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background-color: antiquewhite;
+    width: 80%;
+    margin-left: 10%;
+}		
+.makeComment{
+
+    height: 50px;
+    width: 100%;
+    background-color: red;
+}
+
+.info-section, .image-section {
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.detail-row {
+    display: flex; /* Use flexbox for better alignment */
+    align-items: center; /* Align items vertically */
+}
+
+.detail-row p {
+    margin: 0; /* Remove default margin for paragraphs */
+    font-weight: bold;
+    min-width: 120px; /* Ensure consistent width for labels */
+}
+
+.detail-row span {
+    margin-left: 10px;
+}
+
+.image-section {
+    text-align: center;
+}
+
+img {
+    max-width: 600px;
+    max-height: 500px;
+    display: block; /* Ensure images don't affect surrounding elements */
+    margin:  auto; /* Center images horizontally */
+    border: 4px solid burlywood;
+}
+
+.no-image {
+    text-align: center;
+}
+.myoption {
+    height: auto;
+    width: auto;
+    padding: auto;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    margin-top: 30px;
+    
+}
+
+.img-bordered-sm{
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
+    left: auto;
+    border: 2px solid burlywood;
+
+}
+.username{
+    font-weight:bolder;
+    font-style: italic;
+    color: rgb(46, 133, 133);
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 17px;
+    
+}
+.userdetails{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: auto;
+}
+
+#uriImage {
+    transition: transform 0.3s ease; 
+  }
+  
+  /* Hover state */
+  #uriImage:hover {
+    transform: scale(1.1); 
+  }
+.date_issue{
+    display: inline;
+    margin-left: 15px;
+    font-size: 12px;
+
+}
+.issue_title{
+    font-weight:bold ;
+    size: 14px;
+}
+.issue_description{
+    size: 15px;
+    margin-bottom: 10px;
+}
+.search_issue{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin:auto;
+    margin-bottom: 20px;
+    background-color: transparent;
+}

@@ -1,0 +1,29 @@
+.firstStat {
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    height: 600px; /* Set height */
+    max-width: 100%;
+    background-color: transparent;
+}
+.secondStat {
+    margin-top: 25px;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    height: 600px; /* Set height */
+    max-width: 100%;
+    background-color: transparent;
+}
+
+
+.var{
+    border-radius: 15px;
+    padding: 15px;
+    align-items: center;
+    background-color: beige;
+    max-height: 100%; /* Set height */
+    justify-content: center;
+}

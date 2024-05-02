@@ -24,6 +24,10 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
 import { NotificationsComponent } from './components/sub-components/projet/notifications/notifications.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ChatBotComponent } from './components/sub-components/problem/salim/chat-bot/chat-bot.component';
+import { DetailsIssueComponent } from './components/sub-components/problem/salim/details-issue/details-issue.component';
+import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
+import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
 
 
 
@@ -35,8 +39,12 @@ const routes: Routes = [
     {path: "project" , component:ProjetComponent ,children:[
       {path:"showRequest" , component:ShowRequestComponent}
     ]},
-    {path: "issue" , component:ProblemComponent},
-    {path: "ressource" , component:RessourceComponent},
+    {path: "issue" , component:ChatBotComponent },
+    {path: "issue/goToissue" , component:ProblemComponent },
+    {path: "issue/goToissue/display" ,component:DetailsIssueComponent},
+    {path: "issue/goToissue/update-issue/:id_issue" ,component:UpdateIssueComponent},
+    {path: "issue/goToissue/displayAllComment/:id_issue" ,component:DisplayAllCommentComponent},
+    {path: "issue/goToissue/goToChat" ,component:ChatBotComponent},    {path: "ressource" , component:RessourceComponent},
     {path: "ressourceDetails/:id" , component:RessourceDetailsComponent},
     {path: "ressourceAdd" , component:RessourceAddComponent},
     {path: "ressourceUpdate/:id" , component:RessourceUpdateComponent},

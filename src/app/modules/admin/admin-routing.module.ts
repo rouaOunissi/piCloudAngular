@@ -26,6 +26,8 @@ import { StatProjectComponent } from './components/sub-components/project-compon
 import { UserStatComponent } from './components/sub-components/user-component/user-stat/user-stat.component';
 import { DownloadComponentComponent } from './components/sub-components/download-component/download-component.component';
 import { CalendarLineComponentComponent } from './components/sub-components/calendar-line-component/calendar-line-component.component';
+import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
+import { AllStatComponent } from './components/sub-components/issue-component/salim/all-stat/all-stat.component';
 
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
@@ -37,7 +39,7 @@ const routes: Routes = [
     {path: "user" , component:UserComponentComponent , children:[
       {path:"editUser/:idUser", component:EditUserComponent} , {path:"userStat",component:UserStatComponent}
     ]},
-    {path: "issue" , component:IssueComponentComponent},
+   
     { path: "ressource", component: RessourceComponentComponent },
     { path: "addRess", component: RessourceAddComponent },
     { path: "updateRess/:id", component: RessourceUpdateComponent },
@@ -47,7 +49,10 @@ const routes: Routes = [
     {path: "finance" , component:FinanceComponentComponent},
       { path: "ListCours" , component:ListCourseComponent},
       {path: "edit/:id" , component:EditComponentComponent},
-      {path:"projectStat", component:StatProjectComponent}
+      {path:"projectStat", component:StatProjectComponent},
+      {path: "issue" , component:IssueComponentComponent},
+    {path: "issue/show-issue/:id_issue" ,component:ShowIssueComponent},
+    {path: "issue/goToStat" ,component:AllStatComponent},
       
   ]},
   {path : "footer" , component:FooterComponent},

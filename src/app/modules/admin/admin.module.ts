@@ -26,9 +26,17 @@ import { StatProjectComponent } from './components/sub-components/project-compon
 import { UserStatComponent } from './components/sub-components/user-component/user-stat/user-stat.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule, OrderPipe } from 'ngx-order-pipe';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter'
 import { DownloadComponentComponent } from './components/sub-components/download-component/download-component.component';
 import { CalendarLineComponentComponent } from './components/sub-components/calendar-line-component/calendar-line-component.component';
+import { AllStatComponent } from './components/sub-components/issue-component/salim/all-stat/all-stat.component';
+import { DetailIssueComponent } from './components/sub-components/issue-component/salim/detail-issue/detail-issue.component';
+import { ListOfIssueComponent } from './components/sub-components/issue-component/salim/list-of-issue/list-of-issue.component';
+import { ListUserComponent } from './components/sub-components/issue-component/salim/list-user/list-user.component';
+import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
+import { UserDetailsComponent } from './components/sub-components/issue-component/salim/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +61,13 @@ import { CalendarLineComponentComponent } from './components/sub-components/cale
     StatProjectComponent,
     UserStatComponent,
     DownloadComponentComponent,
-    CalendarLineComponentComponent
+    CalendarLineComponentComponent,
+    AllStatComponent,
+    DetailIssueComponent,
+    ListOfIssueComponent,
+    ListUserComponent,
+    ShowIssueComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +76,12 @@ import { CalendarLineComponentComponent } from './components/sub-components/cale
     FormsModule,
     ReactiveFormsModule,
     NgxExtendedPdfViewerModule,
-    NgbModalModule
+    NgbModalModule,
+    NgxPaginationModule,
+    OrderModule,
+    Ng2SearchPipeModule,
+
+
   ]
 })
 export class AdminModule { }
