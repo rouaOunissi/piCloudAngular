@@ -59,9 +59,10 @@ export class RessourceService {
     return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/ressourceByType?typeRessource=${type}`);
   }
   
-  reactToRessource(idRessource: number): Observable<any> { 
-    return this.http.put(`http://localhost:8060/api/v1/ressource/reactToRessource/` + idRessource, {});
+  reactToRessource(idRessource: number, userId: number): Observable<any> { 
+    return this.http.put(`http://localhost:8060/api/v1/ressource/reactToRessource/${idRessource}/${userId}`, {});
   }
+  
 
     
   findReactionByIdReactionAndIdUser(idRessource: number, userId: number): Observable<any> { 
@@ -78,10 +79,10 @@ export class RessourceService {
   }
 
 
-
   checkUserReaction(idRessource: number, userId: number): Observable<boolean> {
-    return this.http.get<boolean>(`http://localhost:8080/api/v1/ressource/hasUserReactedToResource/${idRessource}/${userId}`);
+    return this.http.get<boolean>(`http://localhost:8060/api/v1/ressource/hasUserReactedToResource/${idRessource}/${userId}`);
   }
+  
 
 
 }
