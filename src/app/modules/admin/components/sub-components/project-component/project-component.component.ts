@@ -24,6 +24,7 @@ export class ProjectComponentComponent implements OnInit {
   categoryId: number=0 ;
   newCategoryName: string ='';
   messageApCat: string = '';
+  showModifySection:boolean=false;
 
 
 
@@ -167,6 +168,12 @@ addCategory() {
   });
 }
 
+prepareModifyCategory(category: any) {
+  this.categoryId = category.id;
+  this.newCategoryName = category.name; // Set this if you want to also pre-populate the name for editing.
+  this.showModifySection=true; 
+}
+
 updateCategory() {
   if (!this.categoryId || !this.newCategoryName) {
     this.messageApCat = 'Please enter both Category ID and New Category Name';
@@ -176,14 +183,14 @@ updateCategory() {
     .subscribe({
       next: (response) => {
         this.messageApCat = 'Category updated successfully';
-        this.fetchCategories();
-        // Additional logic if needed
+        this.fetchCategories(); // Assuming this method refreshes the list of categories
       },
       error: (error) => {
         this.messageApCat = 'Verify your category id';
       }
     });
 }
+
 
 
 

@@ -4,22 +4,24 @@
         <div class="card-header">
             <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
-                Registration Stat
+                Registration Stats
             </h3>
             <div class="card-tools">
-                <!-- Your card tools here -->
+                <!-- Optional tools like refresh buttons or action links -->
             </div>
         </div>
         <div class="card-body">
             <div class="simple-bar-chart">
-                <div class="item" *ngFor="let stats of userRegistrationStats" [style.--val]="stats[1]" [style.background-color]="getRandomColor()">
-                    <div class="label">{{ getMonthName(stats[0]) }}</div>
-                    <div class="value">{{ stats[1] }}</div>
+                <div class="item" *ngFor="let stat of userRegistrationStats" [style.--val]="stat.count + '%'" [style.background-color]="getRandomColor()">
+                    <div class="label">in <strong> {{ getMonthName(stat.month) }}  </strong>  there is </div>
+                    <div class="value"> <strong> {{ stat.count }} </strong>users have been subscribed.</div>
                 </div>
             </div>
         </div>
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-  </div>
-  
+</div>
+<ng-template #noData>
+    <p>No registration statistics are available.</p>
+</ng-template>

@@ -74,10 +74,10 @@ export class UserServiceService {
     return this.http.put(`${this.apiBaseUrl}/set-password?email=${encodeURIComponent(email)}`, body);
   }
 
-  private statUrl = 'http://localhost:8010/api/v1/users/user';
+  private statUrl = 'http://localhost:8010/api/v1/users/stat/api';
   getUserRegistrationStats(): Observable<any> {
     const headers = this.createAuthorization();
-    return this.http.get<any>(`${this.statUrl}/user-registration-stats` , {headers});
+    return this.http.get<any>(`${this.statUrl}/statistics` , {headers});
   }
 
   private apiUrl = ' http://localhost:8010/api/v1/users/user';
