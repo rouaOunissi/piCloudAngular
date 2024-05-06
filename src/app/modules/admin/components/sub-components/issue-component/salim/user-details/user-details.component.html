@@ -6,34 +6,30 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-info">
-                    <div class="info-row">
-                        <span class="info-label">UserID :</span>
-                        <span class="info-value">1029</span>
-                    </div>
                     <hr>
                     <div class="info-row">
                         <span class="info-label">Full Name :</span>
-                        <span class="info-value">Salim Bouazizi</span>
+                        <span class="info-value">{{ myUser.firstName +' '+ myUser.lastName}}</span>
                     </div>
                     <hr>
                     <div class="info-row">
                         <span class="info-label">E_mail :</span>
-                        <span class="info-value">exemple@Gmail.com</span>
+                        <span class="info-value">{{myUser.email}}</span>
                     </div>
                     <hr>
                     <div class="info-row">
                         <span class="info-label">Class :</span>
-                        <span class="info-value">4,ARCTIC</span>
+                        <span class="info-value">{{myUser.level + ' ' + myUser.speciality}}</span>
                     </div>
                     <hr>
                     <div class="info-row">
                         <span class="info-label">Phone :</span>
-                        <span class="info-value">22334455 </span>
+                        <span class="info-value">{{myUser.numTel}} </span>
                     </div>
                     <hr>
                     <div class="info-row">
                         <span class="info-label">Role :</span>
-                        <span class="info-value">Student</span>
+                        <span class="info-value">{{myUser.role}}</span>
                     </div>
                 </div>
             </div>

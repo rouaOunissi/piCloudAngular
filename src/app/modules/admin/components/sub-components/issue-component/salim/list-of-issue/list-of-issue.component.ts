@@ -8,7 +8,7 @@ import { CommentCleanupService } from '../comment-cleanup.service';
 })
 export class ListOfIssueComponent implements OnInit{
   
-  constructor(private http:HttpClient,private commentCleanupService: CommentCleanupService){}
+  constructor(private http:HttpClient,private commentCleanupService: CommentCleanupService ){}
   orderVariable:string='id_issue';
   issueList:any;
   texttosearch! :string;
@@ -17,7 +17,9 @@ export class ListOfIssueComponent implements OnInit{
     this.commentCleanupService.startCleanupProcess();
 
     this.getAllIssue();
+  
   }
+ 
   getAllIssue(){
     this.http.get("http://localhost:8040/api/issue").subscribe(data=>{
       this.issueList=data;

@@ -19,8 +19,8 @@
                           <div class="user-block"   >
 
                           <span class="username" >
-                      <!--       {{getUserName(c.id_user)}} -->
-                          salim bouazizi </span>
+                            {{(myUser.firstName + ' '+ myUser.lastName )}} 
+                           </span>
                          <span class="date_issue"  >
                             {{issue.creationDate | date: 'dd/MM/yyyy HH:mm' }}
                           </span>

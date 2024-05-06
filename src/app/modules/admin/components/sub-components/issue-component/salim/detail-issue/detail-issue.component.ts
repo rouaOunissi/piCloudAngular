@@ -14,12 +14,14 @@ export class DetailIssueComponent implements OnInit {
   id_user:number=2;
   c:any;
   comment:any;
+  myUser:any;
   issue:any;
   response:any;
   page:number =1;
   isHidden: boolean = true;
   mycomment:any;
   comment_text:any;
+  userID:number=0;
   myreact:any;
   reacts:any
   nbrReact:any;
@@ -35,8 +37,6 @@ export class DetailIssueComponent implements OnInit {
       this.comments=data; 
       this.comments.forEach((c: { id_comment: any; })=> {
         this.verifyNumberReact(c.id_comment);
-
-
       });
     },error=>{
       console.log(error)
@@ -53,6 +53,8 @@ export class DetailIssueComponent implements OnInit {
     getIssueByID(id_issue:any){
       this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
         this.issue=data;
+        this.userID=this.issue.id_user;
+        this.getUser(this.userID);
       },error=>{
         console.log(error);
       })
@@ -103,6 +105,13 @@ export class DetailIssueComponent implements OnInit {
     getValueOfreact(commentId : any):number{
       return this.commentReact[commentId] || 0;
 
+    }
+
+    getUser(id_user:number){
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+        this.myUser=data;
+    })
+  
     }
   
   

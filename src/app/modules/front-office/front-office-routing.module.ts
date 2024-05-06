@@ -28,6 +28,7 @@ import { ChatBotComponent } from './components/sub-components/problem/salim/chat
 import { DetailsIssueComponent } from './components/sub-components/problem/salim/details-issue/details-issue.component';
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
+import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
 
 
 
@@ -62,7 +63,8 @@ const routes: Routes = [
   {path:"register" , component:RegisterComponent},
   {path:"set-password" , component:ChangePasswordComponent},
   {path:"forgetPassword",component:ForgetPasswordComponent},
-  {path:"NotFound",component:NotFoundComponent}
+  {path:"NotFound",component:NotFoundComponent},
+  {path:"banAlert",component:AlertBanComponent}
 
 
 

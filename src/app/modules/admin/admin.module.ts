@@ -67,7 +67,7 @@ import { UserDetailsComponent } from './components/sub-components/issue-componen
     ListOfIssueComponent,
     ListUserComponent,
     ShowIssueComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
   ],
   imports: [
     CommonModule,

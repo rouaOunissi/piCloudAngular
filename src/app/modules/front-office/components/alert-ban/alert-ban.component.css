@@ -1,0 +1,53 @@
+.home {
+    width: 100vw; /* Adjust as needed */
+    height: 100vh; /* Adjust as needed */
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: red;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(202, 79, 79, 0.1); /* Add a subtle shadow */
+
+}
+
+
+.main {
+    width: 950px;
+    height: 600px;
+   
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Position the container */
+}
+
+.main i {
+    opacity: 0.5;
+    max-width: 100%; /* Set maximum width */
+    max-height: 100%; /* Set maximum height */
+    position: absolute; /* Position the icon */
+    top: 35%; /* Move to the vertical center */
+    left: 50%; /* Move to the horizontal center */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    font-size: 250px;
+
+}
+
+.header {
+    height: 60px;
+    width: 950px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}

@@ -10,8 +10,9 @@
                  </div>
                   <div class="userdata" style="margin-top: 10px;">
                   <div class="user-block"   >
-                    <span class="username"   > salim bouazizi
-                         <!-- {{getUserName(c.id_user)}}-->  
+                    <span class="username"   >  
+                      {{(myUser.firstName + ' '+ myUser.lastName )}} 
+
                        </span>
                         <span class="comment_date">{{c.creation_date | date : 'dd/MM/yyyy HH:mm'}}
                    </span>

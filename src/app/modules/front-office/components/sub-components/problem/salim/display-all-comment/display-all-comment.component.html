@@ -13,8 +13,8 @@
                         <div class="user-block"   >
     
                         <span class="username" >
-                    <!--       {{getUserName(c.id_user)}} -->
-                        salim bouazizi </span>
+                          {{(myUser.firstName + ' '+ myUser.lastName )}} 
+                   </span>
                        <span class="date_issue" >{{issue.creationDate | date: 'dd/MM/yyyy HH:mm'  }}
                         </span>
     
@@ -76,8 +76,8 @@
                          </div>
                           <div class="userdata" style="margin-top: 10px;">
                           <div class="user-block"   >
-                            <span class="comment_username" style="margin-left: 20px;"  > salim bouazizi 
-                                 <!-- {{getUserName(c.id_user)}}-->  
+                            <span class="comment_username" style="margin-left: 20px;"  >      {{(myUser.firstName + ' '+ myUser.lastName )}} 
+
                                </span>
                                 <span class="comment_date" >{{c.creation_date | date: 'dd/MM/yyyy HH:mm'  }}
                            </span>
