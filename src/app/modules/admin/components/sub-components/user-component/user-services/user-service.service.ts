@@ -3,6 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { User } from 'src/app/modules/front-office/components/user/model/User';
 import { LocalStorageService } from 'src/app/modules/front-office/services/userService/localStorage/local-storage.service';
+import { map } from 'rxjs/operators';
+
+interface RegistrationStat {
+  month: number;
+  count: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -74,12 +80,18 @@ export class UserServiceService {
     return this.http.put(`${this.apiBaseUrl}/set-password?email=${encodeURIComponent(email)}`, body);
   }
 
-  private statUrl = 'http://localhost:8010/api/v1/users/stat/api';
-  getUserRegistrationStats(): Observable<any> {
+  private statUrl = 'http://localhost:8010/api/v1/users/user/user-registration-stats';
+ 
+  getUserRegistrationStats(): Observable<RegistrationStat[]> {
     const headers = this.createAuthorization();
-    return this.http.get<any>(`${this.statUrl}/statistics` , {headers});
+    return this.http.get<any[]>(this.statUrl, {headers})
+      .pipe(
+        map(response => response.map(item => ({
+          month: item[0],
+          count: item[1]
+        } as RegistrationStat)))
+      );
   }
-
   private apiUrl = ' http://localhost:8010/api/v1/users/user';
   updateUserImage(userId: number, imageFile: File): Observable<any> {
     const headers = this.createAuthorization();

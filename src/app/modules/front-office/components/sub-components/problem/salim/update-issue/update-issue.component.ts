@@ -31,7 +31,7 @@ export class UpdateIssueComponent {
   receivedIssue: any; // Define a variable to hold the received issue
  
  
- constructor(private http:HttpClient ,private route:ActivatedRoute){
+ constructor(private http:HttpClient ,private route:ActivatedRoute , private router : Router){
 
  }
    ngOnInit(): void {
@@ -104,6 +104,8 @@ export class UpdateIssueComponent {
          this.issueDescription="";
          this.selectedFile=null;
          this.selectedPriority=null;
+
+         this.router.navigateByUrl("/front/main/issue/goToissue");
    
    
        },error=>{

@@ -1,27 +1,4 @@
-<div *ngIf="userRegistrationStats.length > 0" class="container h-100 d-flex justify-content-center align-items-center flex-column">
-    <h3>User Registration Statistics</h3>
-    <div class="card card-primary card-outline w-100">
-        <div class="card-header">
-            <h3 class="card-title">
-                <i class="far fa-chart-bar"></i>
-                Registration Stats
-            </h3>
-            <div class="card-tools">
-                <!-- Optional tools like refresh buttons or action links -->
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="simple-bar-chart">
-                <div class="item" *ngFor="let stat of userRegistrationStats" [style.--val]="stat.count + '%'" [style.background-color]="getRandomColor()">
-                    <div class="label">in <strong> {{ getMonthName(stat.month) }}  </strong>  there is </div>
-                    <div class="value"> <strong> {{ stat.count }} </strong>users have been subscribed.</div>
-                </div>
-            </div>
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
-<ng-template #noData>
-    <p>No registration statistics are available.</p>
-</ng-template>
+<div style="width: 600px;">
+    <canvas id="userStatsChart"></canvas>
+  </div>
+  
