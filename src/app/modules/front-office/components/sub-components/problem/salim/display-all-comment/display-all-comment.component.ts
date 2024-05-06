@@ -16,6 +16,8 @@ export class DisplayAllCommentComponent implements OnInit {
   comment:any;
   issue:any;
   response:any;
+  myUser:any;
+  userID:number=0;
   page:number =1;
   isHidden: boolean = true;
   mycomment:any;
@@ -42,7 +44,7 @@ export class DisplayAllCommentComponent implements OnInit {
         this.comments.forEach((c: { id_comment: any; })=> {
           this.verifyReact(c.id_comment);
           this.verifyNumberReact(c.id_comment);
-          this.getUserID(c.id_comment);
+          this.getComment(c.id_comment);
 
 
         });
@@ -113,23 +115,20 @@ export class DisplayAllCommentComponent implements OnInit {
       //this.verifyNumberReact(id_comment);
 
     }
-    getUserID(id_comment:any){
+    getComment(id_comment:number){
       this.http.get(`http://localhost:8040/api/comment/${id_comment}`).subscribe(data=>{
         this.myvarcomment=data;
-        this.myvaruserid=this.myvarcomment.id_user;
-        this.getUserDetails(this.myvaruserid);
-      },error=>{
-        console.log(error)
-      });
-     
-    }
-    getUserDetails(id_user:number){
-      id_user=1652;
-      this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
-        this.myvaruser=data;
-        console.log("tttttttttttttttt",this.myvaruser);
-      })
 
+        this.userID=this.myvarcomment.id_user;
+        this.getUser(this.userID);
+      },error=>{
+        console.log(error);
+      })
+    }
+    getUser(id_user:number){
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+        this.myUser=data;
+    })
     }
     verifyNumberReact(id_comment:any):number{
       this.http.get(`http://localhost:8040/api/comment/comment-id/${id_comment}`).subscribe(data=>{

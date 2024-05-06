@@ -32,7 +32,7 @@ import { AllStatComponent } from './components/sub-components/issue-component/sa
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
     {path: "event" , component:EventComponentComponent , children: [
-      {path: "update/:id" , component: UpdateEventComponent}
+      {path: "update/:id" , component: UpdateEventComponent},
     ]},
     {path: "cours" , component:CoursComponentComponent},
     {path: "project" , component:ProjectComponentComponent},

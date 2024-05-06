@@ -18,6 +18,8 @@ export class DetailsIssueComponent implements OnInit {
   imageHeight: number | undefined;
   issue :any;
   src:any;
+  userID:number=0;
+  myUser:any;
   id_user:any;
   p:number =1;
   issueList: any;
@@ -51,8 +53,6 @@ export class DetailsIssueComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllIssue();
-
-    
     console.log(localStorage.getItem("userId"))
 
   }
@@ -70,13 +70,31 @@ export class DetailsIssueComponent implements OnInit {
   public getAllIssue() {
     this.http.get("http://localhost:8040/api/issue").subscribe(response => {
       this.issueList = response;
-      console.log(this.issueList);
+      this.issueList.forEach((c: { id_issue: any; })=> {
+        this.getIssue(c.id_issue);
+
+      });
     }, error => {
       console.log("error while fetching data ");
     });
     console.log(this.issueList);
   }
+  getIssue(id_issue:number){
 
+ this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
+      this.issue=data;
+      this.userID=this.issue.id_user;
+      this.getUser(this.userID);
+    },error=>{
+      console.log(error);
+    })
+  }
+  getUser(id_user:number){
+    this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+      this.myUser=data;
+  })
+
+  }
   logid(id_issue:number){
     console.log(id_issue)
   }

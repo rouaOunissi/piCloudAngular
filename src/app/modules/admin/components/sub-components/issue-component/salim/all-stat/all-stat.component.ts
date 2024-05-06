@@ -11,6 +11,7 @@ export class AllStatComponent  implements OnInit {
 
   pieChart: any;
   pieChart2: any;
+  barChart:any
   highissueList:any;
   mediumissueList:any;
   lowissueList:any;
@@ -97,11 +98,11 @@ export class AllStatComponent  implements OnInit {
   }
 
   generatePieChart(myData:any): void {
-    const canvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    const canvas = document.getElementById('barChart') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      this.pieChart = new Chart(ctx, {
-        type: 'pie',
+      this.barChart = new Chart(ctx, {
+        type: 'bar',
         data: {
           labels: ['HIGH', 'MEDIUM', 'LOW'],
           datasets: [{
@@ -116,25 +117,46 @@ export class AllStatComponent  implements OnInit {
       console.error('Canvas context is null.');
     }
   }
-  generatePieChart2(myData2:any): void {
-    const canvas2 = document.getElementById('pieChart2') as HTMLCanvasElement;
-    const ctx = canvas2.getContext('2d');
+  // generatePieChart2(myData2:any): void {
+  //   const canvas2 = document.getElementById('pieChart2') as HTMLCanvasElement;
+  //   const ctx = canvas2.getContext('2d');
+  //   if (ctx) {
+  //     this.pieChart2 = new Chart(ctx, {
+  //       type: 'pie',
+  //       data: {
+  //         labels: ['OPEN', 'CLOSE'],
+  //         datasets: [{
+  //           label: 'Issue Representation  by status ',
+  //           data: myData2,
+  //           backgroundColor: ['yellow', 'green']
+  //         }]
+  //       }
+  //     });
+  //   } else {
+  //     console.error('Canvas context is null.');
+  //   }
+  // }
+  generatePieChart2(myData: any): void {
+    const canvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
     if (ctx) {
-      this.pieChart2 = new Chart(ctx, {
+      this.pieChart = new Chart(ctx, {
         type: 'pie',
         data: {
           labels: ['OPEN', 'CLOSE'],
           datasets: [{
-            label: 'Issue Representation  by status ',
-            data: myData2,
+            label: 'Issue Representation by status',
+            data: myData,
             backgroundColor: ['yellow', 'green']
           }]
-        }
+        },
+      
       });
     } else {
       console.error('Canvas context is null.');
     }
   }
+  
 
  
 }

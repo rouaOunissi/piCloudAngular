@@ -14,7 +14,6 @@
     <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col" (click)="sort('id_issue')" > <i class="fa fa-sort"></i>ID</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Priority</th>
@@ -26,7 +25,6 @@
         </thead>
         <tbody>
           <tr   [routerLink]="'show-issue/' + issue.id_issue" *ngFor="let issue of issueList | filter:searchText |orderBy:orderVariable :false"   >
-            <td>{{ issue.id_issue }}</td>
             <td>{{ issue.issueTitle }}</td>
             <td>{{ issue.issueDescription }}</td>
             <td [ngStyle]="{ 'color': getPriorityColor(issue.priority) }" >{{ issue.priority }}</td>
