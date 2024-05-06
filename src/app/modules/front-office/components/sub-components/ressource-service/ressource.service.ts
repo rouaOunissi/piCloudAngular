@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable  } from 'rxjs';
 
 const BASIC_URL = ['http://localhost:8060'];
 
@@ -9,8 +9,14 @@ const BASIC_URL = ['http://localhost:8060'];
 })
 export class RessourceService {
 
+
+
   constructor(private http: HttpClient ) {}
   private baseUrl = 'http://localhost:8060/api/v1';
+
+ 
+
+
   getAllRessources(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8060/api/v1/ressource/getRessourcesOrderedByNbrReact');
   }
@@ -22,6 +28,10 @@ export class RessourceService {
   getRessourceTypes(): Observable<any[]> {
     
     return this.http.get<any[]>('http://localhost:8060/api/v1/ressource/listeTypeRess');
+  }
+
+  getRessourceByidUser(idUser: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8060/api/v1/ressource/getRessourceByidUser/${idUser}`);
   }
 
   getRessourceByID(id: number): Observable<any> { 
@@ -37,7 +47,9 @@ export class RessourceService {
     return this.http.get<string>(`${this.apiUrl}/getRessourceContent?url=${encodeURIComponent(url)}`);
   }
   
-  
+  getTotalReactionsForRessource(id: number): Observable<any> {
+    return this.http.get(`http://localhost:8060/api/v1/ressource/getTotalReactionsForRessource/${id}`);
+  }
   
   updateRessource(ressource : any, id: number): Observable<any> { 
     return this.http.put(`http://localhost:8060/api/v1/ressource/update/` + id, ressource);
@@ -54,6 +66,11 @@ export class RessourceService {
   searchRessourcesByKeyword(keyword: string): Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/searchContent?keyword=${keyword}`);
   }
+
+  searchBySynonyms(word: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/synonyms?word=${word}`);
+  }
+
 
   getRessourcesByType(type: string): Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:8060/api/v1/ressource/ressourceByType?typeRessource=${type}`);
@@ -83,6 +100,7 @@ export class RessourceService {
     return this.http.get<boolean>(`http://localhost:8060/api/v1/ressource/hasUserReactedToResource/${idRessource}/${userId}`);
   }
   
+
 
 
 }

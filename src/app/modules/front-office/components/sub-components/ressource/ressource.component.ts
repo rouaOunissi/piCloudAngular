@@ -16,7 +16,7 @@ export class RessourceComponent implements OnInit{
   selectedFilter: string = 'all';
   ressourceTypes: any[] = [];
   p: number = 1;
-  itemsPerPage: number =3;
+  itemsPerPage: number =6;
   totalressource : any ;
   searchTerm: string = '';
   showResourceTypesList: boolean = false;
@@ -59,13 +59,34 @@ export class RessourceComponent implements OnInit{
   search(): void {
     const searchTerm = this.searchTerm.toLowerCase().trim();
     if (searchTerm !== '') {
+      // Search by title
       this.ressourceService.searchRessourcesByTitre(searchTerm).subscribe(
         (titleResults) => {
+          // Set the filtered resources to the title results
+          this.filteredRessources = titleResults;
+          console.log("Ressources récupérées avec succès");
+  
+          // Search by keyword
           this.ressourceService.searchRessourcesByKeyword(searchTerm).subscribe(
             (keywordResults) => {
-              const mergedResults = [...titleResults, ...keywordResults.filter(keywordResult => !titleResults.some(titleResult => titleResult.id === keywordResult.id))];
+              // Merge keyword results with title results, removing duplicates
+              const mergedResults = [...this.filteredRessources, ...keywordResults.filter(keywordResult => !this.filteredRessources.some(titleResult => titleResult.id === keywordResult.id))];
               this.filteredRessources = mergedResults;
               console.log("Ressources récupérées avec succès");
+  
+              // Search by synonyms
+              this.ressourceService.searchBySynonyms(searchTerm).subscribe(
+                (synonymResults) => {
+                  // Merge synonym results with existing results, removing duplicates
+                  const synonymResultsFiltered = synonymResults.filter(synonymResult => !this.filteredRessources.some(mergedResult => mergedResult.id === synonymResult.id));
+                  const allResults = [...this.filteredRessources, ...synonymResultsFiltered];
+                  this.filteredRessources = allResults;
+                  console.log("Ressources récupérées avec succès");
+                },
+                (error) => {
+                  console.error(error);
+                }
+              );
             },
             (error) => {
               console.error(error);
@@ -81,6 +102,7 @@ export class RessourceComponent implements OnInit{
       this.loadRessources();
     }
   }
+  
   
   filterRessources(): void {
     const searchTerm = this.searchTerm.trim().toLowerCase();

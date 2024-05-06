@@ -16,9 +16,10 @@
                             <textarea id="exampleInputDescription" class="form-control" rows="4" placeholder="Description" name="description" [(ngModel)]="ressource.description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputTypeRess">Ressource Type</label>s
+                            <label for="exampleInputTypeRess">Ressource Type</label>
                             <select class="form-control" id="exampleInputTypeRess" name="typeRessource" [(ngModel)]="ressource.TypeR">
                                 <option *ngFor="let type of ressourceTypes" [value]="type">{{ type }}</option>
+                
                             </select>
                         </div>
                         
@@ -37,7 +38,7 @@
                         <!-- Ajoutez d'autres champs de formulaire pour l'ajout de ressource ici -->
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Update</button>
+                        <button type="submit" class="btn btn-primary" >Update</button>
                       </div>
                  
                 </form>
