@@ -14,6 +14,10 @@ export class RessourceDetailsComponent implements OnInit{
   ressourceContent: string  = ''; 
   fileContent: string  = '';
   qrCodeUrl: string = '';
+
+  userId: number | null = null;
+
+
   constructor(
     private route: ActivatedRoute, // Importer ActivatedRoute
     private ressourceService: RessourceService,
@@ -37,44 +41,53 @@ export class RessourceDetailsComponent implements OnInit{
   };
 
   
-    ngOnInit(): void {
-
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.getRessourceByID(id);
-      this.checkUserReaction(id);
+      this.checkUserReaction3(id);
       this.checkUserReaction2(id);
-      const userId = 1;
 
-      this.ressourceService.checkUserReaction(id, userId).subscribe(
-        (hasReacted: boolean) => {
-          this.isLiked = hasReacted; // Mettre à jour l'état du cœur
-          if (hasReacted) {
-            this.reactedRessources.push(id);
-          }
-        },
-        (error) => {
-          console.error('Error checking user reaction:', error);
-        }
-      );
+      const userIdFromStorage = localStorage.getItem("userId");
+      console.log('User ID from storage:', userIdFromStorage);
       
-    });
-  
-  }
-    
-  checkUserReaction(idRessource: number): void {
-    const userId = 1;
-    this.ressourceService.findReactionByIdReactionAndIdUser(idRessource, userId).subscribe(
-      (reaction: any) => {
-        if (reaction) {
-          this.reactedRessources.push(idRessource);
-        }
-      },
-      (error) => {
-        console.error('Error checking user reaction:', error);
+      if (userIdFromStorage) {
+          this.userId = parseInt(userIdFromStorage, 10);
+          console.log('Parsed user ID:', this.userId);
       }
-    );
+  
+      if (this.userId !== null) {
+        this.ressourceService.checkUserReaction(id, this.userId)?.subscribe(
+          (hasReacted: boolean) => {
+            this.isLiked = hasReacted; // Mettre à jour l'état du cœur
+            if (hasReacted) {
+              this.reactedRessources.push(id);
+            }
+          },
+          (error) => {
+            console.error('Error checking user reaction:', error);
+          }
+        );
+      }
+    });
   }
+  
+    
+  checkUserReaction3(idRessource: number): void {
+    // Check if userId is not null before subscribing
+    if (this.userId !== null) {
+        this.ressourceService.checkUserReaction(idRessource, this.userId).subscribe(
+            (reaction: any) => {
+                if (reaction) {
+                    this.reactedRessources.push(idRessource);
+                }
+            },
+            (error) => {
+                console.error('Error checking user reaction:', error);
+            }
+        );
+    }
+}
 
 
   checkUserReaction2(idRessource: number): void {
@@ -90,32 +103,37 @@ export class RessourceDetailsComponent implements OnInit{
   isLiked: boolean = false;
   
   reactToRessource(idRessource: number): void {
-    this.ressourceService.reactToRessource(idRessource).subscribe(
-      (res) => {
-        console.log(res);
-        if (!this.isLiked) {
-          // Augmenter le nombre de réactions après un like réussi
-          this.ressource.nbrReact++; // Incrémenter le nombre de réactions
-          this.reactedRessources.push(idRessource);
-        } else {
-          // Diminuer le nombre de réactions après un dislike
-          this.ressource.nbrReact--; // Décrémenter le nombre de réactions
-          // Retirer la réaction de la liste
-          const index = this.reactedRessources.indexOf(idRessource);
-          if (index !== -1) {
-            this.reactedRessources.splice(index, 1);
+    console.log('User ID:', this.userId);
+    if (this.userId !== null) {
+      this.ressourceService.reactToRessource(idRessource, this.userId).subscribe(
+        (res) => {
+          console.log(res);
+          if (!this.isLiked) {
+            // Augmenter le nombre de réactions après un like réussi
+            this.ressource.nbrReact++; // Incrémenter le nombre de réactions
+            this.reactedRessources.push(idRessource);
+          } else {
+            // Diminuer le nombre de réactions après un dislike
+            this.ressource.nbrReact--; // Décrémenter le nombre de réactions
+            // Retirer la réaction de la liste
+            const index = this.reactedRessources.indexOf(idRessource);
+            if (index !== -1) {
+              this.reactedRessources.splice(index, 1);
+            }
           }
+          // Inverser l'état du bouton
+          this.isLiked = !this.isLiked;
+          // Enregistrer l'état de la réaction dans le stockage local
+          localStorage.setItem(`reaction_${idRessource}`, this.isLiked ? 'liked' : 'disliked');
+        },
+        (error) => {
+          console.log(error);
+          alert("Try again!");
         }
-        // Inverser l'état du bouton
-        this.isLiked = !this.isLiked;
-         // Enregistrer l'état de la réaction dans le stockage local
-         localStorage.setItem(`reaction_${idRessource}`, this.isLiked ? 'liked' : 'disliked');
-      },
-      (error) => {
-        console.log(error);
-        alert("Try again!");
-      }
-    );
+      );
+    } else {
+      console.error('User ID is null. Cannot react to resource.');
+    }
   }
   
   

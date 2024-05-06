@@ -25,53 +25,49 @@ export class RessourceAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRessourceTypes();
-    
-      // Récupérer l'id de l'utilisateur depuis le localStorage
-      const userIdFromStorage = localStorage.getItem('userId');
-      console.log('User ID from storage:', userIdFromStorage);
-      if (userIdFromStorage) {
-          this.userId = parseInt(userIdFromStorage, 10);
-          console.log('Parsed user ID:', this.userId);
-      }
-  }
-  
 
-  addRessource(): void {
-    const formData = new FormData();
-    if (this.selectedFile) {
-      formData.append('file', this.selectedFile);
+    // Récupérer l'id de l'utilisateur depuis le localStorage
+    const userIdFromStorage = localStorage.getItem('userId');
+    console.log('User ID from storage:', userIdFromStorage);
+    if (userIdFromStorage) {
+        this.userId = parseInt(userIdFromStorage, 10);
+        console.log('Parsed user ID:', this.userId);
     }
-     // Pass userId along with ressource object
-     const ressourceData = { ...this.ress, idUser: this.userId };
-  
-     formData.append('ressource', JSON.stringify(ressourceData));
-  
-    // Logging userId to ensure it's not null
-    console.log('UserID before appending to formData:', this.userId);
-  
-    // Ajouter l'id de l'utilisateur au formulaire
-    if (this.userId !== null) {
-      formData.append('idUser', this.userId.toString()); 
-    }
-    
-  
-    this.http.post('http://localhost:8060/api/v1/ressource/uploadRessData', formData)
-      .subscribe(
-        (response: any) => { 
-          console.log('Ressource added successfully:', response);
-        
-          this.ress = {};
-          this.fileName = ''; 
-           // Rediriger vers la table des ressources
-          this.router.navigate(['/admin/main/ressource']);
-        },
-        (error: any) => { 
-          console.error('Error adding ressource:', error);
-        }
-      );
+}
+
+addRessource(): void {
+  const formData = new FormData();
+  if (this.selectedFile) {
+    formData.append('file', this.selectedFile);
   }
-  
-    
+   // Pass userId along with ressource object
+   const ressourceData = { ...this.ress, idUser: this.userId };
+
+   formData.append('ressource', JSON.stringify(ressourceData));
+
+  // Logging userId to ensure it's not null
+  console.log('UserID before appending to formData:', this.userId);
+
+  // Ajouter l'id de l'utilisateur au formulaire
+  if (this.userId !== null) {
+    formData.append('idUser', this.userId.toString()); 
+  }
+
+  this.http.post('http://localhost:8060/api/v1/ressource/uploadRessData', formData)
+    .subscribe(
+      (response: any) => { 
+        console.log('Ressource added successfully:', response);
+      
+        this.ress = {};
+        this.fileName = ''; 
+         // Rediriger vers la table des ressources
+        this.router.navigate(['/admin/main/ressource']);
+      },
+      (error: any) => { 
+        console.error('Error adding ressource:', error);
+      }
+    );
+}
     
 
     onFileSelected(event: any): void {

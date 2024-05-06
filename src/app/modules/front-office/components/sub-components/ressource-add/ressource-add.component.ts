@@ -14,11 +14,6 @@ export class RessourceAddComponent implements OnInit {
   selectedFile: File | null = null;
   fileName: string = 'Choose file'; 
   userId: number | null = null;
-
-
- 
- 
-
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -27,20 +22,16 @@ export class RessourceAddComponent implements OnInit {
   
 }
 
-
-
-
-
 ngOnInit(): void {
   this.getRessourceTypes();
-   // Récupérer l'id de l'utilisateur depuis le localStorage
-   const userIdFromStorage = localStorage.getItem('userId');
-   console.log('User ID from storage:', userIdFromStorage);
-   if (userIdFromStorage) {
-       this.userId = parseInt(userIdFromStorage, 10);
-       console.log('Parsed user ID:', this.userId);
-   }
-
+  
+    // Récupérer l'id de l'utilisateur depuis le localStorage
+    const userIdFromStorage = localStorage.getItem('userId');
+    console.log('User ID from storage:', userIdFromStorage);
+    if (userIdFromStorage) {
+        this.userId = parseInt(userIdFromStorage, 10);
+        console.log('Parsed user ID:', this.userId);
+    }
 }
 
 addRessource(): void {
