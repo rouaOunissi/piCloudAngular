@@ -9,6 +9,8 @@ import { RessourceService } from '../ressource-service/ressource.service';
   styleUrls: ['./ressource-add.component.css']
 })
 export class RessourceAddComponent implements OnInit {
+
+  
   ress: any = {}; 
   ressourceTypes: any[] = [];
   selectedFile: File | null = null;
@@ -25,7 +27,7 @@ export class RessourceAddComponent implements OnInit {
 ngOnInit(): void {
   this.getRessourceTypes();
   
-    // Récupérer l'id de l'utilisateur depuis le localStorage
+ 
     const userIdFromStorage = localStorage.getItem('userId');
     console.log('User ID from storage:', userIdFromStorage);
     if (userIdFromStorage) {
@@ -34,20 +36,33 @@ ngOnInit(): void {
     }
 }
 
+
+showErrorMessage: boolean = false;
+
+showSuccessMessage: boolean = false;
+
 addRessource(): void {
+
+
+  if (!this.ress.titre || !this.ress.typeR || !this.selectedFile || !this.ress.description) {
+
+    this.showErrorMessage = true;
+    return; 
+  }
+
   const formData = new FormData();
   if (this.selectedFile) {
     formData.append('file', this.selectedFile);
   }
-   // Pass userId along with ressource object
+
    const ressourceData = { ...this.ress, idUser: this.userId };
 
    formData.append('ressource', JSON.stringify(ressourceData));
 
-  // Logging userId to ensure it's not null
+
   console.log('UserID before appending to formData:', this.userId);
 
-  // Ajouter l'id de l'utilisateur au formulaire
+
   if (this.userId !== null) {
     formData.append('idUser', this.userId.toString()); 
   }
@@ -56,15 +71,20 @@ addRessource(): void {
     .subscribe(
       (response: any) => { 
         console.log('Ressource added successfully:', response);
-      
+        alert('Resource added successfully');
         this.ress = {};
         this.fileName = ''; 
-         // Rediriger vers la table des ressources
-        this.router.navigate(['/front/main/ressource']);
+        const resourceId = response.idRessource;
+        this.router.navigate(['/front/main/ressourceDetails', resourceId]);
       },
       (error: any) => { 
         console.error('Error adding ressource:', error);
+        alert('Try again !');
+        this.showErrorMessage = true; 
+        this.ress = {};
+        this.fileName = '';
       }
+      
     );
 }
 

@@ -46,47 +46,39 @@ getRessourceById(): void {
  {
   this.ressource=response;
   this.previousTypeR = response.TypeR;
+  this.fileName = this.extractFileName(response.urlFile); 
   console.log(response);
  })
 }
 
-updateRess2(): void {
-  if (this.selectedFile) {
-
-    this.ressource.urlFile = this.selectedFile.name;
- 
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
-    formData.append('ressource', JSON.stringify(this.ressource));
-    // Envoyer la mise à jour avec le fichier
-    this.http.put('http://localhost:8060/api/v1/ressource/updateRess/' + this.idRessource, formData)
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-          alert("resource updated successfully!");
-          this.router.navigate(['/front/main/ressource']);
-        },
-        (error: any) => {
-          console.log(error);
-          alert("An error occurred while updating the resource!");
-        }
-      );
-  } else {
-    
-    this.http.put('http://localhost:8060/api/v1/ressource/updateRess/' + this.idRessource, this.ressource)
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-          alert("resource updated successfully!");
-          this.router.navigate(['/front/main/ressource']);
-        },
-        (error: any) => {
-          console.log(error);
-          alert("An error occurred while updating the resource!");
-        }
-      );
-  }
+extractFileName(url: string): string {
+  const parts = url.split('/');
+  return parts[parts.length - 1];
 }
+
+updateRess2(): void {
+  const formData = new FormData();
+  formData.append('ressource', JSON.stringify(this.ressource));
+
+  if (this.selectedFile) {
+    this.ressource.urlFile = this.selectedFile.name;
+    formData.append('file', this.selectedFile);
+  }
+
+  this.http.put('http://localhost:8060/api/v1/ressource/updateRess/' + this.idRessource, formData)
+    .subscribe(
+      (res: any) => {
+        console.log(res);
+        alert("resource updated successfully!");
+        this.router.navigate(['/front/main/ressourceDetails', this.idRessource]);
+      },
+      (error: any) => {
+        console.log(error);
+        alert("An error occurred while updating the resource!");
+      }
+    );
+}
+
 
   onFileSelected(event: any): void {
    

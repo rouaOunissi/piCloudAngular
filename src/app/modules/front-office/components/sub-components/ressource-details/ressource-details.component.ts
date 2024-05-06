@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../ressource-service/ressource.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -10,16 +10,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./ressource-details.component.css']
 })
 export class RessourceDetailsComponent implements OnInit{
-
+  @ViewChildren('notUser') notUser: any;
   ressourceContent: string  = ''; 
   fileContent: string  = '';
   qrCodeUrl: string = '';
-
   userId: number | null = null;
+  totalReactions: number = 0; 
 
 
   constructor(
-    private route: ActivatedRoute, // Importer ActivatedRoute
+    private route: ActivatedRoute, 
     private ressourceService: RessourceService,
     private router: Router,
     private sanitizer: DomSanitizer,
@@ -30,7 +30,7 @@ export class RessourceDetailsComponent implements OnInit{
     idRessource: 0,
     typeR: '',
     description: '',
-    idUser: '',
+    idUser: 0,
     nbrReact: 0,
     titre: '',
     urlFile: '',
@@ -44,9 +44,11 @@ export class RessourceDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = params['id'];
+
       this.getRessourceByID(id);
       this.checkUserReaction3(id);
       this.checkUserReaction2(id);
+      this.getTotalReactionsForRessource(id);
 
       const userIdFromStorage = localStorage.getItem("userId");
       console.log('User ID from storage:', userIdFromStorage);
@@ -59,7 +61,7 @@ export class RessourceDetailsComponent implements OnInit{
       if (this.userId !== null) {
         this.ressourceService.checkUserReaction(id, this.userId)?.subscribe(
           (hasReacted: boolean) => {
-            this.isLiked = hasReacted; // Mettre à jour l'état du cœur
+            this.isLiked = hasReacted; 
             if (hasReacted) {
               this.reactedRessources.push(id);
             }
@@ -70,9 +72,21 @@ export class RessourceDetailsComponent implements OnInit{
         );
       }
     });
+    this.generateQrCode();
+
   }
   
-    
+  getTotalReactionsForRessource(id: number): void {
+    this.ressourceService.getTotalReactionsForRessource(id).subscribe(
+      (data: any) => {
+        this.totalReactions = data; 
+      },
+      (error) => {
+        console.error('Error fetching total reactions:', error);
+      }
+    );
+  }
+
   checkUserReaction3(idRessource: number): void {
     // Check if userId is not null before subscribing
     if (this.userId !== null) {
@@ -125,6 +139,7 @@ export class RessourceDetailsComponent implements OnInit{
           this.isLiked = !this.isLiked;
           // Enregistrer l'état de la réaction dans le stockage local
           localStorage.setItem(`reaction_${idRessource}`, this.isLiked ? 'liked' : 'disliked');
+          this.getTotalReactionsForRessource(idRessource);
         },
         (error) => {
           console.log(error);
@@ -154,22 +169,24 @@ export class RessourceDetailsComponent implements OnInit{
       return date.toLocaleDateString('en-GB', options);
     }
     
-
+    shouldHideButtons = false;
     getRessourceByID(id: number): void {
-    this.ressourceService.getRessourceByID(id).subscribe(
-      (data: any) => {
-        this.ressource = data;
-        this.ressource.dateCreation = new Date(this.ressource.dateCreation); 
-        
-      const url = this.ressource.urlFile;
-      this.generateQrCode();
+      this.ressourceService.getRessourceByID(id).subscribe(
+        (data: any) => {
+          this.ressource = data;
+          this.ressource.dateCreation = new Date(this.ressource.dateCreation); 
+  
+          console.log('connected UserId:', this.userId);
+          console.log('Parsed id User de la resource:', this.ressource.idUser);
+          const url = this.ressource.urlFile;
+          this.generateQrCode();
     
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
 
   getRessourceContent(url: string): void {
     this.ressourceService.getRessourceContent(url).subscribe(
@@ -204,7 +221,7 @@ export class RessourceDetailsComponent implements OnInit{
     console.log(idRessource);
     this.ressourceService.deleteRessource(idRessource).subscribe(
       () => {
-        console.log('Ressource deleted successfully!');
+        console.log('Resource deleted successfully!');
         this.router.navigate(['/front/main/ressource']);
       },
       (error) => {
@@ -227,8 +244,10 @@ export class RessourceDetailsComponent implements OnInit{
     }
 }
 
+
 generateQrCode(): void {
-  const downloadUrl = `http://localhost:8060/api/qr/generate`;
+  const urlFile = this.ressource.urlFile;
+  const downloadUrl = `http://localhost:8060/api/qr/generate?urlFile=${urlFile}`;
   this.http.post(downloadUrl, this.ressource, { responseType: 'blob' }).subscribe(
     (data: any) => {
       const reader = new FileReader();
@@ -246,10 +265,3 @@ generateQrCode(): void {
 
 
 }
-
-
-
-
-
-
-

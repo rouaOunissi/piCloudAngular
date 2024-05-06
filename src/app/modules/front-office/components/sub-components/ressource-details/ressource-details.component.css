@@ -13,7 +13,7 @@
  
 /* Styles pour le bouton */
 .like-button {
-  font-size: 36px;
+  font-size: 29px;
   color: red; /* Couleur du contour du cœur par défaut */
   cursor: pointer;
 }
@@ -31,4 +31,8 @@
 .like-button.active::before {
   color: red; /* Couleur du cœur lorsque sélectionné */
   -webkit-text-fill-color: red !important; /* Rend l'intérieur du cœur rouge */
+}
+.total-reactions {
+  font-size: 25px; /* Taille de la police réduite */
+  color: gray; /* Couleur grise */
 }

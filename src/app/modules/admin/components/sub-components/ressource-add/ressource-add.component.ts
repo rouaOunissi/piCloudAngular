@@ -35,20 +35,36 @@ export class RessourceAddComponent implements OnInit {
     }
 }
 
+showErrorMessage: boolean = false;
+
 addRessource(): void {
-  const formData = new FormData();
-  if (this.selectedFile) {
-    formData.append('file', this.selectedFile);
+
+  /////////TESSTTT FOR MEERGEEE  
+
+  if (!this.ress.titre || !this.ress.typeR || !this.selectedFile || !this.ress.description) {
+
+    this.showErrorMessage = true;
+    return; 
   }
-   // Pass userId along with ressource object
+
+  const formData = new FormData();
+
+    if (this.selectedFile) {
+        formData.append('file', this.selectedFile);
+    } else {
+   
+        alert('File is required');
+        return;
+    }
+
    const ressourceData = { ...this.ress, idUser: this.userId };
 
    formData.append('ressource', JSON.stringify(ressourceData));
 
-  // Logging userId to ensure it's not null
+
   console.log('UserID before appending to formData:', this.userId);
 
-  // Ajouter l'id de l'utilisateur au formulaire
+
   if (this.userId !== null) {
     formData.append('idUser', this.userId.toString()); 
   }
@@ -57,18 +73,21 @@ addRessource(): void {
     .subscribe(
       (response: any) => { 
         console.log('Ressource added successfully:', response);
-      
+        alert('Resource added successfully');
         this.ress = {};
         this.fileName = ''; 
-         // Rediriger vers la table des ressources
         this.router.navigate(['/admin/main/ressource']);
       },
       (error: any) => { 
         console.error('Error adding ressource:', error);
+        alert('Try again !');
+        this.showErrorMessage = true; 
+        this.ress = {};
+        this.fileName = '';
       }
+      
     );
-}
-    
+}   
 
     onFileSelected(event: any): void {
       // Mettez à jour la variable selectedFile avec le fichier sélectionné
