@@ -234,8 +234,8 @@ export class RessourceDetailsComponent implements OnInit{
     if (this.ressource.urlFile) {
         const fileId = this.ressource.urlFile; 
         const fileName = this.ressource.fileName;
-        const downloadUrl = `http://localhost:8060/api/v1/download/download/${fileId}/${fileName}`;
-
+        const userId = this.userId;
+        const downloadUrl = `http://localhost:8060/api/v1/download/download/${fileId}/${fileName}/${userId}`;
         const anchor = document.createElement('a');
         anchor.href = downloadUrl;
         anchor.download = fileName;
