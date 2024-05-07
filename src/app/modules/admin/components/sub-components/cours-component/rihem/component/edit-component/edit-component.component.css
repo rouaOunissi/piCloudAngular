@@ -17,3 +17,7 @@
 .btn-secondary:hover {
     opacity: 0.8; /* Reduce opacity on hover */
 }
+ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
+}

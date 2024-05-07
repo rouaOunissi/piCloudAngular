@@ -1,4 +1,4 @@
-<div class="form-holder">
+<!--<div class="form-holder">
   <div class="form-content">
     <div class="form-items">
       <h3>Add Course</h3>
@@ -56,5 +56,28 @@
     </div>
   </div>
 </div>
-<br><br>
+<br><br>-->
+<div class="container">
+  <h2>Add New Course</h2>
+  <form #courseForm="ngForm" (ngSubmit)="onSubmit(courseForm)">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" class="form-control" [(ngModel)]="description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="price" name="price" required>
+    </div>
+    <div class="form-group">
+      <label for="videos">Upload Videos:</label>
+      <input type="file" id="videos" class="form-control-file" (change)="onFileSelected($event)" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!courseForm.valid">Submit</button>
+  </form>
+</div>
+
 

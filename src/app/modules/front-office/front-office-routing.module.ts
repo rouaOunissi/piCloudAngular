@@ -29,6 +29,10 @@ import { DetailsIssueComponent } from './components/sub-components/problem/salim
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
 import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
+import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { PaymentIntComponent } from './components/sub-components/purshase/payment-int/payment-int.component';
+import { SuccededComponent } from './components/sub-components/purshase/succeded/succeded.component';
+import { AccountSellerComponent } from './components/sub-components/purshase/account-seller/account-seller.component';
 
 
 
@@ -64,7 +68,12 @@ const routes: Routes = [
   {path:"set-password" , component:ChangePasswordComponent},
   {path:"forgetPassword",component:ForgetPasswordComponent},
   {path:"NotFound",component:NotFoundComponent},
-  {path:"banAlert",component:AlertBanComponent}
+  {path:"banAlert",component:AlertBanComponent},
+  {path:"course-details/:id",component:CoursDetailsComponent , children:[{path:"purchase",component:PaymentIntComponent}]},
+  {path:'succeeded', component:SuccededComponent},
+    {path:'accountTotal',component:AccountSellerComponent},
+  
+    
 
 
 

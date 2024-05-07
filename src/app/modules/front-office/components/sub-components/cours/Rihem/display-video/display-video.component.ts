@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-
-
-
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from 'src/app/modules/admin/components/sub-components/cours-component/rihem/component/course.service';
+import { Course } from 'src/app/modules/admin/components/sub-components/cours-component/rihem/component/models/course.model';
 
 @Component({
   selector: 'app-display-video',
@@ -14,32 +13,37 @@ export class DisplayVideoComponent implements OnInit {
   videoUrl: string | undefined;
   condition = false;
 
-  constructor(private http: HttpClient) { }
+  Courses: Course[] = [];
+  starRating = 2;
+
+  constructor(private courseService: CourseService, private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    // No need to fetch video here, it will be fetched when the button is clicked
+    this.loadCourses();
   }
 
-  fetchVideo(): void {
-    const courseId = 1;
-    this.http.get('http://localhost:8020/api/v1/cours/1/video', { responseType: 'blob' })
-      .subscribe(
-        (response: Blob) => {
-          this.videoUrl = URL.createObjectURL(response);
-          this.condition = true; // Set condition to true after successfully fetching the video
-        },
-        (error) => {
-          console.error('Error fetching video:', error);
-        }
-      );
+  loadCourses(): void {
+    this.courseService.getAll().subscribe((data: Course[]) => {
+      console.log("data: ", data);
+      this.Courses = data;
+      this.updateVideoFilePaths();
+    });
   }
 
-  route(): void {
-    console.log('Video ended'); // This is a placeholder, you can define your routing logic here
-  }
+  updateVideoFilePaths(): void {
+    const baseUrl = 'http://localhost:8020/';
+    this.Courses.forEach(Courses => {
+      if (Courses.videos && Courses.videos.length > 0) {
+        Courses.videos.forEach(video => {
+          if (video.filePath && video.filePath.startsWith('D:\\ArcTic2\\piCloud\\uploads\\')) {
+            video.filePath = baseUrl + video.filePath.substring('D:\\ArcTic2\\piCloud\\uploads\\'.length).replace(/\\/g, '/');
 
-  onClick(): void {
-    this.fetchVideo(); // Call fetchVideo when the button is clicked
+          }
+        });
+      }
+    });
   }
-
+  NavigateToCourseDetails(id : number) : void{
+    this.router.navigate(['front/main/course-details/',id]);
+  }
 }

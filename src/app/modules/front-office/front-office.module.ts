@@ -36,6 +36,10 @@ import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
+import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { SuccededComponent } from './components/sub-components/purshase/succeded/succeded.component';
+import { PaymentIntComponent } from './components/sub-components/purshase/payment-int/payment-int.component';
+import { AccountSellerComponent } from './components/sub-components/purshase/account-seller/account-seller.component';
 
 import('ngx-extended-pdf-viewer').then(module => {
   console.log(module); 
@@ -83,6 +87,10 @@ const routes: Routes = [
     DisplayAllCommentComponent,
     UpdateIssueComponent,
     AlertBanComponent,
+    CoursDetailsComponent,
+    SuccededComponent,
+    PaymentIntComponent,
+    AccountSellerComponent,
   ],
   imports: [
     CommonModule,

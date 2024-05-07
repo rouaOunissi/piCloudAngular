@@ -37,6 +37,10 @@ import { ListOfIssueComponent } from './components/sub-components/issue-componen
 import { ListUserComponent } from './components/sub-components/issue-component/salim/list-user/list-user.component';
 import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
 import { UserDetailsComponent } from './components/sub-components/issue-component/salim/user-details/user-details.component';
+import { AddCourseComponent } from './components/sub-components/cours-component/rihem/component/add-course/add-course.component';
+import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartComponent } from './components/sub-components/cours-component/rihem/component/chart/chart.component';
+import { CardPurchaseComponent } from './components/sub-components/purshase/card-purchase/card-purchase.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,9 @@ import { UserDetailsComponent } from './components/sub-components/issue-componen
     ListUserComponent,
     ShowIssueComponent,
     UserDetailsComponent,
+    AddCourseComponent,
+    ChartComponent,
+    CardPurchaseComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +87,7 @@ import { UserDetailsComponent } from './components/sub-components/issue-componen
     NgxPaginationModule,
     OrderModule,
     Ng2SearchPipeModule,
+    NgbRatingModule
 
 
   ]
