@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CourseService } from 'src/app/services/course.service';
+import { Course } from 'src/app/modules/models/course.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-component',
@@ -11,45 +14,40 @@ export class EditComponentComponent implements OnInit {
   course: any = {}; // Course data received from API
   formData: any = {};
 
-  constructor(private http: HttpClient) {}
+  Course?: Course;
+
+  constructor(private courseService: CourseService, private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch initial course data
-    this.fetchCourseData(this.courseId);
+    this.fetchCourseData(this.route.snapshot.params["id"]);
+    console.log("id :", this.route.snapshot.params["id"]);
+    
   }
 
   updateCourse(): void {
-    // Send updated course data to the server
-    this.http.put(`http://localhost:8020/api/v1/cours/${this.courseId}`, this.formData).subscribe(
-        () => {
-          console.log('Course updated successfully');
-          // Optionally, you can reload the course data after update
-          this.fetchCourseData(this.courseId);
-        },
-        (error) => {
-          console.error('Error updating course:', error);
-        }
-    );
+    this.courseService.updateCouse(this.courseId, this.formData)
+      .subscribe((updatedCourse: Course) => {
+        console.log('Course updated successfully:', updatedCourse);
+        this.router.navigate(['/admin/main/ListCours']);
+      }, error => {
+        console.error('Error updating course:', error);
+      });
   }
 
   cancel(): void {
-    // Reset formData to original course data
     this.formData = { ...this.course };
   }
 
-  // Fetch course data from the server
   fetchCourseData(courseId: number): void {
-    // Make HTTP request to fetch course data by ID
-    this.http.get(`http://localhost:8020/api/v1/cours/${courseId}`).subscribe(
-        (data) => {
-          this.course = data;
-          // Optionally, you can assign the fetched data to formData for editing
-          this.formData = { ...this.course };
-        },
-        (error) => {
-          console.error('Error fetching course data:', error);
-        }
-    );
+    this.courseId= courseId;
+    this.courseService.getCoursebyId(courseId).subscribe((data : Course) =>{
+      this.Course = data;
+      this.formData = { ...data };
+      console.log("his.formData",this.formData);
+      
+      console.log("Course : " , data);
+      
+    })
   }
 
 }

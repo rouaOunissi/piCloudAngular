@@ -28,7 +28,10 @@ import { DownloadComponentComponent } from './components/sub-components/download
 import { CalendarLineComponentComponent } from './components/sub-components/calendar-line-component/calendar-line-component.component';
 import { ShowIssueComponent } from './components/sub-components/issue-component/salim/show-issue/show-issue.component';
 import { AllStatComponent } from './components/sub-components/issue-component/salim/all-stat/all-stat.component';
-
+import { AddCourseComponent } from './components/sub-components/cours-component/rihem/component/add-course/add-course.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartComponent } from './components/sub-components/cours-component/rihem/component/chart/chart.component';
+import { CardPurchaseComponent } from './components/sub-components/purshase/card-purchase/card-purchase.component';
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
     {path: "event" , component:EventComponentComponent , children: [
@@ -39,7 +42,7 @@ const routes: Routes = [
     {path: "user" , component:UserComponentComponent , children:[
       {path:"editUser/:idUser", component:EditUserComponent} , {path:"userStat",component:UserStatComponent}
     ]},
-   
+
     { path: "ressource", component: RessourceComponentComponent },
     { path: "addRess", component: RessourceAddComponent },
     { path: "updateRess/:id", component: RessourceUpdateComponent },
@@ -53,19 +56,23 @@ const routes: Routes = [
       {path: "issue" , component:IssueComponentComponent},
     {path: "issue/show-issue/:id_issue" ,component:ShowIssueComponent},
     {path: "issue/goToStat" ,component:AllStatComponent},
-      
+
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path: "sidebar", component:SideBarComponent},
-  
+  { path: "ListCours" , component:ListCourseComponent},
+  {path:"addCours", component:AddCourseComponent},
+  {path: "edit/:id" , component:EditComponentComponent},
+  {path: "course-chart" , component:ChartComponent},
+  {path:"adminPurchase",component:CardPurchaseComponent}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),FormsModule],
+  imports: [RouterModule.forChild(routes),FormsModule,NgbRatingModule],
   exports: [RouterModule,
-  FormsModule]
+  FormsModule, ]
 })
 export class AdminRoutingModule { }
 

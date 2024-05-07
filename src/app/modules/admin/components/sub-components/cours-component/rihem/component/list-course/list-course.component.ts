@@ -1,60 +1,119 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
+import { Course } from 'src/app/modules/models/course.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import {CourseService} from "../../../../../../../front-office/services/course.service";
+declare var webkitSpeechRecognition: any;
 @Component({
     selector: 'app-list-course',
     templateUrl: './list-course.component.html',
     styleUrls: ['./list-course.component.css']
 })
 export class ListCourseComponent implements OnInit {
-    cours: any;
+    Course?: Course[];
+    currentCourse : Course = {};
+    currentIndex = -1;
+    title = '';
+    price?:number;
+    starRating = 0;
+  orderVariable:string='id';
+
     selectedCourse: any;
     editingCourse: any; // Currently being edited course
+  recognition: any;
+  transcription: string = ''; // Property to store transcription text
+  isRecognizing: boolean = false
 
-    constructor(private http: HttpClient) {}
+    constructor(private courseService: CourseService ,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+
+
+    }
 
     ngOnInit(): void {
         this.loadCourses();
+      this.recognition = new webkitSpeechRecognition();
+      this.recognition.lang = 'en-US';
+
+
+      this.recognition.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        console.log(transcript);
+        this.sendMsg(transcript)
+
+        console.log('hhhhhhhhhhhhhh',this.title);
+
+        this.transcription += transcript ; // Append transcript to the transcription text
+        this.title=this.transcription;
+      };
+
+
     }
 
     loadCourses(): void {
-        this.http.get("http://localhost:8020/api/v1/cours/all").subscribe(data => {
-            this.cours = data;
-        }, error => {
-            console.log(error);
-        });
+        this.courseService.getAll().subscribe((data : Course[])=>{
+            console.log("this.data : ", data);
+            this.Course=data;
+        })
     }
+    ToUpdateCourse(id : number) : void{
+        this.router.navigate(['/admin/main/edit',id]);
+    }
+    deleteCourse(id : number) : void{
+        this.courseService.deleteCourse(id).subscribe(()=>{
+            console.log("cours deleted");
+            this.loadCourses();
+        })
+    }
+    searchTitle(): void{
+        this.currentCourse = {};
+        this.currentIndex = -1;
+        this.courseService.findByTitle(this.title).subscribe({next: (data)=>{
+            this.Course = data;
+            console.log("data:::", data);
 
-    editCourse(course: any): void {
-        // Create a copy to avoid modifying original data
-        this.editingCourse = { ...course };
+        }})
     }
+  toggleRecognition() {
 
-    cancelEdit(): void {
-        this.editingCourse = null;
-    }
+    if (!this.isRecognizing) {
+      this.transcription = ''; // Clear previous transcription
+      this.recognition.start(); // Start recognition
+    } else {
+      this.recognition.stop(); // Stop recognition
 
-    updateCourse(): void {
-        // Send updated course data to the server (using EditCourseComponent emitted data)
-        this.http.put(`http://localhost:8020/api/v1/cours/${this.editingCourse.id}`, this.editingCourse).subscribe(() => {
-            this.loadCourses(); // Reload courses after successful update
-            this.editingCourse = null; // Reset editingCourse
-        }, error => {
-            console.error('Error updating course:', error);
-        });
+     // this.convertTranscription(this.title,this.transcription); // Convert transcription when recognition is stopped
     }
+    this.isRecognizing = !this.isRecognizing; // Toggle recognition flag
 
-    deleteCourse(courseId: number): void {
-        if (confirm('Are you sure you want to delete this course?')) {
-            this.http.delete(`http://localhost:8020/api/v1/cours/${courseId}`).subscribe(() => {
-                this.loadCourses();
-            }, error => {
-                console.error('Error deleting course:', error);
-            });
-        }
-    }
+  }
+  convertTranscription( title:string , text:string) {
 
-    toggleDetails(course: any) {
-        this.selectedCourse = this.selectedCourse === course ? null : course;
+  }
+ /* toggleRecognition() {
+    if (!this.isRecognizing) {
+      this.transcription = ''; // Clear previous transcription
+      this.recognition.start(); // Start recognition
+
+      // Listen for result event and update title when recognized
+      this.recognition.onresult = (event: { results: { transcript: any; }[][]; }) => {
+        const result = event.results[0][0].transcript;
+        this.title = result;
+      };
+    } else {
+      this.recognition.stop(); // Stop recognition
     }
+    this.isRecognizing = !this.isRecognizing; // Toggle recognition flag
+  }*/
+
+
+  private sendMsg(transcript: string) {
+    this.title=transcript;
+  }
+
+  sort(variable: string ) {
+    this.orderVariable=variable;
+
+
+  }
 }

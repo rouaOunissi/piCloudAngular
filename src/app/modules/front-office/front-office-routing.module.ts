@@ -29,8 +29,10 @@ import { DetailsIssueComponent } from './components/sub-components/problem/salim
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
 import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
-
-
+import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { PaymentIntComponent } from './components/sub-components/pushase/payment-int/payment-int.component';
+import { SuccededComponent } from './components/sub-components/pushase/succeded/succeded.component';
+import { AccountSellerComponent } from './components/sub-components/pushase/account-seller/account-seller.component';
 
 const routes: Routes = [
   {path : "main" , component:HomaPageComponent,canActivate: [AuthGuardService]
@@ -55,8 +57,13 @@ const routes: Routes = [
     ]},
     {path: "display-video" , component:DisplayVideoComponent},
     {path: "display-videoo" , component:VideoDisplayerComponent},
-   
+
   ]},
+  {path: "display-video" , component:DisplayVideoComponent},
+  {path:"course-details/:id",component:CoursDetailsComponent , children:[{path:"purchase",component:PaymentIntComponent}]},
+
+  {path:'succeeded', component:SuccededComponent},
+  {path:'accountTotal',component:AccountSellerComponent},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
   {path:"login" , component:LoginComponent},

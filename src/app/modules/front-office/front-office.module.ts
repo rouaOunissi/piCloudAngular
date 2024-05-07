@@ -36,17 +36,20 @@ import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DisplayAllCommentComponent } from './components/sub-components/problem/salim/display-all-comment/display-all-comment.component';
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
-
+import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
+import { PaymentIntComponent } from './components/sub-components/pushase/payment-int/payment-int.component';
+import { SuccededComponent } from './components/sub-components/pushase/succeded/succeded.component';
+import { AccountSellerComponent } from './components/sub-components/pushase/account-seller/account-seller.component';
 import('ngx-extended-pdf-viewer').then(module => {
-  console.log(module); 
+  console.log(module);
 });
 
 
 RessourceDetailsComponent
 const routes: Routes = [
-  { path: 'login', component: LoginComponent }, 
-  { path: 'register', component: RegisterComponent}, 
-  
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent},
+
 ];
 
 @NgModule({
@@ -66,7 +69,7 @@ const routes: Routes = [
     ProfilComponent,
     EditProfilComponent,
     ShowRequestComponent,
-    
+
     RessourceAddComponent,
     RessourceDetailsComponent,
     RessourceUpdateComponent,
@@ -83,6 +86,12 @@ const routes: Routes = [
     DisplayAllCommentComponent,
     UpdateIssueComponent,
     AlertBanComponent,
+    PaimentComponent,
+    DisplayVideoComponent,
+    CoursDetailsComponent,
+    PaymentIntComponent,
+    SuccededComponent,
+    AccountSellerComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,52 @@
-<div *ngIf="condition">
-  <video autoplay (ended)="route()">
-    <source *ngIf="videoUrl" [src]="videoUrl" type="video/mp4">
-  </video>
+<!-- <div class="all">
+  <div class="card card1" *ngFor="let cours of Courses">
+    <div class="container" *ngIf="cours.videos && cours.videos.length > 0">
+        <video [src]="cours.videos[0].filePath" controls></video>
+    </div>
+    <div class="details">
+        <h3>{{ cours.title }}</h3>
+        <h4>{{ cours.description }}</h4>
+        <h4>{{ cours.price }}</h4>
+    </div>
 </div>
-<button (click)="onClick()">Play</button>
+
+</div> -->
+<!-- <div class="all">
+  <div class="card card1" *ngFor="let cours of Courses">
+    <div class="container" *ngIf="cours.videos && cours.videos.length > 0">
+        <video [src]="cours.videos[0].filePath" controls></video>
+    </div>
+    <div class="details">
+        <h3>{{ cours.title }}</h3>
+        <h4>{{ cours.description }}</h4>
+        <h4>{{ cours.price }}</h4>
+    </div>
+</div>
+
+</div> -->
+<div class="container mt-4">
+  <div class="row align-items-center">
+    <div class="col" *ngFor="let cours of Courses" (click)="NavigateToCourseDetails(cours.id)">
+      <div class="card">
+        <div *ngIf="cours.videos && cours.videos.length > 0">
+          <video [src]="cours.videos[0].filePath" controls></video>
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">Title : {{ cours.title }}</h5>
+          <p class="card-text">Description : {{ cours.description }}</p>
+          <h5 class="card-title">Price : {{ cours.price }}</h5>
+          <br>
+          <div style="display: flex; align-items: center;">
+            <h5 style="margin-right: 5px;">Rating:</h5><ngb-rating [max]="5" [rate]="cours.rate!"
+              [readonly]="true"></ngb-rating>
+          </div>
+         
+
+        </div>
+         
+      </div>
+     
+    </div>
+  </div>
+</div>
