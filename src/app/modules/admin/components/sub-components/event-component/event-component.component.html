@@ -16,7 +16,7 @@
       data-card-widget="collapse"
       title="Collapse"
     >
-      <i (click)="toggleCalendarVisibility()" class="fas fa-calendar-alt" ></i>
+      <i (click)="toggleCalendarVisibility()" class="fas fa-chart-bar" ></i>
     </button>
       <button
         type="button"
@@ -40,7 +40,6 @@
     <table class="table table-striped projects">
       <thead>
         <tr>
-          <th style="width: 5%">Id</th>
           <th style="width: 20%">Event Name</th>
           <th style="width: 25%">Description</th>
           <th style="width: 15%">Planified Date</th>
@@ -51,7 +50,6 @@
       </thead>
       <tbody *ngIf="filteredCars.length > 0">
         <tr *ngFor="let event of filteredCars">
-          <td>{{ event.idEvent }}</td>
           <td>
             <a>{{ event.eventName }}</a>
           </td>
@@ -77,7 +75,7 @@
             class="btn btn-info btn-sm"
             (click)="toggleVisibility(event.idEvent)"
           >
-            <i class="fas fa-info"></i> Delete
+            <i class="fas fa-chart-pie"></i> Statistic
           </a>
           </td>
         </tr>
@@ -88,13 +86,13 @@
 
 <div class="stat" *ngIf="!isHidden"  >
 
-  <canvas class="pieChart" id="pieChart"   style="margin-left: 20%;"  width="100" height="100"></canvas>
+  <canvas class="pieChart" id="pieChart"   style="margin-left: 10%;"  width="100" height="100"></canvas>
 
 
 </div>
 <div class="statistic" *ngIf="!isCalendarHidden"  >
 
-  <canvas class="barChart" id="barChart"   style="margin-left: 20%;"  width="100" height="100"></canvas>
+  <canvas class="barChart" id="barChart"   style="margin-left: 10%;"  width="100" height="100"></canvas>
 
 
 </div>
@@ -246,13 +244,7 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">List of Reservations</h3>
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      class="form-control"
-      placeholder="Search events..."
-      (input)="filterCars()"
-    />
+ 
 
     <div class="card-tools">
    
@@ -278,8 +270,6 @@
     <table class="table table-striped projects">
       <thead>
         <tr>
-          <th style="width: 20%">Id</th>
-          <th style="width: 20%">Id User</th>
           <th style="width: 25%">Description</th>
           <th style="width: 15%">Nombre Place</th>
           <th style="width: 15%">id Event</th>
@@ -288,8 +278,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let res of reservations">
-          <td>{{ res.idReservation }}</td>
-          <td>{{ res.idUser }}</td>
           <td>{{ res.description }}</td>
           <td class="text-center">{{ res.nbPlace }}</td>
           <td>10</td>

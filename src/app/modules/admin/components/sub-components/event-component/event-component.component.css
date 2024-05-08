@@ -3,16 +3,22 @@
   flex-direction: row;
 }
 .stat{
+  border: 2px solid black;
+  border-radius: 15px;
   height: 400px;
   width: 400px;
-  background-color: red;
+  background-color: transparent;
   justify-content: center;
   align-items: center;
   margin-left: 30%;
 }
 .statistic{
+  margin-top: 15px;
+  border: 2px solid black;
+  border-radius: 15px;
   height: 600px;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   background-color: transparent;
   justify-content: center;
   align-items: center;

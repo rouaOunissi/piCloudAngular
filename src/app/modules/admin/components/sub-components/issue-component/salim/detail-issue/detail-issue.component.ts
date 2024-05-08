@@ -22,7 +22,9 @@ export class DetailIssueComponent implements OnInit {
   mycomment:any;
   comment_text:any;
   userID:number=0;
+  myTestComment:any;
   myreact:any;
+  myUserD:any;
   reacts:any
   nbrReact:any;
   comment_id:any;
@@ -30,6 +32,7 @@ export class DetailIssueComponent implements OnInit {
   constructor(private http:HttpClient ,private route:ActivatedRoute,private cdr: ChangeDetectorRef){
 
   }
+  userDetailsList: {[key: number]: any} = {};
 
   ngOnInit(): void {
     this.getIssueByID(this.idIssue);
@@ -37,12 +40,32 @@ export class DetailIssueComponent implements OnInit {
       this.comments=data; 
       this.comments.forEach((c: { id_comment: any; })=> {
         this.verifyNumberReact(c.id_comment);
+        this.getUserD(c.id_comment);
+
       });
     },error=>{
       console.log(error)
     });
   }
+  getUserD(id_comment:number){
+    this.http.get(`http://localhost:8040/api/comment/${id_comment}`).subscribe(data=>{
+      this.myTestComment=data;
+      this.userID=this.myTestComment.id_user;
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${this.userID}`).subscribe(data=>{
+      this.myUserD=data;
 
+      this.userDetailsList[id_comment] = this.myUserD;    
+
+  })
+
+
+    },error=>{
+      console.log(error);
+    })
+
+
+
+  }
 
   commentVisibility: { [key: number]: boolean } = {};
   toggleCommentVisibility(commentId: number) {
@@ -113,6 +136,14 @@ export class DetailIssueComponent implements OnInit {
     })
   
     }
+    getUserImage(commentId:any):any{
+      return this.userDetailsList[commentId].image   ;
+  
+    }
+    getValueOfuser(issueID : any):string{
+      // this.myUserImageURI= this.userDetailsList[issueID].image; 
+       return this.userDetailsList[issueID].firstName +' '+ this.userDetailsList[issueID].lastName  ;
+     }
   
   
 

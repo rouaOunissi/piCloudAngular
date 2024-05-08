@@ -224,7 +224,7 @@ generatePieChart(myData:any): void {
           label: 'Event Reservation ',
 
           data: myData,
-          backgroundColor: [ 'orange', 'yellow']
+          backgroundColor: [ 'orange', 'blue']
         }]
       }
     });

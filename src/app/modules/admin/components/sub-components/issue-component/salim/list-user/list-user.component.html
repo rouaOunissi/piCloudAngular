@@ -1,8 +1,8 @@
 <div class="main">
     <div class="card">
         <div class="oneUser" *ngFor="let user of listUser">
-            <img class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
-            <span>  {{(myUser.firstName + ' '+ myUser.lastName )}} </span>
+            <img class="img-circle img-bordered-sm" [src]="'data:image/png;base64,' + getUserImage(user.id_user)" alt="user image">
+            <span>  <label style="margin-left: 10px; color: black;" [innerHTML]="getValueOfuser(user.id_user)"></label></span>
         </div>
     </div>
 </div>

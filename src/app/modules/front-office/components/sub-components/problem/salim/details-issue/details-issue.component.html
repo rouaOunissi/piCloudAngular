@@ -7,19 +7,21 @@
         <i class="fas fa-search" style="position: absolute; top: 35%; right: 10px; transform: translateY(-50%);"></i>
       </div>
       
-    <div class="one-issue">
+    <div class="one-issue"  >
 
         <div class="single-issue"  *ngFor="let issue of issueList |filter:searchText |paginate:{itemsPerPage:5,currentPage:p}; "  >
 
-             <div class="userdetails">
+             <div class="userdetails"  (change)="verifUser(issue.id_issue)" >
                     <div class="userimage">
-                        <img  class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+                        <img  class="img-circle img-bordered-sm" [src]="'data:image/png;base64,' + getUserImage(issue.id_issue)"alt="user image">
                       </div>
                       <div class="userdata">
                           <div class="user-block"   >
 
                           <span class="username" >
-                            {{(myUser.firstName + ' '+ myUser.lastName )}} 
+                            <label style="margin-left: 10px; color: black;" [innerHTML]="getValueOfuser(issue.id_issue)">
+                            </label>
+
                            </span>
                          <span class="date_issue"  >
                             {{issue.creationDate | date: 'dd/MM/yyyy HH:mm' }}

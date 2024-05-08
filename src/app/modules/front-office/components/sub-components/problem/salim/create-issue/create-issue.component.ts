@@ -164,8 +164,8 @@ export class CreateIssueComponent implements OnInit {
           this.issueDescription="";
           this.selectedFile=null;
           this.selectedPriority=null;
-          this.getIssueListe();
-    
+          //this.getIssueListe();
+        this.ngOnInit();
     
         },error=>{
           console.log(error);

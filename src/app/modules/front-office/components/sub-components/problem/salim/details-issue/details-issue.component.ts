@@ -17,6 +17,7 @@ export class DetailsIssueComponent implements OnInit {
   imageWidth: number | undefined;
   imageHeight: number | undefined;
   issue :any;
+  varUser:any;
   src:any;
   userID:number=0;
   myUser:any;
@@ -28,6 +29,9 @@ export class DetailsIssueComponent implements OnInit {
   isHidden: boolean = true;
   searchText:string='';
   myvar:any;
+  myImage:any;
+  myUserFullname:string='';
+  myUserImageURI:any;
   @Input() passedList: any;
 
   
@@ -50,6 +54,7 @@ export class DetailsIssueComponent implements OnInit {
 
   constructor(private http:HttpClient, private router: Router, private ngZone: NgZone,  private route: ActivatedRoute) { }
   
+  userDetailsList: {[key: number]: any} = {};
 
   ngOnInit(): void {
     this.getAllIssue();
@@ -72,27 +77,72 @@ export class DetailsIssueComponent implements OnInit {
       this.issueList = response;
       this.issueList.forEach((c: { id_issue: any; })=> {
         this.getIssue(c.id_issue);
+        this.getUser(c.id_issue);
+        this.verifUser(c.id_issue);
 
       });
     }, error => {
       console.log("error while fetching data ");
     });
-    console.log(this.issueList);
+    console.log("aaaaaaa111111",this.issueList);
+    console.log("aaaaaaa22222",this.userDetailsList)
+
   }
   getIssue(id_issue:number){
 
  this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
       this.issue=data;
-      this.userID=this.issue.id_user;
-      this.getUser(this.userID);
+    //  this.userID=this.issue.id_user;
+      //console.log("testtesttetstest user id :",this.userID)
+      //this.getUser(this.userID);
     },error=>{
       console.log(error);
     })
   }
-  getUser(id_user:number){
-    this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+  getUser(id_issue:number){
+    this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
+      this.issue=data;
+      this.userID=this.issue.id_user;
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${this.userID}`).subscribe(data=>{
       this.myUser=data;
+      this.userDetailsList[id_issue] = this.myUser;    
   })
+
+
+      //console.log("testtesttetstest user id :",this.userID)
+      //this.getUser(this.userID);
+    },error=>{
+      console.log(error);
+    })
+
+
+
+  }
+  verifUser(id_issue:any){
+    this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
+      this.issue=data;
+      this.userID=this.issue.id_user;
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${this.userID}`).subscribe(data=>{
+      this.myUser=data;
+      this.userDetailsList[id_issue] = this.myUser;    
+  })
+
+
+      //console.log("testtesttetstest user id :",this.userID)
+      //this.getUser(this.userID);
+    },error=>{
+      console.log(error);
+    })
+
+    console.log("new msg ",this.userDetailsList)
+
+  }
+  getValueOfuser(issueID : any):string{
+   // this.myUserImageURI= this.userDetailsList[issueID].image; 
+    return this.userDetailsList[issueID].firstName +' '+ this.userDetailsList[issueID].lastName  ;
+  }
+  getUserImage(issueID:any):any{
+    return this.userDetailsList[issueID].image   ;
 
   }
   logid(id_issue:number){

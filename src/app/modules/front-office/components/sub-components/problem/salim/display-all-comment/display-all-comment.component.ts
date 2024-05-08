@@ -29,10 +29,16 @@ export class DisplayAllCommentComponent implements OnInit {
   nbrTotalReact:number=0;
   myvarcomment:any;
   myvaruserid:number=1;
+  myUserD:any;
   myvaruser:any;
+  myTestComment:any;
+  postUser:any;
+  postUserID:any;
+  myConnectedUser:any;
   constructor(private http:HttpClient ,private route:ActivatedRoute,private cdr: ChangeDetectorRef){
 
   }
+  userDetailsList: {[key: number]: any} = {};
 
   ngOnInit(): void {
     this.id_user=localStorage.getItem("userId");
@@ -45,17 +51,46 @@ export class DisplayAllCommentComponent implements OnInit {
           this.verifyReact(c.id_comment);
           this.verifyNumberReact(c.id_comment);
           this.getComment(c.id_comment);
+          this.getUserD(c.id_comment);
 
 
         });
+
       },error=>{
         console.log(error)
       });
     });
-
+    this.getMyConnectedUserr(this.id_user);
   
   }
+  getMyConnectedUserr(id_user:any){
+    this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+      this.myConnectedUser=data;
+  })
+  }
+  getValueOfuser(issueID : any):string{
+    // this.myUserImageURI= this.userDetailsList[issueID].image; 
+     return this.userDetailsList[issueID].firstName +' '+ this.userDetailsList[issueID].lastName  ;
+   }
+  getUserD(id_comment:number){
+    this.http.get(`http://localhost:8040/api/comment/${id_comment}`).subscribe(data=>{
+      this.myTestComment=data;
+      this.userID=this.myTestComment.id_user;
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${this.userID}`).subscribe(data=>{
+      this.myUserD=data;
 
+      this.userDetailsList[id_comment] = this.myUserD;    
+
+  })
+
+
+    },error=>{
+      console.log(error);
+    })
+
+
+
+  }
 
   
   optionVisibility: { [key: number]: boolean } = {};
@@ -66,11 +101,18 @@ export class DisplayAllCommentComponent implements OnInit {
     getIssueByID(id_issue:any){
       this.http.get(`http://localhost:8040/api/issue/${id_issue}`).subscribe(data=>{
         this.issue=data;
+        this.postUserID=this.issue.id_user;
+        this.getPostUser(this.postUserID);
       },error=>{
         console.log(error);
       })
     }
-   
+    getPostUser(id_user:any){
+      this.http.get(`http://localhost:8010/api/v1/users/user/user/${id_user}`).subscribe(data=>{
+        this.postUser=data;
+    })
+
+    }
     deletecomment(id_comment:any){
       this.http.delete(`http://localhost:8040/api/comment/delete/${id_comment}`).subscribe(
         () => {
@@ -109,10 +151,8 @@ export class DisplayAllCommentComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-      console.log("verify post setting working ");
       this.ngOnInit();
-    //  this.verifyNumberReact(id_comment);
-      //this.verifyNumberReact(id_comment);
+    
 
     }
     getComment(id_comment:number){
@@ -138,7 +178,6 @@ export class DisplayAllCommentComponent implements OnInit {
       },error=>{
         console.log(error)
       });
-      console.log("testtesttes",this.nbrReact);
       return this.nbrReact;
 
     }
@@ -161,7 +200,6 @@ export class DisplayAllCommentComponent implements OnInit {
       },error=>{
         console.log(error)
       })
-      console.log( this.mycomment)
     }
     getIconColor(commentId: any): string {
       return this.commentColors[commentId] || 'black';
@@ -169,6 +207,10 @@ export class DisplayAllCommentComponent implements OnInit {
     getValueOfreact(commentId : any):number{
       return this.commentReact[commentId] || 0;
 
+    }
+    getUserImage(commentId:any):any{
+      return this.userDetailsList[commentId].image   ;
+  
     }
     save(){
       const commentRequest = {

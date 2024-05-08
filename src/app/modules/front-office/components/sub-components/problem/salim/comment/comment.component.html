@@ -6,14 +6,13 @@
              <div class="oneComment" >
                  <div class="userdetails">
                       <div class="userimage">
-                       <img class="img-circle img-bordered-sm" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image">
+                       <img class="img-circle img-bordered-sm" [src]="'data:image/png;base64,' + getUserImage(c.id_comment)" alt="user image">
                  </div>
                   <div class="userdata" style="margin-top: 10px;">
                   <div class="user-block"   >
                     <span class="username"   >  
-                      {{(myUser.firstName + ' '+ myUser.lastName )}} 
-
-                       </span>
+                      <label style="margin-left: 10px; color: black;" [innerHTML]="getValueOfuser(c.id_comment)"></label>
+                    </span>
                         <span class="comment_date">{{c.creation_date | date : 'dd/MM/yyyy HH:mm'}}
                    </span>
   

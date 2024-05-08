@@ -603,3 +603,12 @@ input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-d
     width: 300px;
   }
 }
+.custom-input {
+  width: 100%; /* Ensure the input takes up the full width */
+  padding: 8px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add a border to the input */
+  border-radius: 4px; /* Add some border radius for a rounded appearance */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  background-color: white;
+  /* Add any other custom styles you desire */
+}
