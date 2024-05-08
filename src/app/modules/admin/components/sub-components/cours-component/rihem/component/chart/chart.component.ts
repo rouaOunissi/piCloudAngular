@@ -1,8 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { Course } from 'src/app/modules/models/course.model';
-import {CourseService} from "../../../../../../../front-office/services/course.service";
-
+import { CourseService } from '../course.service';
+import { Course } from '../models/course.model';
 
 @Component({
   selector: 'app-chart',

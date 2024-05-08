@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-
-import { Course } from 'src/app/modules/models/course.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import {CourseService} from "../../../../../../../front-office/services/course.service";
+import { Course } from '../models/course.model';
+import { CourseService } from '../course.service';
 declare var webkitSpeechRecognition: any;
 @Component({
     selector: 'app-list-course',

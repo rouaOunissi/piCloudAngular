@@ -37,9 +37,11 @@ import { DisplayAllCommentComponent } from './components/sub-components/problem/
 import { UpdateIssueComponent } from './components/sub-components/problem/salim/update-issue/update-issue.component';
 import { AlertBanComponent } from './components/alert-ban/alert-ban.component';
 import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/cours-details/cours-details.component';
-import { PaymentIntComponent } from './components/sub-components/pushase/payment-int/payment-int.component';
-import { SuccededComponent } from './components/sub-components/pushase/succeded/succeded.component';
-import { AccountSellerComponent } from './components/sub-components/pushase/account-seller/account-seller.component';
+import { SuccededComponent } from './components/sub-components/purshase/succeded/succeded.component';
+import { PaymentIntComponent } from './components/sub-components/purshase/payment-int/payment-int.component';
+import { AccountSellerComponent } from './components/sub-components/purshase/account-seller/account-seller.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+
 import('ngx-extended-pdf-viewer').then(module => {
   console.log(module);
 });
@@ -47,9 +49,10 @@ import('ngx-extended-pdf-viewer').then(module => {
 
 RessourceDetailsComponent
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent},
-
+  { path: 'login', component: LoginComponent }, 
+  { path: 'register', component: RegisterComponent}, 
+  
+  
 ];
 
 @NgModule({
@@ -100,7 +103,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgbRatingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]

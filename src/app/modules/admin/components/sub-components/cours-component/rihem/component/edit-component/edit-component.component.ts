@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CourseService } from 'src/app/services/course.service';
-import { Course } from 'src/app/modules/models/course.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from '../course.service';
+import { Course } from '../models/course.model';
 
 @Component({
   selector: 'app-edit-component',

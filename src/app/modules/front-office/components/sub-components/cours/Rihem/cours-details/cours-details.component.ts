@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Course } from 'src/app/modules/models/course.model';
-import { CourseService } from 'src/app/services/course.service';
+import { CourseService } from 'src/app/modules/admin/components/sub-components/cours-component/rihem/component/course.service';
+import { Course } from 'src/app/modules/admin/components/sub-components/cours-component/rihem/component/models/course.model';
 
 interface Video {
   id: number;
@@ -87,7 +87,9 @@ export class CoursDetailsComponent implements OnInit {
   buyCourse() {
     if (this.courseId > 0) {
       // Navigate relative to the current route
+      console.log("aaaaaaaaaa0");
       this.router.navigate(['purchase'], { relativeTo: this.route });
+     
     } else {
       console.error('Course ID is missing or invalid');
     }

@@ -32,6 +32,7 @@ import { AddCourseComponent } from './components/sub-components/cours-component/
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartComponent } from './components/sub-components/cours-component/rihem/component/chart/chart.component';
 import { CardPurchaseComponent } from './components/sub-components/purshase/card-purchase/card-purchase.component';
+
 const routes: Routes = [
   {path : "main" , component:MainLayoutComponent , children:[
     {path: "event" , component:EventComponentComponent , children: [
@@ -57,6 +58,11 @@ const routes: Routes = [
     {path: "issue/show-issue/:id_issue" ,component:ShowIssueComponent},
     {path: "issue/goToStat" ,component:AllStatComponent},
 
+    {path:"addCours", component:AddCourseComponent},
+    {path: "course-chart" , component:ChartComponent},
+    
+    {path:"adminPurchase",component:CardPurchaseComponent}
+      
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},

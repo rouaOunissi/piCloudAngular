@@ -9,56 +9,51 @@
           [(ngModel)]="title"
         />
         <div class="input-group-append">
-         <!-- <button
+          <!-- <button
             class="btn btn-outline-secondary"
             type="button"
             (click)="searchTitle()"
           >
-
             Search
-          </button>-->
+          </button> -->
           <button (click)="toggleRecognition()">
-            {{ isRecognizing ? 'End' : 'Start' }} Recognition</button>
-          <i class='fas fa-microphone' style='font-size:36px'></i>
+            {{ isRecognizing ? 'End' : 'Start' }} Recognition
+          </button>
+          <i class="fas fa-microphone" style="font-size: 36px"></i>
         </div>
       </div>
-
     </div>
-  <div class="card">
-    <div class="card-header">Cours</div>
-    <table class="table">
-      <thead>
-      <tr>
-        <th ><i (click)="sort('id')" class="fa fa-sort"></i> ID </th>
-        <th>Title</th>
-        <th>Description</th>
-        <th ><i (click)="sort('price')" class="fa fa-sort"></i>Price</th>
-        <th>Rate</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let cours of Course | filter:title |orderBy:orderVariable:false ">
-        <td>{{ cours.id }}</td>
-        <td>{{ cours.title }}</td>
-        <td>{{ cours.description }}</td>
-        <td>{{ cours.price }}</td>
-        <td>
-          <ngb-rating [max]="5" [(rate)]="cours.rate!" [readonly]="true"></ngb-rating>
-        </td>
-        <td>
-          <button
-            class="badge badge-warning"
-            (click)="ToUpdateCourse(cours.id)"
-          >
-            Edit
-          </button>
-          <button class="badge badge-danger mr-2" (click)="deleteCourse(cours.id)">
-            Delete
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-header">Cours</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- Removed the header for 'id' -->
+            <th>Title</th>
+            <th>Description</th>
+            <th>
+              <i (click)="sort('price')" class="fa fa-sort"></i> Price
+            </th>
+            <th>Rate</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cours of Course | filter: title | orderBy: orderVariable: false">
+            <!-- Removed the row for 'id' -->
+            <td>{{ cours.title }}</td>
+            <td>{{ cours.description }}</td>
+            <td>{{ cours.price }}</td>
+            <td>
+              <ngb-rating [max]="5" [(rate)]="cours.rate!" [readonly]="true"></ngb-rating>
+            </td>
+            <td>
+              <button class="badge badge-warning" (click)="ToUpdateCourse(cours.id)">Edit</button>
+              <button class="badge badge-danger mr-2" (click)="deleteCourse(cours.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
