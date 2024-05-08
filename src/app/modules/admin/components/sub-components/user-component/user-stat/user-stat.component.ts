@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../user-services/user-service.service';
-import { map } from 'rxjs/operators';
-
-interface UserRegistrationStat {
-  month: number;
-  count: number;
-}
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-user-stat',
@@ -13,73 +8,51 @@ interface UserRegistrationStat {
   styleUrls: ['./user-stat.component.css']
 })
 export class UserStatComponent implements OnInit {
+  chart: Chart | undefined;
 
-  userRegistrationStats: UserRegistrationStat[] = [];
-
-  constructor(private userStatsService: UserServiceService) {}
+  constructor(private userService: UserServiceService) {
+    Chart.register(...registerables);  // Register Chart.js components
+  }
 
   ngOnInit(): void {
-    this.userStatsService.getUserRegistrationStats().subscribe(
-      (data: string[]) => {
-        const processedData = data.map((item: string) => {
-          const parts = item.match(/Month: (\d+), Count: (\d+)/);
-          return parts ? { month: parseInt(parts[1], 10), count: parseInt(parts[2], 10) } : null;
-        }).filter((stat): stat is UserRegistrationStat => stat !== null);
-    
-        // Aggregate data and assign
-        this.userRegistrationStats = this.aggregateData(processedData);
-        console.log('Processed and aggregated data:', this.userRegistrationStats);
+    this.userService.getUserRegistrationStats().subscribe({
+      next: (data) => {
+        this.createChart(data);
       },
-      (error) => {
-        console.error('There was an error!', error);
+      error: (error) => {
+        console.error('Error fetching registration stats:', error);
       }
-    );
-    
-  }
-  
-  private aggregateData(data: UserRegistrationStat[]): UserRegistrationStat[] {
-    const aggregation: { [key: number]: number } = {};
-  
-    // Aggregate counts by month
-    data.forEach(stat => {
-      aggregation[stat.month] = (aggregation[stat.month] || 0) + stat.count;
     });
-  
-    // Convert to array and sort by month for consistent order
-    const sortedStats = Object.keys(aggregation)
-      .map(key => ({
-        month: parseInt(key, 10),
-        count: aggregation[parseInt(key, 10)]
-      }))
-      .sort((a, b) => a.month - b.month);  // Ensure sorting by month index
-  
-    return sortedStats;
   }
-  
-  
-  
-  
-  
 
-  // Inside your component
+  private createChart(data: any[]): void {
+    const ctx = document.getElementById('userStatsChart') as HTMLCanvasElement;
+    this.chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d => this.getMonthName(d.month)),
+        datasets: [{
+          label: 'User Registrations',
+          data: data.map(d => d.count),
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        responsive: true
+      }
+    });
+  }
 
   getMonthName(monthIndex: number): string {
-    console.log('Received month index:', monthIndex);
     const monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"];
-    const name = monthNames[monthIndex - 1] || 'Unknown';
-    console.log('Resolved month name:', name);
-    return name;
+    return monthNames[monthIndex - 1];
   }
-  
-
-getRandomColor() {
-  const hue = Math.floor(Math.random() * 360);
-  return `hsl(${hue}, 50%, 50%)`;
-}
-
-
-
-
-
 }
