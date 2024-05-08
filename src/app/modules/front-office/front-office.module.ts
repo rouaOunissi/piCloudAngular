@@ -40,6 +40,7 @@ import { CoursDetailsComponent } from './components/sub-components/cours/Rihem/c
 import { SuccededComponent } from './components/sub-components/purshase/succeded/succeded.component';
 import { PaymentIntComponent } from './components/sub-components/purshase/payment-int/payment-int.component';
 import { AccountSellerComponent } from './components/sub-components/purshase/account-seller/account-seller.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 import('ngx-extended-pdf-viewer').then(module => {
   console.log(module); 
@@ -50,6 +51,7 @@ RessourceDetailsComponent
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent}, 
+  
   
 ];
 
@@ -99,7 +101,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgbRatingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule]

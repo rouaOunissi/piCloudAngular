@@ -24,26 +24,35 @@ export class DisplayVideoComponent implements OnInit {
 
   loadCourses(): void {
     this.courseService.getAll().subscribe((data: Course[]) => {
-      console.log("data: ", data);
-      this.Courses = data;
+      this.Courses = data.map(course => ({
+        ...course,
+        rate: course.rate || 0  // Ensure rate is defined
+      }));
       this.updateVideoFilePaths();
     });
   }
 
   updateVideoFilePaths(): void {
-    const baseUrl = 'http://localhost:8020/';
-    this.Courses.forEach(Courses => {
-      if (Courses.videos && Courses.videos.length > 0) {
-        Courses.videos.forEach(video => {
-          if (video.filePath && video.filePath.startsWith('D:\\ArcTic2\\piCloud\\uploads\\')) {
-            video.filePath = baseUrl + video.filePath.substring('D:\\ArcTic2\\piCloud\\uploads\\'.length).replace(/\\/g, '/');
-
-          }
-        });
-      }
+    const baseUrl = 'http://localhost:8020/api/v1/cours/'; // ensure this is the base URL of your API
+    this.Courses.forEach(course => {
+      course.videos?.forEach(video => {
+        if (video.filePath && video.filePath.includes('\\')) { // checking if the path needs conversion
+          const filename = video.filePath.split('\\').pop(); // extracting the filename
+          video.filePath = `${baseUrl}${course.id}/videos/${filename}`; // constructing the full URL
+        }
+      });
     });
   }
-  NavigateToCourseDetails(id : number) : void{
-    this.router.navigate(['front/main/course-details/',id]);
-  }
+  
+
+
+
+  NavigateToCourseDetails(id: number): void {
+    // Log to see what's being received
+    console.log("Navigating to course details with ID:", id);
+    // Ensure the path matches the one in your routing configuration
+    this.router.navigate(['/front/main/course-details', id])
+    .then(success => console.log('Navigation Success?', success))
+    .catch(err => console.error('Navigation Error:', err));
+}
 }

@@ -87,7 +87,9 @@ export class CoursDetailsComponent implements OnInit {
   buyCourse() {
     if (this.courseId > 0) {
       // Navigate relative to the current route
+      console.log("aaaaaaaaaa0");
       this.router.navigate(['purchase'], { relativeTo: this.route });
+     
     } else {
       console.error('Course ID is missing or invalid');
     }

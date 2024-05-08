@@ -1,14 +1,15 @@
 <div class="grid-row reverse video-gallery" style="margin: 6%;">
-    <h2>Course videos :</h2>
-    <input type="radio" [value]="video.id" name="video-list" [id]="'video-' + video.id" [checked]="video.id === selectedVideoId" (change)="selectVideo(video.id)" *ngFor="let video of videos" />
-    <label [for]="'video-' + video.id" *ngFor="let video of videos">{{ video.title }}</label>
+  <h2>Course videos :</h2>
+  <input type="radio" [value]="video.id" name="video-list" [id]="'video-' + video.id" [checked]="video.id === selectedVideoId" (change)="selectVideo(video.id)" *ngFor="let video of videos" />
+  <label [for]="'video-' + video.id" *ngFor="let video of videos">{{ video.title }}</label>
 
-    <div class="video video-{{selectedVideoId}}">
-      <iframe width="560" height="315" [src]="selectedVideoUrl" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <button type="button" class="btn btn-primary" (click)="buyCourse()">Buy</button>
-
+  <div class="video video-{{selectedVideoId}}">
+    <iframe width="560" height="315" [src]="selectedVideoUrl" frameborder="0" allowfullscreen></iframe>
   </div>
+  <button type="button" class="btn btn-primary" (click)="buyCourse()">Buy</button>
+  
+</div>
 
- 
-<router-outlet> </router-outlet>
+<router-outlet></router-outlet>
+
+

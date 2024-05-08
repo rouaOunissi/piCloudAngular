@@ -59,7 +59,10 @@ const routes: Routes = [
     ]},
     {path: "display-video" , component:DisplayVideoComponent},
     {path: "display-videoo" , component:VideoDisplayerComponent},
-   
+    {path:"course-details/:id",component:CoursDetailsComponent , children:[{path:"purchase",component:PaymentIntComponent}]},
+    {path:'succeeded', component:SuccededComponent},
+    {path:'accountTotal',component:AccountSellerComponent},
+  
   ]},
   {path : "footer" , component:FooterComponent},
   {path: "header" , component:HeaderComponent},
@@ -69,9 +72,9 @@ const routes: Routes = [
   {path:"forgetPassword",component:ForgetPasswordComponent},
   {path:"NotFound",component:NotFoundComponent},
   {path:"banAlert",component:AlertBanComponent},
-  {path:"course-details/:id",component:CoursDetailsComponent , children:[{path:"purchase",component:PaymentIntComponent}]},
-  {path:'succeeded', component:SuccededComponent},
-    {path:'accountTotal',component:AccountSellerComponent},
+ 
+   
+
   
     
 
